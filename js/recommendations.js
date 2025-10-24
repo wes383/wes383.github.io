@@ -284,6 +284,8 @@ const recommendations = [
     { title: "Fa yeung nin wah", type: "Movie", year: 2000, imdb: "tt0118694" },
     { title: "Twelve Monkeys", type: "Movie", year: 1995, imdb: "tt0114746" },
     { title: "Roma", type: "Movie", year: 2018, imdb: "tt6155172" },
+    { title: "One Battle After Another", type: "Movie", year: 2025, imdb: "tt30144839" },
+    { title: "Ferris Bueller's Day Off", type: "Movie", year: 1986, imdb: "tt0091042" },
 ];
 
 if (typeof module !== 'undefined' && module.exports) {
