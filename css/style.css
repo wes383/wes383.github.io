@@ -246,11 +246,11 @@ body::after {
 @media (max-width: 768px) {
 
     body::before {
-    left: 0;
+        left: 0;
     }
 
     body::after {
-    right: 0;
+        right: 0;
     }
 
     .section {
@@ -312,6 +312,7 @@ body::after {
     }
 
     .blog-list {
+        align-self: center;
         padding-right: 0;
         gap: 40px;
     }
