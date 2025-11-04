@@ -17,7 +17,7 @@ body::after {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 1px;
+    width: 2px;
     background-color: #000;
     z-index: 1000;
 }
@@ -48,8 +48,8 @@ body::after {
     padding-left: 0;
     flex-direction: column;
     position: relative;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .section-2 {
@@ -60,7 +60,7 @@ body::after {
     position: relative;
     padding-bottom: 0;
     padding-right: 120px;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .section-3 {
@@ -72,7 +72,6 @@ body::after {
     padding-left: 0;
     flex-direction: column;
     position: relative;
-    border-bottom: 1px solid #000;
 }
 
 .section-4 {
@@ -84,7 +83,8 @@ body::after {
     position: relative;
     padding-bottom: 80px;
     padding-right: 120px;
-    border-bottom: 1px solid #000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .section-title-right {
@@ -136,7 +136,7 @@ body::after {
     font-weight: 600;
     color: #000;
     cursor: pointer;
-    padding: 5px 12px;
+    padding: 60px 120px;
     border-radius: 0;
     transition: background-color 0.3s ease, color 0.3s ease, opacity 0.2s ease;
 }
@@ -245,9 +245,12 @@ body::after {
 
 @media (max-width: 768px) {
 
-    body::before,
+    body::before {
+    left: 0;
+    }
+
     body::after {
-        display: none;
+    right: 0;
     }
 
     .section {
@@ -309,7 +312,8 @@ body::after {
     }
 
     .blog-list {
-        padding-right: 24px;
+        padding-right: 0;
+        gap: 40px;
     }
 
     .section-3 {
@@ -322,12 +326,39 @@ body::after {
 
     .blog-item {
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
         gap: 8px;
+    }
+
+    .blog-link {
+        text-align: center;
     }
 
     .blog-date {
         font-size: 14px;
+        text-align: center;
+    }
+
+    .recommend-text {
+        padding: 5px 12px;
+        text-align: center;
+    }
+
+    .recommend-text:hover {
+        background-color: transparent;
+        color: #000;
+    }
+
+    .project-row:hover {
+        background-color: transparent;
+    }
+
+    .project-row:hover .project-item {
+        color: #000;
+    }
+
+    .project-row:hover .project-description {
+        color: #000;
     }
 }
 
