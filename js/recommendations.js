@@ -249,7 +249,7 @@ const recommendations = [
     { title: "Babel", type: "Movie", year: 2006, imdb: "tt0449467" },
     { title: "tick, tick... BOOM!", type: "Movie", year: 2021, imdb: "tt8721424" },
     { title: "Run Lola Run", type: "Movie", year: 1998, imdb: "tt0130827" },
-    { title: "And Then There Were None", type: "TV Show", year: 2017, imdb: "tt7031398" },
+    { title: "And Then There Were None", type: "TV Show", year: 2017, imdb: "tt3581932" },
     { title: "The Last Emperor", type: "Movie", year: 1987, imdb: "tt0093389" },
     { title: "Matchstick Men", type: "Movie", year: 2003, imdb: "tt0325805" },
     { title: "Me and Earl and the Dying Girl", type: "Movie", year: 2015, imdb: "tt2582496" },
