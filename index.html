@@ -9,13 +9,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/recommendations.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/scroll-position.js"></script>
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wes Wei</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/recommendations.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/scroll-position.js"></script>
+    </head>
 
 <body>
-    <div class="section section-1">
+    <div class="section section-1" id="section-1">
+        <a class="nav-block nav-left nav-hidden"></a>
+        <a class="nav-block nav-right" href="#section-2"></a>
         <div class="center-text" id="wes-name">Wes Wei</div>
         <div class="bottom-links">
             <a href="mailto:why5807@gmail.com" class="email">Email</a>
@@ -25,7 +38,9 @@
             <a href="https://www.goodreads.com/wesw" target="_blank" class="social-link">Goodreads</a>
         </div>
     </div>
-    <div class="section section-2">
+    <div class="section section-2" id="section-2">
+        <a class="nav-block nav-left" href="#section-1"></a>
+        <a class="nav-block nav-right" href="#section-3"></a>
         <div class="section-title">Projects</div>
         <div class="projects-list">
             <a href="https://github.com/wes383/Today/" target="_blank" class="project-row">
@@ -67,11 +82,15 @@
             </a>
         </div>
     </div>
-    <div class="section section-3">
+    <div class="section section-3" id="section-3">
+        <a class="nav-block nav-left" href="#section-2"></a>
+        <a class="nav-block nav-right" href="#section-4"></a>
         <div class="recommend-text">Recommend a random movie or TV show</div>
         <a href="#" target="_blank" class="imdb-link">IMDb -></a>
     </div>
-    <div class="section section-4">
+    <div class="section section-4" id="section-4">
+        <a class="nav-block nav-left" href="#section-3"></a>
+        <a class="nav-block nav-right nav-hidden"></a>
         <div class="section-title section-title-right">Blog</div>
         <div class="blog-list">
             <div class="blog-item">

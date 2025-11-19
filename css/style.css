@@ -377,3 +377,34 @@ body::after {
     margin: 0;
     max-width: 600px;
 }
+
+.nav-block {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-left {
+    left: 0;
+}
+
+.nav-right {
+    right: 0;
+}
+
+.nav-hidden {
+    cursor: default;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .nav-block {
+        display: none;
+    }
+}

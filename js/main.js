@@ -36,7 +36,7 @@ function updateRecommendationText() {
     if (linkElement) {
         linkElement.style.opacity = '0';
     }
-    
+
     setTimeout(() => {
         textElement.textContent = `${recommendation.title} (${recommendation.year})`;
 
@@ -63,4 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
             wesName.style.color = getRandomColor();
         });
     }
+
+    const navBlocks = document.querySelectorAll('.nav-block');
+    navBlocks.forEach(block => {
+        block.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = block.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    if (targetId === '#section-3') {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }
+        });
+    });
 });
