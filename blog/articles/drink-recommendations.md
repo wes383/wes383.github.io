@@ -2,11 +2,11 @@
 
 > This article is written in Simplified Chinese.
 
-过去两年左右，我使用 [Notion 数据库](https://www.notion.com/help/intro-to-databases)记录了每一杯我喝过的奶茶，包括品牌、价格和评分。
+过去两年左右，我使用 [Notion 数据库](https://www.notion.com/help/intro-to-databases)记录了每一杯我点的奶茶，包括品牌、价格和评分。
 
 <img src="articles/images/drink-recommendations-p01.png" alt="统计数据">
 
-共统计了 39 个品牌的 410 杯奶茶，其中有 272 杯是不重复的，评分均值为 6.63。下面是个人评分 7 分及以上的奶茶，有一些已经下架，仅供参考。
+共统计了 40 个品牌的 418 杯奶茶，其中有 278 杯是不重复的，评分均值为 6.64。下面是个人评分 7 分及以上的奶茶，有一些已经下架，仅供参考。
 
 数据截止至 2025 年 12 月 1 日。
 
