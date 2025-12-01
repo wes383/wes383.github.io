@@ -1,0 +1,388 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.text-container {
+    font-size: 38px;
+}
+
+.wes {
+    font-family: 'Lora', serif;
+}
+
+.wei {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-dots {
+    position: fixed;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background-color: #888;
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background-color: #333;
+}
+
+.page {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.page.active {
+    display: flex;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+}
+
+.contact-container a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-container a:hover {
+    color: #666;
+    text-decoration: underline;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.contact-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+}
+
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 750px;
+    max-height: 80vh;
+    padding: 20px;
+    margin-left: 50px;
+    overflow-y: auto;
+}
+
+.projects-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.projects-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.projects-wrapper::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.projects-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+    align-self: center;
+    position: relative;
+    left: -20px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-title:hover {
+    color: #666;
+    text-decoration: underline;
+}
+
+.project-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.recommend-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recommend-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.recommend-button:hover {
+    color: #666;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.recommend-result {
+    display: none;
+    text-align: center;
+}
+
+.media-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.media-info {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #666;
+}
+
+.imdb-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.imdb-link:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-dots {
+        left: 40px;
+    }
+    
+    .projects-wrapper {
+        max-width: calc(100% - 120px);
+        margin-left: 80px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-container {
+        font-size: 32px;
+    }
+    
+    .nav-dots {
+        left: 20px;
+        gap: 15px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+        gap: 25px;
+        font-size: 16px;
+        align-items: flex-start;
+    }
+    
+    .contact-wrapper {
+        gap: 30px;
+        align-items: flex-start;
+    }
+    
+    .contact-title {
+        font-size: 16px;
+        align-self: flex-start;
+    }
+    
+    .projects-wrapper {
+        max-width: calc(100% - 80px);
+        max-height: 75vh;
+        padding: 15px;
+        gap: 30px;
+        margin-left: 40px;
+        margin-right: 15px;
+    }
+    
+    .projects-title {
+        font-size: 16px;
+    }
+    
+    .projects-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .project-title {
+        font-size: 15px;
+    }
+    
+    .project-description {
+        font-size: 13px;
+    }
+    
+    .recommend-button {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 20px;
+    }
+    
+    .imdb-link {
+        font-size: 14px;
+        bottom: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container {
+        font-size: 28px;
+    }
+    
+    .nav-dots {
+        left: 15px;
+        gap: 12px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .contact-container {
+        gap: 20px;
+        font-size: 14px;
+    }
+    
+    .projects-wrapper {
+        max-width: calc(100% - 60px);
+        padding: 10px;
+        margin-left: 40px;
+        margin-right: 15px;
+    }
+    
+    .projects-container {
+        gap: 20px;
+    }
+    
+    .project-title {
+        font-size: 14px;
+    }
+    
+    .project-description {
+        font-size: 12px;
+    }
+    
+    .recommend-button {
+        font-size: 14px;
+    }
+    
+    .imdb-link {
+        font-size: 13px;
+        bottom: 50px;
+    }
+}

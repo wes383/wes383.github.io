@@ -1,4 +1,57 @@
-const recommendations = [
+const dots = document.querySelectorAll('.dot');
+const pages = document.querySelectorAll('.page');
+let currentPage = 0;
+let isScrolling = false;
+
+function switchPage(index) {
+    if (index < 0 || index >= pages.length) return;
+    
+    dots.forEach(d => d.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    
+    dots[index].classList.add('active');
+    pages[index].classList.add('active');
+    currentPage = index;
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        switchPage(index);
+    });
+});
+
+window.addEventListener('wheel', (e) => {
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    if (projectsWrapper && projectsWrapper.contains(e.target)) {
+        const isAtTop = projectsWrapper.scrollTop === 0;
+        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
+        
+        if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        } else {
+            return;
+        }
+    }
+    
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    
+    if (e.deltaY > 0) {
+        if (currentPage < pages.length - 1) {
+            switchPage(currentPage + 1);
+        }
+    } else {
+        if (currentPage > 0) {
+            switchPage(currentPage - 1);
+        }
+    }
+    
+    setTimeout(() => {
+        isScrolling = false;
+    }, 200);
+});
+
+const mediaList = [
     { title: "Breaking Bad", type: "TV Show", year: 2008, imdb: "tt0903747" },
     { title: "Better Call Saul", type: "TV Show", year: 2015, imdb: "tt3032476" },
     { title: "Chernobyl", type: "TV Show", year: 2019, imdb: "tt7366338" },
@@ -289,8 +342,70 @@ const recommendations = [
     { title: "Frankenstein", type: "Movie", year: 2025, imdb: "tt1312221" },
     { title: "Gran Torino", type: "Movie", year: 2008, imdb: "tt1205489" },
     { title: "Pluribus", type: "TV Show", year: 2025, imdb: "tt22202452" },
+    { title: "Train Dreams", type: "Movie", year: 2025, imdb: "tt29768334" },
+    { title: "Bugonia", type: "Movie", year: 2025, imdb: "tt12300742" },
 ];
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = recommendations;
+const recommendButton = document.getElementById('recommendButton');
+const imdbLink = document.getElementById('imdbLink');
+
+recommendButton.addEventListener('click', () => {
+    recommendButton.classList.add('fade-out');
+    imdbLink.classList.add('fade-out');
+    
+    setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * mediaList.length);
+        const media = mediaList[randomIndex];
+        
+        recommendButton.textContent = `${media.title} (${media.year})`;
+        imdbLink.href = `https://www.imdb.com/title/${media.imdb}/`;
+        imdbLink.style.display = 'block';
+        
+        recommendButton.classList.remove('fade-out');
+        recommendButton.classList.add('fade-in');
+        imdbLink.classList.remove('fade-out');
+        imdbLink.classList.add('fade-in');
+        
+        setTimeout(() => {
+            recommendButton.classList.remove('fade-in');
+            imdbLink.classList.remove('fade-in');
+        }, 300);
+    }, 300);
+});
+
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartY - touchEndY;
+    
+    if (Math.abs(diff) < swipeThreshold) return;
+    
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    
+    if (diff > 0) {
+        if (currentPage < pages.length - 1) {
+            switchPage(currentPage + 1);
+        }
+    } else {
+        if (currentPage > 0) {
+            switchPage(currentPage - 1);
+        }
+    }
+    
+    setTimeout(() => {
+        isScrolling = false;
+    }, 200);
 }

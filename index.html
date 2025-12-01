@@ -1,120 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wes Wei</title>
+    <title>Wes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Wes Wei</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/recommendations.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/scroll-position.js"></script>
-    </head>
-
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div class="section section-1" id="section-1">
-        <a class="nav-block nav-left nav-hidden"></a>
-        <a class="nav-block nav-right" href="#section-2"></a>
-        <div class="center-text" id="wes-name">Wes Wei</div>
-        <div class="bottom-links">
-            <a href="mailto:why5807@gmail.com" class="email">Email</a>
-            <a href="https://x.com/wes457" target="_blank" class="social-link">X</a>
-            <a href="https://github.com/wes383" target="_blank" class="social-link">GitHub</a>
-            <a href="https://discord.com/users/966725756661141576" target="_blank" class="social-link">Discord</a>
-            <a href="https://www.goodreads.com/wesw" target="_blank" class="social-link">Goodreads</a>
+    <nav class="nav-dots">
+        <div class="dot active" data-page="home"></div>
+        <div class="dot" data-page="contact"></div>
+        <div class="dot" data-page="projects"></div>
+        <div class="dot" data-page="recommendations"></div>
+    </nav>
+    
+    <div class="page active" id="home">
+        <div class="text-container">
+            <span class="wes">Wes</span> <span class="wei">Wei</span>
         </div>
     </div>
-    <div class="section section-2" id="section-2">
-        <a class="nav-block nav-left" href="#section-1"></a>
-        <a class="nav-block nav-right" href="#section-3"></a>
-        <div class="section-title">Projects</div>
-        <div class="projects-list">
-            <a href="https://github.com/wes383/Today/" target="_blank" class="project-row">
-                <span class="project-item">Today</span>
-                <p class="project-description">Help you manage your daily schedule, track your focus time, and boost
-                    your productivity.</p>
-            </a>
-            <a href="https://github.com/wes383/media-center/" target="_blank" class="project-row">
-                <span class="project-item">media-center</span>
-                <p class="project-description">A web application designed to provide a beautiful, easy-to-navigate
-                    interface for your local collection of movies and TV shows.</p>
-            </a>
-            <a href="https://wes383.github.io/20-questions/" target="_blank" class="project-row">
-                <span class="project-item">20 Questions AI Game</span>
-                <p class="project-description">An AI-powered 20 questions guessing game built with Google Gemini API for
-                    intelligent question-answering interactions.</p>
-            </a>
-            <a href="https://wes383.github.io/choice/" target="_blank" class="project-row">
-                <span class="project-item">Choice</span>
-                <p class="project-description">An interactive random card drawing application built with React +
-                    TypeScript + Vite.</p>
-            </a>
-            <a href="https://wes383.github.io/what-happened-when/" target="_blank" class="project-row">
-                <span class="project-item">What Happened When...</span>
-                <p class="project-description">A web application that merges historical timelines of multiple subjects
-                    to discover fascinating connections across time.</p>
-            </a>
-            <a href="https://github.com/wes383/vishel/" target="_blank" class="project-row">
-                <span class="project-item">Vishel</span>
-                <p class="project-description">Vishel is a modern media manager. Built with Electron, React, and Vite,
-                    it can organize your movies and TV shows, fetches metadata, and lets you play them with external
-                    player.</p>
-            </a>
-            <a href="https://wes383.github.io/fill-time/" target="_blank" class="project-row">
-                <span class="project-item">Fill Time</span>
-                <p class="project-description">Visualizing the passage of time with grids.</p>
-            </a>
-            <a href="https://wes383.github.io/focus-grid/" target="_blank" class="project-row">
-                <span class="project-item">Focus Grid</span>
-                <p class="project-description">Fill the grids with time.</p>
-            </a>
-            <a href="https://wes383.github.io/Counter/" target="_blank" class="project-row">
-                <span class="project-item">Counter</span>
-                <p class="project-description">A counter.</p>
-            </a>
-        </div>
-    </div>
-    <div class="section section-3" id="section-3">
-        <a class="nav-block nav-left" href="#section-2"></a>
-        <a class="nav-block nav-right" href="#section-4"></a>
-        <div class="recommend-text">Recommend a random movie or TV show</div>
-        <a href="#" target="_blank" class="imdb-link">IMDb -></a>
-    </div>
-    <div class="section section-4" id="section-4">
-        <a class="nav-block nav-left" href="#section-3"></a>
-        <a class="nav-block nav-right nav-hidden"></a>
-        <div class="section-title section-title-right">Blog</div>
-        <div class="blog-list">
-            <div class="blog-item">
-                <a href="blog/article.html?article=drink-recommendations&date=2025-12-01" class="blog-link">Drink
-                    Recommendations</a>
-                <span class="blog-date">December 1, 2025</span>
-            </div>
-            <div class="blog-item">
-                <a href="blog/article.html?article=campus-scenes&date=2025-10-18" class="blog-link">Movies or TV Series
-                    That Include Campus Scenes</a>
-                <span class="blog-date">October 18, 2025</span>
-            </div>
-            <div class="blog-item">
-                <a href="blog/article.html?article=first-post&date=2025-04-14" class="blog-link">My First Blog</a>
-                <span class="blog-date">April 14, 2025</span>
+    
+    <div class="page" id="contact">
+        <div class="contact-wrapper">
+            <h2 class="contact-title">Contact</h2>
+            <div class="contact-container">
+                <a href="mailto:why5807@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/wes457" target="_blank">X</a>
+                <a href="https://github.com/wes383" target="_blank">GitHub</a>
+                <a href="https://discord.com/users/966725756661141576" target="_blank">Discord</a>
+                <a href="https://www.goodreads.com/wesw" target="_blank">Goodreads</a>
             </div>
         </div>
     </div>
+    
+    <div class="page" id="projects">
+        <div class="projects-wrapper">
+            <h2 class="projects-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <a href="https://github.com/wes383/Today/" target="_blank" class="project-title">Today</a>
+                    <p class="project-description">Help you manage your daily schedule, track your focus time, and boost your productivity.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/wes383/media-center/" target="_blank" class="project-title">Media Center</a>
+                    <p class="project-description">A web application designed to provide a beautiful, easy-to-navigate interface for your local collection of movies and TV shows.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://wes383.github.io/20-questions/" target="_blank" class="project-title">20 Questions AI Game</a>
+                    <p class="project-description">An AI-powered 20 questions guessing game built with Google Gemini API for intelligent question-answering interactions.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://wes383.github.io/choice/" target="_blank" class="project-title">Choice</a>
+                    <p class="project-description">An interactive random card drawing application built with React + TypeScript + Vite.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://wes383.github.io/what-happened-when/" target="_blank" class="project-title">What Happened When...</a>
+                    <p class="project-description">A web application that merges historical timelines of multiple subjects to discover fascinating connections across time.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/wes383/vishel/" target="_blank" class="project-title">Vishel</a>
+                    <p class="project-description">Vishel is a modern media manager. Built with Electron, React, and Vite, it can organize your movies and TV shows, fetches metadata, and lets you play them with external player.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://wes383.github.io/fill-time/" target="_blank" class="project-title">Fill Time</a>
+                    <p class="project-description">Visualizing the passage of time with grids.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://wes383.github.io/focus-grid/" target="_blank" class="project-title">Focus Grid</a>
+                    <p class="project-description">Fill the grids with time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page" id="recommendations">
+        <div class="recommend-container">
+            <div id="recommendButton" class="recommend-button">Recommend a random movie or TV show</div>
+            <a id="imdbLink" class="imdb-link" href="#" target="_blank" style="display: none;">-> IMDb</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
-
 </html>
