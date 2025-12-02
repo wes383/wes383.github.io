@@ -390,28 +390,28 @@ let touchStartY = 0;
 let touchStartX = 0;
 
 document.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].clientY;
+    touchStartX = e.changedTouches[0].clientX;
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
-    const touchEndY = e.changedTouches[0].screenY;
-    const touchEndX = e.changedTouches[0].screenX;
-    handleSwipe(touchEndY, touchEndX);
+    const touchEndY = e.changedTouches[0].clientY;
+    handleSwipe(touchEndY);
 }, { passive: true });
 
-function handleSwipe(touchEndY, touchEndX) {
+function handleSwipe(touchEndY) {
     const swipeThreshold = 50;
     const diff = touchStartY - touchEndY;
 
     if (Math.abs(diff) < swipeThreshold) return;
 
     const navDots = document.querySelector('.nav-dots');
-    const windowWidth = window.innerWidth;
-    const leftZone = touchStartX < 200;
-    const rightZone = touchStartX > windowWidth - 200;
+    if (!navDots) return;
+    
+    const navRect = navDots.getBoundingClientRect();
+    const allowedZone = touchStartX <= navRect.right;
 
-    if (!leftZone && !rightZone) {
+    if (!allowedZone) {
         return;
     }
 
