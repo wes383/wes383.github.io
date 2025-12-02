@@ -20,6 +20,31 @@ dots.forEach((dot, index) => {
     });
 });
 
+document.addEventListener('keydown', (e) => {
+    if (isScrolling) return;
+    
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (currentPage > 0) {
+            isScrolling = true;
+            switchPage(currentPage - 1);
+            setTimeout(() => {
+                isScrolling = false;
+            }, 300);
+        }
+    }
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (currentPage < pages.length - 1) {
+            isScrolling = true;
+            switchPage(currentPage + 1);
+            setTimeout(() => {
+                isScrolling = false;
+            }, 300);
+        }
+    }
+});
+
 let wheelDelta = 0;
 const wheelThreshold = 50;
 
