@@ -5,10 +5,10 @@ let isScrolling = false;
 
 function switchPage(index) {
     if (index < 0 || index >= pages.length) return;
-    
+
     dots.forEach(d => d.classList.remove('active'));
     pages.forEach(p => p.classList.remove('active'));
-    
+
     dots[index].classList.add('active');
     pages[index].classList.add('active');
     currentPage = index;
@@ -20,35 +20,48 @@ dots.forEach((dot, index) => {
     });
 });
 
+let wheelDelta = 0;
+const wheelThreshold = 50;
+
 window.addEventListener('wheel', (e) => {
-    const projectsWrapper = document.querySelector('.projects-wrapper');
-    if (projectsWrapper && projectsWrapper.contains(e.target)) {
-        const isAtTop = projectsWrapper.scrollTop === 0;
-        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
-        
-        if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
-        } else {
-            return;
-        }
+    const navDots = document.querySelector('.nav-dots');
+    const isOnNavDots = navDots && navDots.contains(e.target);
+    
+    const windowWidth = window.innerWidth;
+    const clickX = e.clientX;
+    const leftZone = clickX < 200;
+    const rightZone = clickX > windowWidth - 200;
+    
+    const targetIsPage = e.target.classList.contains('page') || e.target.tagName === 'BODY';
+    
+    if (!isOnNavDots && !(targetIsPage && (leftZone || rightZone))) {
+        wheelDelta = 0;
+        return;
     }
     
     if (isScrolling) return;
     
-    isScrolling = true;
+    wheelDelta += e.deltaY;
     
-    if (e.deltaY > 0) {
-        if (currentPage < pages.length - 1) {
-            switchPage(currentPage + 1);
+    if (Math.abs(wheelDelta) >= wheelThreshold) {
+        isScrolling = true;
+        
+        if (wheelDelta > 0) {
+            if (currentPage < pages.length - 1) {
+                switchPage(currentPage + 1);
+            }
+        } else {
+            if (currentPage > 0) {
+                switchPage(currentPage - 1);
+            }
         }
-    } else {
-        if (currentPage > 0) {
-            switchPage(currentPage - 1);
-        }
+        
+        wheelDelta = 0;
+        
+        setTimeout(() => {
+            isScrolling = false;
+        }, 600);
     }
-    
-    setTimeout(() => {
-        isScrolling = false;
-    }, 200);
 });
 
 const mediaList = [
@@ -352,20 +365,20 @@ const imdbLink = document.getElementById('imdbLink');
 recommendButton.addEventListener('click', () => {
     recommendButton.classList.add('fade-out');
     imdbLink.classList.add('fade-out');
-    
+
     setTimeout(() => {
         const randomIndex = Math.floor(Math.random() * mediaList.length);
         const media = mediaList[randomIndex];
-        
+
         recommendButton.textContent = `${media.title} (${media.year})`;
         imdbLink.href = `https://www.imdb.com/title/${media.imdb}/`;
         imdbLink.style.display = 'block';
-        
+
         recommendButton.classList.remove('fade-out');
         recommendButton.classList.add('fade-in');
         imdbLink.classList.remove('fade-out');
         imdbLink.classList.add('fade-in');
-        
+
         setTimeout(() => {
             recommendButton.classList.remove('fade-in');
             imdbLink.classList.remove('fade-in');
@@ -374,66 +387,38 @@ recommendButton.addEventListener('click', () => {
 });
 
 let touchStartY = 0;
-let touchEndY = 0;
 let touchStartX = 0;
-let isTouchingProjectsWrapper = false;
-let projectsScrollStart = 0;
-let hasScrolledInProjects = false;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].screenY;
     touchStartX = e.changedTouches[0].screenX;
-    
-    const projectsWrapper = document.querySelector('.projects-wrapper');
-    isTouchingProjectsWrapper = projectsWrapper && projectsWrapper.contains(e.target);
-    
-    if (isTouchingProjectsWrapper) {
-        projectsScrollStart = projectsWrapper.scrollTop;
-        hasScrolledInProjects = false;
-    }
-}, { passive: true });
-
-document.addEventListener('touchmove', (e) => {
-    if (isTouchingProjectsWrapper) {
-        const projectsWrapper = document.querySelector('.projects-wrapper');
-        if (projectsWrapper && Math.abs(projectsWrapper.scrollTop - projectsScrollStart) > 5) {
-            hasScrolledInProjects = true;
-        }
-    }
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
+    const touchEndY = e.changedTouches[0].screenY;
+    const touchEndX = e.changedTouches[0].screenX;
+    handleSwipe(touchEndY, touchEndX);
 }, { passive: true });
 
-function handleSwipe() {
+function handleSwipe(touchEndY, touchEndX) {
     const swipeThreshold = 50;
     const diff = touchStartY - touchEndY;
-    
+
     if (Math.abs(diff) < swipeThreshold) return;
-    
-    if (isTouchingProjectsWrapper && hasScrolledInProjects) {
+
+    const navDots = document.querySelector('.nav-dots');
+    const windowWidth = window.innerWidth;
+    const leftZone = touchStartX < 200;
+    const rightZone = touchStartX > windowWidth - 200;
+
+    if (!leftZone && !rightZone) {
         return;
     }
-    
-    if (isTouchingProjectsWrapper) {
-        const projectsWrapper = document.querySelector('.projects-wrapper');
-        if (projectsWrapper) {
-            const isAtTop = projectsWrapper.scrollTop === 0;
-            const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
-            
-            if ((isAtTop && diff < 0) || (isAtBottom && diff > 0)) {
-            } else {
-                return;
-            }
-        }
-    }
-    
+
     if (isScrolling) return;
-    
+
     isScrolling = true;
-    
+
     if (diff > 0) {
         if (currentPage < pages.length - 1) {
             switchPage(currentPage + 1);
@@ -443,7 +428,7 @@ function handleSwipe() {
             switchPage(currentPage - 1);
         }
     }
-    
+
     setTimeout(() => {
         isScrolling = false;
     }, 200);
