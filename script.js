@@ -375,9 +375,31 @@ recommendButton.addEventListener('click', () => {
 
 let touchStartY = 0;
 let touchEndY = 0;
+let touchStartX = 0;
+let isTouchingProjectsWrapper = false;
+let projectsScrollStart = 0;
+let hasScrolledInProjects = false;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].screenY;
+    touchStartX = e.changedTouches[0].screenX;
+    
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    isTouchingProjectsWrapper = projectsWrapper && projectsWrapper.contains(e.target);
+    
+    if (isTouchingProjectsWrapper) {
+        projectsScrollStart = projectsWrapper.scrollTop;
+        hasScrolledInProjects = false;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+    if (isTouchingProjectsWrapper) {
+        const projectsWrapper = document.querySelector('.projects-wrapper');
+        if (projectsWrapper && Math.abs(projectsWrapper.scrollTop - projectsScrollStart) > 5) {
+            hasScrolledInProjects = true;
+        }
+    }
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
@@ -390,6 +412,23 @@ function handleSwipe() {
     const diff = touchStartY - touchEndY;
     
     if (Math.abs(diff) < swipeThreshold) return;
+    
+    if (isTouchingProjectsWrapper && hasScrolledInProjects) {
+        return;
+    }
+    
+    if (isTouchingProjectsWrapper) {
+        const projectsWrapper = document.querySelector('.projects-wrapper');
+        if (projectsWrapper) {
+            const isAtTop = projectsWrapper.scrollTop === 0;
+            const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
+            
+            if ((isAtTop && diff < 0) || (isAtBottom && diff > 0)) {
+            } else {
+                return;
+            }
+        }
+    }
     
     if (isScrolling) return;
     
