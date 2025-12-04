@@ -14,6 +14,9 @@ body {
 
 .text-container {
     font-size: 38px;
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.5s ease;
 }
 
 .wes {
@@ -247,6 +250,7 @@ body {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -256,6 +260,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -265,7 +270,7 @@ body {
     .nav-dots {
         left: 40px;
     }
-    
+
     .projects-wrapper {
         max-width: calc(100% - 120px);
         margin-left: 80px;
@@ -277,34 +282,34 @@ body {
     .text-container {
         font-size: 32px;
     }
-    
+
     .nav-dots {
         left: 20px;
         gap: 15px;
     }
-    
+
     .dot {
         width: 10px;
         height: 10px;
     }
-    
+
     .contact-container {
         flex-direction: column;
         gap: 25px;
         font-size: 16px;
         align-items: flex-start;
     }
-    
+
     .contact-wrapper {
         gap: 30px;
         align-items: flex-start;
     }
-    
+
     .contact-title {
         font-size: 16px;
         align-self: flex-start;
     }
-    
+
     .projects-wrapper {
         max-width: calc(100% - 80px);
         max-height: 75vh;
@@ -313,32 +318,32 @@ body {
         margin-left: 40px;
         margin-right: 15px;
     }
-    
+
     .projects-title {
         font-size: 16px;
         align-self: flex-start;
         left: 0;
     }
-    
+
     .projects-container {
         grid-template-columns: 1fr;
         gap: 25px;
     }
-    
+
     .project-title {
         font-size: 15px;
     }
-    
+
     .project-description {
         font-size: 13px;
     }
-    
+
     .recommend-button {
         font-size: 16px;
         text-align: center;
         padding: 0 20px;
     }
-    
+
     .imdb-link {
         font-size: 14px;
         bottom: 60px;
@@ -349,45 +354,45 @@ body {
     .text-container {
         font-size: 28px;
     }
-    
+
     .nav-dots {
         left: 15px;
         gap: 12px;
     }
-    
+
     .dot {
         width: 8px;
         height: 8px;
     }
-    
+
     .contact-container {
         gap: 20px;
         font-size: 14px;
     }
-    
+
     .projects-wrapper {
         max-width: calc(100% - 60px);
         padding: 10px;
         margin-left: 40px;
         margin-right: 15px;
     }
-    
+
     .projects-container {
         gap: 20px;
     }
-    
+
     .project-title {
         font-size: 14px;
     }
-    
+
     .project-description {
         font-size: 12px;
     }
-    
+
     .recommend-button {
         font-size: 14px;
     }
-    
+
     .imdb-link {
         font-size: 13px;
         bottom: 50px;

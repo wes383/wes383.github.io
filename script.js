@@ -22,7 +22,7 @@ dots.forEach((dot, index) => {
 
 document.addEventListener('keydown', (e) => {
     if (isScrolling) return;
-    
+
     if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
         if (currentPage > 0) {
@@ -51,26 +51,26 @@ const wheelThreshold = 50;
 window.addEventListener('wheel', (e) => {
     const navDots = document.querySelector('.nav-dots');
     const isOnNavDots = navDots && navDots.contains(e.target);
-    
+
     const windowWidth = window.innerWidth;
     const clickX = e.clientX;
     const leftZone = clickX < 200;
     const rightZone = clickX > windowWidth - 200;
-    
+
     const targetIsPage = e.target.classList.contains('page') || e.target.tagName === 'BODY';
-    
+
     if (!isOnNavDots && !(targetIsPage && (leftZone || rightZone))) {
         wheelDelta = 0;
         return;
     }
-    
+
     if (isScrolling) return;
-    
+
     wheelDelta += e.deltaY;
-    
+
     if (Math.abs(wheelDelta) >= wheelThreshold) {
         isScrolling = true;
-        
+
         if (wheelDelta > 0) {
             if (currentPage < pages.length - 1) {
                 switchPage(currentPage + 1);
@@ -80,9 +80,9 @@ window.addEventListener('wheel', (e) => {
                 switchPage(currentPage - 1);
             }
         }
-        
+
         wheelDelta = 0;
-        
+
         setTimeout(() => {
             isScrolling = false;
         }, 600);
@@ -432,7 +432,7 @@ function handleSwipe(touchEndY) {
 
     const navDots = document.querySelector('.nav-dots');
     if (!navDots) return;
-    
+
     const navRect = navDots.getBoundingClientRect();
     const allowedZone = touchStartX <= navRect.right;
 
@@ -457,4 +457,33 @@ function handleSwipe(touchEndY) {
     setTimeout(() => {
         isScrolling = false;
     }, 200);
+}
+
+const colors = [
+    '#060', '#360', '#660', '#960', '#C60', '#F60',
+    '#063', '#363', '#663', '#963', '#C63', '#F63',
+    '#066', '#366', '#666', '#966', '#C66', '#F66',
+    '#069', '#369', '#669', '#969', '#C69', '#F69',
+    '#06C', '#36C', '#66C', '#96C', '#C6C', '#F6C',
+    '#06F', '#36F', '#66F', '#96F', '#C6F', '#F6F',
+    '#090', '#390', '#690', '#990', '#C90', '#F90',
+    '#093', '#393', '#693', '#993', '#C93', '#F93',
+    '#096', '#396', '#696', '#996', '#C96', '#F96',
+    '#099', '#399', '#699', '#999', '#C99', '#F99',
+    '#09C', '#39C', '#69C', '#99C', '#C9C', '#F9C',
+    '#09F', '#39F', '#69F', '#99F', '#C9F', '#F9F',
+    '#0C0', '#3C0', '#6C0', '#9C0', '#CC0', '#FC0',
+    '#0C3', '#3C3', '#6C3', '#9C3', '#CC3', '#FC3',
+    '#0C6', '#3C6', '#6C6', '#9C6', '#CC6', '#FC6',
+    '#0C9', '#3C9', '#6C9', '#9C9', '#CC9', '#FC9',
+    '#0CC', '#3CC', '#6CC', '#9CC', '#CCC', '#FCC',
+    '#0CF', '#3CF', '#6CF', '#9CF', '#CCF', '#FCF'
+];
+
+const textContainer = document.querySelector('.text-container');
+if (textContainer) {
+    textContainer.addEventListener('click', () => {
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        textContainer.style.color = randomColor;
+    });
 }
