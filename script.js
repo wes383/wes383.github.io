@@ -382,6 +382,10 @@ const mediaList = [
     { title: "Pluribus", type: "TV Show", year: 2025, imdb: "tt22202452" },
     { title: "Train Dreams", type: "Movie", year: 2025, imdb: "tt29768334" },
     { title: "Bugonia", type: "Movie", year: 2025, imdb: "tt12300742" },
+    { title: "No Other Choice", type: "Movie", year: 2025, imdb: "tt1527793" },
+    { title: "Lost in Translation", type: "Movie", year: 2025, imdb: "tt0335266" },
+    { title: "IT: Welcome to Derry", type: "TV Show", year: 2025, imdb: "tt19244304" },
+    { title: "Wake Up Dead Man", type: "Movie", year: 2025, imdb: "tt14364480" },
 ];
 
 const recommendButton = document.getElementById('recommendButton');
