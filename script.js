@@ -107,9 +107,7 @@ const mediaList = [
     { title: "Memento", type: "Movie", year: 2000, imdb: "tt0209144" },
     { title: "Kill Bill: Vol. 1", type: "Movie", year: 2003, imdb: "tt0266697" },
     { title: "The Hateful Eight", type: "Movie", year: 2015, imdb: "tt3460252" },
-    { title: "The Intouchables", type: "Movie", year: 2011, imdb: "tt1675434" },
     { title: "American Beauty", type: "Movie", year: 1999, imdb: "tt0169547" },
-    { title: "The Hunt", type: "Movie", year: 2012, imdb: "tt2106476" },
     { title: "Green Book", type: "Movie", year: 2018, imdb: "tt6966692" },
     { title: "The Handmaiden", type: "Movie", year: 2016, imdb: "tt4016934" },
     { title: "Ford v Ferrari", type: "Movie", year: 2019, imdb: "tt1950186" },
@@ -123,7 +121,6 @@ const mediaList = [
     { title: "Ratatouille", type: "Movie", year: 2007, imdb: "tt0382932" },
     { title: "3 Idiots", type: "Movie", year: 2009, imdb: "tt1187043" },
     { title: "Rush", type: "Movie", year: 2013, imdb: "tt1979320" },
-    { title: "Capharnaüm", type: "Movie", year: 2018, imdb: "tt8267604" },
     { title: "Before Sunrise", type: "Movie", year: 1995, imdb: "tt0112471" },
     { title: "Inside Out", type: "Movie", year: 2015, imdb: "tt2096673" },
     { title: "Contratiempo", type: "Movie", year: 2017, imdb: "tt4857264" },
@@ -135,13 +132,11 @@ const mediaList = [
     { title: "A Separation", type: "Movie", year: 2011, imdb: "tt1832382" },
     { title: "The Bourne Ultimatum", type: "Movie", year: 2007, imdb: "tt0440963" },
     { title: "Flipped", type: "Movie", year: 2010, imdb: "tt0817177" },
-    { title: "Children of Heaven", type: "Movie", year: 1997, imdb: "tt0118849" },
     { title: "The Substance", type: "Movie", year: 2024, imdb: "tt17526714" },
     { title: "Severance", type: "TV Show", year: 2022, imdb: "tt11280740" },
     { title: "The Bear", type: "TV Show", year: 2022, imdb: "tt14452776" },
     { title: "There Will Be Blood", type: "Movie", year: 2007, imdb: "tt0469494" },
     { title: "Adolescence", type: "TV Show", year: 2025, imdb: "tt31806037" },
-    { title: "Inglourious Basterds", type: "Movie", year: 2009, imdb: "tt0361748" },
     { title: "Ozark", type: "TV Show", year: 2017, imdb: "tt5071412" },
     { title: "Fallout", type: "TV Show", year: 2024, imdb: "tt12637874" },
     { title: "How I Met Your Mother", type: "TV Show", year: 2005, imdb: "tt0460649" },
@@ -152,7 +147,6 @@ const mediaList = [
     { title: "The Martian", type: "Movie", year: 2015, imdb: "tt3659388" },
     { title: "Money Heist", type: "TV Show", year: 2017, imdb: "tt6468322" },
     { title: "The Menu", type: "Movie", year: 2022, imdb: "tt9764362" },
-    { title: "3 Body Problem", type: "TV Show", year: 2024, imdb: "tt13016388" },
     { title: "Hacksaw Ridge", type: "Movie", year: 2016, imdb: "tt2119532" },
     { title: "Spirited Away", type: "Movie", year: 2001, imdb: "tt0245429" },
     { title: "Everything Everywhere All at Once", type: "Movie", year: 2022, imdb: "tt6710474" },
@@ -206,7 +200,6 @@ const mediaList = [
     { title: "Perfume: The Story of a Murderer", type: "Movie", year: 2006, imdb: "tt0396171" },
     { title: "Life of Pi", type: "Movie", year: 2012, imdb: "tt0454876" },
     { title: "Burning", type: "Movie", year: 2018, imdb: "tt7282468" },
-    { title: "Taare Zameen Par", type: "Movie", year: 2007, imdb: "tt0986264" },
     { title: "Sully", type: "Movie", year: 2016, imdb: "tt3263904" },
     { title: "The Theory of Everything", type: "Movie", year: 2014, imdb: "tt2980516" },
     { title: "Phone Booth", type: "Movie", year: 2003, imdb: "tt0183649" },
@@ -221,12 +214,9 @@ const mediaList = [
     { title: "Searching", type: "Movie", year: 2018, imdb: "tt7668870" },
     { title: "Swiss Army Man", type: "Movie", year: 2016, imdb: "tt4034354" },
     { title: "Non-Stop", type: "Movie", year: 2014, imdb: "tt2024469" },
-    { title: "Ba wang bie ji", type: "Movie", year: 1993, imdb: "tt0106332" },
-    { title: "Kokuhaku", type: "Movie", year: 2010, imdb: "tt1590089" },
-    { title: "Da hong denglong gaogao gua", type: "Movie", year: 1991, imdb: "tt0101640" },
-    { title: "Yi dai zong shi", type: "Movie", year: 2013, imdb: "tt1462900" },
     { title: "Persian Lessons", type: "Movie", year: 2020, imdb: "tt9738784" },
     { title: "Sinners", type: "Movie", year: 2025, imdb: "tt31193180" },
+    { title: "À bout de souffle", type: "Movie", year: 1960, imdb: "tt0053472" },
     { title: "F1", type: "Movie", year: 2025, imdb: "tt16311594" },
     { title: "The White Lotus", type: "TV Show", year: 2021, imdb: "tt13406094" },
     { title: "The Last of Us", type: "TV Show", year: 2023, imdb: "tt3581920" },
@@ -241,7 +231,6 @@ const mediaList = [
     { title: "City of God", type: "Movie", year: 2002, imdb: "tt0317248" },
     { title: "Midsommar", type: "Movie", year: 2019, imdb: "tt8772262" },
     { title: "The Holdovers", type: "Movie", year: 2023, imdb: "tt14849194" },
-    { title: "Primal Fear", type: "Movie", year: 1996, imdb: "tt0117381" },
     { title: "Bullet Train", type: "Movie", year: 2022, imdb: "tt12593682" },
     { title: "Mystic River", type: "Movie", year: 2003, imdb: "tt0327056" },
     { title: "Civil War", type: "Movie", year: 2024, imdb: "tt17279496" },
@@ -250,42 +239,34 @@ const mediaList = [
     { title: "Arrival", type: "Movie", year: 2016, imdb: "tt2543164" },
     { title: "Don't Look Up", type: "Movie", year: 2021, imdb: "tt11286314" },
     { title: "The Grand Budapest Hotel", type: "Movie", year: 2014, imdb: "tt2278388" },
-    { title: "The Tree of Life", type: "Movie", year: 2011, imdb: "tt0478304" },
     { title: "Taxi Driver", type: "Movie", year: 1976, imdb: "tt0075314" },
-    { title: "Persona", type: "Movie", year: 1966, imdb: "tt0060827" },
-    { title: "CODA", type: "Movie", year: 2021, imdb: "tt10366460" },
     { title: "Superbad", type: "Movie", year: 2007, imdb: "tt0829482" },
     { title: "Pearl", type: "Movie", year: 2022, imdb: "tt18925334" },
     { title: "The Descent", type: "Movie", year: 2005, imdb: "tt0435625" },
-    { title: "The Great Gatsby", type: "Movie", year: 2013, imdb: "tt1343092" },
     { title: "Saltburn", type: "Movie", year: 2023, imdb: "tt17351924" },
     { title: "Coherence", type: "Movie", year: 2013, imdb: "tt2866360" },
-    { title: "The Lighthouse", type: "Movie", year: 2019, imdb: "tt7984734" },
     { title: "Twisters", type: "Movie", year: 2024, imdb: "tt12584954" },
     { title: "Dunkirk", type: "Movie", year: 2017, imdb: "tt5013056" },
     { title: "Beef", type: "TV Show", year: 2023, imdb: "tt14403178" },
     { title: "Baby Driver", type: "Movie", year: 2017, imdb: "tt3890160" },
     { title: "The Darjeeling Limited", type: "Movie", year: 2007, imdb: "tt0838221" },
     { title: "[Rec]", type: "Movie", year: 2007, imdb: "tt1038988" },
-    { title: "Hidden Figures", type: "Movie", year: 2016, imdb: "tt4846340" },
     { title: "Leave the World Behind", type: "Movie", year: 2023, imdb: "tt12747748" },
     { title: "Notting Hill", type: "Movie", year: 1999, imdb: "tt0125439" },
     { title: "The Lobster", type: "Movie", year: 2015, imdb: "tt3464902" },
     { title: "Black Hawk Down", type: "Movie", year: 2001, imdb: "tt0265086" },
     { title: "The Man from Earth", type: "Movie", year: 2007, imdb: "tt0756683" },
     { title: "The 400 Blows", type: "Movie", year: 1959, imdb: "tt0053198" },
-    { title: "The Whale", type: "Movie", year: 2022, imdb: "tt13833688" },
-    { title: "The Favourite", type: "Movie", year: 2018, imdb: "tt5083738" },
     { title: "Snowpiercer", type: "Movie", year: 2013, imdb: "tt1706620" },
     { title: "Lady Bird", type: "Movie", year: 2017, imdb: "tt4925292" },
     { title: "The Royal Tenenbaums", type: "Movie", year: 2001, imdb: "tt0265666" },
     { title: "A Star Is Born", type: "Movie", year: 2018, imdb: "tt1517451" },
-    { title: "Druk", type: "Movie", year: 2020, imdb: "tt10288566" },
     { title: "Night at the Museum", type: "Movie", year: 2006, imdb: "tt0477347" },
     { title: "House of Wax", type: "Movie", year: 2005, imdb: "tt0397065" },
     { title: "The Ballad of Buster Scruggs", type: "Movie", year: 2018, imdb: "tt6412452" },
     { title: "Baby Reindeer", type: "TV Show", year: 2024, imdb: "tt13649112" },
     { title: "Crash", type: "Movie", year: 2004, imdb: "tt0375679" },
+    { title: "Rashomon", type: "Movie", year: 1950, imdb: "tt0042876" },
     { title: "Last Night in Soho", type: "Movie", year: 2021, imdb: "tt9639470" },
     { title: "I, Robot", type: "Movie", year: 2004, imdb: "tt0343818" },
     { title: "Aquaman", type: "Movie", year: 2018, imdb: "tt1477834" },
@@ -298,11 +279,9 @@ const mediaList = [
     { title: "The Godfather: Part II", type: "Movie", year: 1974, imdb: "tt0071562" },
     { title: "Aladdin", type: "Movie", year: 2019, imdb: "tt6139732" },
     { title: "Chungking Express", type: "Movie", year: 1994, imdb: "tt0109424" },
-    { title: "The Hitchhiker's Guide to the Galaxy", type: "Movie", year: 2005, imdb: "tt0371724" },
     { title: "Monsters University", type: "Movie", year: 2013, imdb: "tt1453405" },
     { title: "127 Hours", type: "Movie", year: 2010, imdb: "tt1542344" },
     { title: "The Wonderful Story of Henry Sugar", type: "Movie", year: 2023, imdb: "tt16968450" },
-    { title: "The Trial of the Chicago 7", type: "Movie", year: 2020, imdb: "tt1070874" },
     { title: "Babel", type: "Movie", year: 2006, imdb: "tt0449467" },
     { title: "tick, tick... BOOM!", type: "Movie", year: 2021, imdb: "tt8721424" },
     { title: "Run Lola Run", type: "Movie", year: 1998, imdb: "tt0130827" },
@@ -315,7 +294,6 @@ const mediaList = [
     { title: "Swan Song", type: "Movie", year: 2021, imdb: "tt13207508" },
     { title: "A Brighter Summer Day", type: "Movie", year: 1991, imdb: "tt0101985" },
     { title: "Dung che sai duk", type: "Movie", year: 1994, imdb: "tt0109688" },
-    { title: "The Brutalist", type: "Movie", year: 2024, imdb: "tt8999762" },
     { title: "Dune", type: "Movie", year: 2021, imdb: "tt1160419" },
     { title: "Get Out", type: "Movie", year: 2017, imdb: "tt5052448" },
     { title: "The Thing", type: "Movie", year: 1982, imdb: "tt0084787" },
@@ -333,7 +311,6 @@ const mediaList = [
     { title: "Monsters, Inc.", type: "Movie", year: 2001, imdb: "tt0198781" },
     { title: "Midnight in Paris", type: "Movie", year: 2011, imdb: "tt1605783" },
     { title: "In the Mood for Love", type: "Movie", year: 2000, imdb: "tt0118694" },
-    { title: "Twelve Monkeys", type: "Movie", year: 1995, imdb: "tt0114746" },
     { title: "Tokyo Story", type: "Movie", year: 1953, imdb: "tt0046438" },
     { title: "Roma", type: "Movie", year: 2018, imdb: "tt6155172" },
     { title: "One Battle After Another", type: "Movie", year: 2025, imdb: "tt30144839" },
@@ -344,12 +321,14 @@ const mediaList = [
     { title: "Train Dreams", type: "Movie", year: 2025, imdb: "tt29768334" },
     { title: "No Other Choice", type: "Movie", year: 2025, imdb: "tt1527793" },
     { title: "Lost in Translation", type: "Movie", year: 2025, imdb: "tt0335266" },
-    { title: "IT: Welcome to Derry", type: "TV Show", year: 2025, imdb: "tt19244304" },
     { title: "Punch-Drunk Love", type: "Movie", year: 2002, imdb: "tt0272338" },
     { title: "Klaus", type: "Movie", year: 2019, imdb: "tt4729430" },
     { title: "Spring Breakers", type: "Movie", year: 2012, imdb: "tt2101441" },
     { title: "Bicycle Thieves", type: "Movie", year: 1948, imdb: "tt0040522" },
+    { title: "Sunrise: A Song of Two Humans", type: "Movie", year: 1927, imdb: "tt0018455" },
 ];
+
+let availableIndices = Array.from({ length: mediaList.length }, (_, i) => i);
 
 const recommendButton = document.getElementById('recommendButton');
 const imdbLink = document.getElementById('imdbLink');
@@ -359,8 +338,15 @@ recommendButton.addEventListener('click', () => {
     imdbLink.classList.add('fade-out');
 
     setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * mediaList.length);
-        const media = mediaList[randomIndex];
+        if (availableIndices.length === 0) {
+            availableIndices = Array.from({ length: mediaList.length }, (_, i) => i);
+        }
+
+        const randomIndex = Math.floor(Math.random() * availableIndices.length);
+        const mediaIndex = availableIndices[randomIndex];
+        availableIndices.splice(randomIndex, 1);
+
+        const media = mediaList[mediaIndex];
 
         recommendButton.textContent = `${media.title} (${media.year})`;
         imdbLink.href = `https://www.imdb.com/title/${media.imdb}/`;
