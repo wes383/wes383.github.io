@@ -87,9 +87,11 @@ window.addEventListener('wheel', (e) => {
 
 let touchStartY = 0;
 let touchStartScrollTop = 0;
+let touchStartTime = 0;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].clientY;
+    touchStartTime = Date.now();
 
     const projectsWrapper = document.querySelector('.projects-wrapper');
     const target = e.target;
@@ -102,6 +104,13 @@ document.addEventListener('touchmove', (e) => {
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
+    const touchEndTime = Date.now();
+    const timeDiff = touchEndTime - touchStartTime;
+    
+    if (isScrolling && timeDiff > 1000) {
+        isScrolling = false;
+    }
+    
     if (isScrolling) return;
 
     const touchEndY = e.changedTouches[0].clientY;
@@ -114,8 +123,8 @@ document.addEventListener('touchend', (e) => {
     const target = document.elementFromPoint(e.changedTouches[0].clientX, touchStartY);
 
     if (projectsWrapper && projectsWrapper.contains(target)) {
-        const isAtTop = projectsWrapper.scrollTop === 0;
-        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
+        const isAtTop = projectsWrapper.scrollTop <= 1;
+        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 2;
 
         if (diff < 0 && isAtTop) {
             isScrolling = true;
