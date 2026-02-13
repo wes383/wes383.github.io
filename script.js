@@ -87,11 +87,9 @@ window.addEventListener('wheel', (e) => {
 
 let touchStartY = 0;
 let touchStartScrollTop = 0;
-let hasScrolledInProject = false;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].clientY;
-    hasScrolledInProject = false;
 
     const projectsWrapper = document.querySelector('.projects-wrapper');
     const target = e.target;
@@ -101,14 +99,6 @@ document.addEventListener('touchstart', (e) => {
 }, { passive: true });
 
 document.addEventListener('touchmove', (e) => {
-    const projectsWrapper = document.querySelector('.projects-wrapper');
-    const target = e.target;
-
-    if (projectsWrapper && projectsWrapper.contains(target)) {
-        if (Math.abs(projectsWrapper.scrollTop - touchStartScrollTop) > 5) {
-            hasScrolledInProject = true;
-        }
-    }
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
@@ -124,16 +114,30 @@ document.addEventListener('touchend', (e) => {
     const target = document.elementFromPoint(e.changedTouches[0].clientX, touchStartY);
 
     if (projectsWrapper && projectsWrapper.contains(target)) {
-        if (hasScrolledInProject) {
-            return;
-        }
-
         const isAtTop = projectsWrapper.scrollTop === 0;
         const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
 
-        if ((diff > 0 && !isAtBottom) || (diff < 0 && !isAtTop)) {
+        if (diff < 0 && isAtTop) {
+            isScrolling = true;
+            if (currentPage > 0) {
+                switchPage(currentPage - 1);
+            }
+            setTimeout(() => {
+                isScrolling = false;
+            }, 600);
+            return;
+        } else if (diff > 0 && isAtBottom) {
+            isScrolling = true;
+            if (currentPage < pages.length - 1) {
+                switchPage(currentPage + 1);
+            }
+            setTimeout(() => {
+                isScrolling = false;
+            }, 600);
             return;
         }
+        
+        return;
     }
 
     isScrolling = true;
