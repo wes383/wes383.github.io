@@ -47,6 +47,15 @@
                 const html = marked.parse(md);
 
                 container.innerHTML = html;
+
+                const h1 = container.querySelector('h1');
+                if (h1 && h1.nextElementSibling && h1.nextElementSibling.tagName === 'P') {
+                    const text = h1.nextElementSibling.textContent;
+                    if (/^by\s/i.test(text) || /\d{4}-\d{2}-\d{2}/.test(text)) {
+                        h1.nextElementSibling.classList.add('meta');
+                    }
+                }
+
                 document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
             } catch (e) {
                 container.innerHTML = '<div class="error">Article not found.</div>';

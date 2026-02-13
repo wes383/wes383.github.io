@@ -42,6 +42,13 @@ body {
     color: #111;
 }
 
+#article-content .meta {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 40px;
+    letter-spacing: 0.3px;
+}
+
 #article-content h2 {
     font-family: 'Inter', sans-serif;
     font-size: 20px;
