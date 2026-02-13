@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="article.css">
+</head>
+
+<body>
+    <article id="article-content">
+        <div class="loading">Loading...</div>
+    </article>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        function getArticleTitle() {
+            const pathMatch = window.location.pathname.match(/\/articles\/(.+?)(?:\/)?$/);
+            if (pathMatch) {
+                return pathMatch[1];
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            return params.get('title');
+        }
+
+        async function loadArticle() {
+            const title = getArticleTitle();
+            const container = document.getElementById('article-content');
+
+            if (!title) {
+                container.innerHTML = '<div class="error">No article specified.</div>';
+                return;
+            }
+
+            try {
+                const res = await fetch(`md/${title}.md`);
+                if (!res.ok) throw new Error('Not found');
+
+                const md = await res.text();
+                const html = marked.parse(md);
+
+                container.innerHTML = html;
+                document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
+            } catch (e) {
+                container.innerHTML = '<div class="error">Article not found.</div>';
+            }
+        }
+
+        loadArticle();
+    </script>
+</body>
+
+</html>

@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Wes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <nav class="nav-dots">
         <div class="dot active" data-page="home"></div>
         <div class="dot" data-page="contact"></div>
         <div class="dot" data-page="projects"></div>
-        <div class="dot" data-page="recommendations"></div>
     </nav>
-    
+
     <div class="page active" id="home">
         <div class="text-container">
             <span class="wes">Wes</span> <span class="wei">Wei</span>
         </div>
     </div>
-    
+
     <div class="page" id="contact">
         <div class="contact-wrapper">
             <h2 class="contact-title">Contact</h2>
@@ -35,42 +39,53 @@
             </div>
         </div>
     </div>
-    
+
     <div class="page" id="projects">
         <div class="projects-wrapper">
             <h2 class="projects-title">Projects</h2>
             <div class="projects-container">
                 <div class="project-item">
-                    <a href="https://screen-info-lookup.vercel.app/" target="_blank" class="project-title">screen-lookup</a>
+                    <a href="https://github.com/wes383/vishel/" target="_blank" class="project-title">Vishel</a>
+                    <p class="project-description">Vishel is a modern media manager. Built with Electron, React, and
+                        Vite, it can organize your movies and TV shows, fetches metadata, and lets you play them with
+                        external player.</p>
+                </div>
+                <div class="project-item">
+                    <a href="https://chancey.vercel.app/" target="_blank" class="project-title">Chancey</a>
+                    <p class="project-description">A verifiable random number generator powered by Ethereum blockchain.
+                    </p>
+                </div>
+                <div class="project-item">
+                    <a href="https://screen-info-lookup.vercel.app/" target="_blank"
+                        class="project-title">screen-lookup</a>
                     <p class="project-description">A movie and TV show information lookup application.</p>
                 </div>
                 <div class="project-item">
                     <a href="https://wes383.github.io/choice/" target="_blank" class="project-title">Choice</a>
-                    <p class="project-description">An interactive random card drawing application built with React + TypeScript + Vite.</p>
+                    <p class="project-description">An interactive random card drawing application built with React +
+                        TypeScript + Vite.</p>
                 </div>
                 <div class="project-item">
-                    <a href="https://github.com/wes383/vishel/" target="_blank" class="project-title">Vishel</a>
-                    <p class="project-description">Vishel is a modern media manager. Built with Electron, React, and Vite, it can organize your movies and TV shows, fetches metadata, and lets you play them with external player.</p>
+                    <a href="https://wes383.github.io/what-happened-when/" target="_blank" class="project-title">What
+                        Happened When...</a>
+                    <p class="project-description">A web application that merges historical timelines of multiple
+                        subjects to discover fascinating connections across time.</p>
                 </div>
                 <div class="project-item">
-                    <a href="https://wes383.github.io/chancey/" target="_blank" class="project-title">Chancey</a>
-                    <p class="project-description">A verifiable random number generator powered by Ethereum blockchain.</p>
-                </div>
-                <div class="project-item">
-                    <a href="https://github.com/wes383/media-center/" target="_blank" class="project-title">Media Center</a>
-                    <p class="project-description">A web application designed to provide a beautiful, easy-to-navigate interface for your local collection of movies and TV shows.</p>
-                </div>
-                <div class="project-item">
-                    <a href="https://wes383.github.io/what-happened-when/" target="_blank" class="project-title">What Happened When...</a>
-                    <p class="project-description">A web application that merges historical timelines of multiple subjects to discover fascinating connections across time.</p>
+                    <a href="https://github.com/wes383/media-center/" target="_blank" class="project-title">Media
+                        Center</a>
+                    <p class="project-description">A web application designed to provide a beautiful, easy-to-navigate
+                        interface for your local collection of movies and TV shows.</p>
                 </div>
                 <div class="project-item">
                     <a href="https://github.com/wes383/Today/" target="_blank" class="project-title">Today</a>
-                    <p class="project-description">Help you manage your daily schedule, track your focus time, and boost your productivity.</p>
+                    <p class="project-description">Help you manage your daily schedule, track your focus time, and boost
+                        your productivity.</p>
                 </div>
                 <div class="project-item">
-                    <a href="https://wes383.github.io/20-questions/" target="_blank" class="project-title">20 Questions AI Game</a>
-                    <p class="project-description">An AI-powered 20 questions guessing game built with Google Gemini API for intelligent question-answering interactions.</p>
+                    <a href="https://wes383.github.io/20-questions/" target="_blank" class="project-title">20 Questions
+                        AI Game</a>
+                    <p class="project-description">An AI-powered 20 questions guessing game.</p>
                 </div>
                 <div class="project-item">
                     <a href="https://wes383.github.io/fill-time/" target="_blank" class="project-title">Fill Time</a>
@@ -83,14 +98,8 @@
             </div>
         </div>
     </div>
-    
-    <div class="page" id="recommendations">
-        <div class="recommend-container">
-            <div id="recommendButton" class="recommend-button">Recommend a random movie or TV show</div>
-            <a id="imdbLink" class="imdb-link" href="#" target="_blank" style="display: none;">-> IMDb</a>
-        </div>
-    </div>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>

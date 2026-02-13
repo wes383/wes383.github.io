@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/articles/:title",
+            "destination": "/articles/index.html"
+        }
+    ]
+}

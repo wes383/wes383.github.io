@@ -49,22 +49,18 @@ let wheelDelta = 0;
 const wheelThreshold = 50;
 
 window.addEventListener('wheel', (e) => {
-    const navDots = document.querySelector('.nav-dots');
-    const isOnNavDots = navDots && navDots.contains(e.target);
-
-    const windowWidth = window.innerWidth;
-    const clickX = e.clientX;
-    const leftZone = clickX < 200;
-    const rightZone = clickX > windowWidth - 200;
-
-    const targetIsPage = e.target.classList.contains('page') || e.target.tagName === 'BODY';
-
-    if (!isOnNavDots && !(targetIsPage && (leftZone || rightZone))) {
-        wheelDelta = 0;
-        return;
-    }
-
     if (isScrolling) return;
+
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    if (projectsWrapper && projectsWrapper.contains(e.target)) {
+        const isAtTop = projectsWrapper.scrollTop === 0;
+        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
+
+        if ((e.deltaY < 0 && !isAtTop) || (e.deltaY > 0 && !isAtBottom)) {
+            wheelDelta = 0;
+            return;
+        }
+    }
 
     wheelDelta += e.deltaY;
 
@@ -89,311 +85,56 @@ window.addEventListener('wheel', (e) => {
     }
 });
 
-const mediaList = [
-    { title: "Breaking Bad", type: "TV Show", year: 2008, imdb: "tt0903747" },
-    { title: "Better Call Saul", type: "TV Show", year: 2015, imdb: "tt3032476" },
-    { title: "Chernobyl", type: "TV Show", year: 2019, imdb: "tt7366338" },
-    { title: "Dead Poets Society", type: "Movie", year: 1989, imdb: "tt0097165" },
-    { title: "12 Angry Men", type: "Movie", year: 1957, imdb: "tt0050083" },
-    { title: "The Social Network", type: "Movie", year: 2010, imdb: "tt1285016" },
-    { title: "Black Mirror", type: "TV Show", year: 2011, imdb: "tt2085059" },
-    { title: "Succession", type: "TV Show", year: 2018, imdb: "tt7660850" },
-    { title: "Fargo", type: "TV Show", year: 2014, imdb: "tt2802850" },
-    { title: "Parasite", type: "Movie", year: 2019, imdb: "tt6751668" },
-    { title: "Rick and Morty", type: "TV Show", year: 2013, imdb: "tt2861424" },
-    { title: "Django Unchained", type: "Movie", year: 2012, imdb: "tt1853728" },
-    { title: "Whiplash", type: "Movie", year: 2014, imdb: "tt2582802" },
-    { title: "Sex Education", type: "TV Show", year: 2019, imdb: "tt7767422" },
-    { title: "Memento", type: "Movie", year: 2000, imdb: "tt0209144" },
-    { title: "Kill Bill: Vol. 1", type: "Movie", year: 2003, imdb: "tt0266697" },
-    { title: "The Hateful Eight", type: "Movie", year: 2015, imdb: "tt3460252" },
-    { title: "American Beauty", type: "Movie", year: 1999, imdb: "tt0169547" },
-    { title: "Green Book", type: "Movie", year: 2018, imdb: "tt6966692" },
-    { title: "The Handmaiden", type: "Movie", year: 2016, imdb: "tt4016934" },
-    { title: "Ford v Ferrari", type: "Movie", year: 2019, imdb: "tt1950186" },
-    { title: "The Queen's Gambit", type: "TV Show", year: 2020, imdb: "tt10048342" },
-    { title: "Saw", type: "Movie", year: 2004, imdb: "tt0387564" },
-    { title: "Memories of Murder", type: "Movie", year: 2003, imdb: "tt0353969" },
-    { title: "A Beautiful Mind", type: "Movie", year: 2001, imdb: "tt0268978" },
-    { title: "1917", type: "Movie", year: 2019, imdb: "tt8579674" },
-    { title: "Little Women", type: "Movie", year: 2019, imdb: "tt3281548" },
-    { title: "Love Actually", type: "Movie", year: 2003, imdb: "tt0314331" },
-    { title: "Ratatouille", type: "Movie", year: 2007, imdb: "tt0382932" },
-    { title: "3 Idiots", type: "Movie", year: 2009, imdb: "tt1187043" },
-    { title: "Rush", type: "Movie", year: 2013, imdb: "tt1979320" },
-    { title: "Before Sunrise", type: "Movie", year: 1995, imdb: "tt0112471" },
-    { title: "Inside Out", type: "Movie", year: 2015, imdb: "tt2096673" },
-    { title: "Contratiempo", type: "Movie", year: 2017, imdb: "tt4857264" },
-    { title: "The Pursuit of Happyness", type: "Movie", year: 2006, imdb: "tt0454921" },
-    { title: "Scent of a Woman", type: "Movie", year: 1992, imdb: "tt0105323" },
-    { title: "The Butterfly Effect", type: "Movie", year: 2004, imdb: "tt0289879" },
-    { title: "The Terminal", type: "Movie", year: 2004, imdb: "tt0362227" },
-    { title: "Slumdog Millionaire", type: "Movie", year: 2008, imdb: "tt1010048" },
-    { title: "A Separation", type: "Movie", year: 2011, imdb: "tt1832382" },
-    { title: "The Bourne Ultimatum", type: "Movie", year: 2007, imdb: "tt0440963" },
-    { title: "Flipped", type: "Movie", year: 2010, imdb: "tt0817177" },
-    { title: "The Substance", type: "Movie", year: 2024, imdb: "tt17526714" },
-    { title: "Severance", type: "TV Show", year: 2022, imdb: "tt11280740" },
-    { title: "The Bear", type: "TV Show", year: 2022, imdb: "tt14452776" },
-    { title: "There Will Be Blood", type: "Movie", year: 2007, imdb: "tt0469494" },
-    { title: "Adolescence", type: "TV Show", year: 2025, imdb: "tt31806037" },
-    { title: "Ozark", type: "TV Show", year: 2017, imdb: "tt5071412" },
-    { title: "Fallout", type: "TV Show", year: 2024, imdb: "tt12637874" },
-    { title: "How I Met Your Mother", type: "TV Show", year: 2005, imdb: "tt0460649" },
-    { title: "The Gentlemen", type: "Movie", year: 2019, imdb: "tt8367814" },
-    { title: "Dune: Part Two", type: "Movie", year: 2024, imdb: "tt15239678" },
-    { title: "Good Will Hunting", type: "Movie", year: 1997, imdb: "tt0119217" },
-    { title: "Knives Out", type: "Movie", year: 2019, imdb: "tt8946378" },
-    { title: "The Martian", type: "Movie", year: 2015, imdb: "tt3659388" },
-    { title: "Money Heist", type: "TV Show", year: 2017, imdb: "tt6468322" },
-    { title: "The Menu", type: "Movie", year: 2022, imdb: "tt9764362" },
-    { title: "Hacksaw Ridge", type: "Movie", year: 2016, imdb: "tt2119532" },
-    { title: "Spirited Away", type: "Movie", year: 2001, imdb: "tt0245429" },
-    { title: "Everything Everywhere All at Once", type: "Movie", year: 2022, imdb: "tt6710474" },
-    { title: "Avatar", type: "Movie", year: 2009, imdb: "tt0499549" },
-    { title: "Reservoir Dogs", type: "Movie", year: 1992, imdb: "tt0105236" },
-    { title: "The Hangover", type: "Movie", year: 2009, imdb: "tt1119646" },
-    { title: "The Big Short", type: "Movie", year: 2015, imdb: "tt1596363" },
-    { title: "Her", type: "Movie", year: 2013, imdb: "tt1798709" },
-    { title: "Zootopia", type: "Movie", year: 2016, imdb: "tt2948356" },
-    { title: "The Marvelous Mrs. Maisel", type: "TV Show", year: 2017, imdb: "tt5788792" },
-    { title: "The Imitation Game", type: "Movie", year: 2014, imdb: "tt2084970" },
-    { title: "Edge of Tomorrow", type: "Movie", year: 2014, imdb: "tt1631867" },
-    { title: "Nightcrawler", type: "Movie", year: 2014, imdb: "tt2872718" },
-    { title: "Oppenheimer", type: "Movie", year: 2023, imdb: "tt15398776" },
-    { title: "Argo", type: "Movie", year: 2012, imdb: "tt1024648" },
-    { title: "Fantastic Mr. Fox", type: "Movie", year: 2009, imdb: "tt0432283" },
-    { title: "Trainspotting", type: "Movie", year: 1996, imdb: "tt0117951" },
-    { title: "Identity", type: "Movie", year: 2003, imdb: "tt0309698" },
-    { title: "The Mist", type: "Movie", year: 2007, imdb: "tt0884328" },
-    { title: "Ready Player One", type: "Movie", year: 2018, imdb: "tt1677720" },
-    { title: "Train to Busan", type: "Movie", year: 2016, imdb: "tt5700672" },
-    { title: "Apocalypto", type: "Movie", year: 2006, imdb: "tt0472043" },
-    { title: "The Bourne Identity", type: "Movie", year: 2002, imdb: "tt0258463" },
-    { title: "Moneyball", type: "Movie", year: 2011, imdb: "tt1210166" },
-    { title: "Darkest Hour", type: "Movie", year: 2017, imdb: "tt4555426" },
-    { title: "Cinema Paradiso", type: "Movie", year: 1988, imdb: "tt0095765" },
-    { title: "Upgrade", type: "Movie", year: 2018, imdb: "tt6499752" },
-    { title: "Big Fish", type: "Movie", year: 2003, imdb: "tt0319061" },
-    { title: "Blood Diamond", type: "Movie", year: 2006, imdb: "tt0450259" },
-    { title: "Bohemian Rhapsody", type: "Movie", year: 2018, imdb: "tt1727824" },
-    { title: "Predestination", type: "Movie", year: 2014, imdb: "tt2397535" },
-    { title: "The Blind Side", type: "Movie", year: 2009, imdb: "tt0878804" },
-    { title: "Wild Tales", type: "Movie", year: 2014, imdb: "tt3011894" },
-    { title: "Portrait of a Lady on Fire", type: "Movie", year: 2019, imdb: "tt8613070" },
-    { title: "Groundhog Day", type: "Movie", year: 1993, imdb: "tt0107048" },
-    { title: "Lord of War", type: "Movie", year: 2005, imdb: "tt0399295" },
-    { title: "Captain Phillips", type: "Movie", year: 2013, imdb: "tt1535109" },
-    { title: "Gattaca", type: "Movie", year: 1997, imdb: "tt0119177" },
-    { title: "The Fall", type: "Movie", year: 2006, imdb: "tt0460791" },
-    { title: "District 9", type: "Movie", year: 2009, imdb: "tt1136608" },
-    { title: "The Talented Mr. Ripley", type: "Movie", year: 1999, imdb: "tt0134119" },
-    { title: "Maleficent", type: "Movie", year: 2014, imdb: "tt1587310" },
-    { title: "Taken", type: "Movie", year: 2008, imdb: "tt0936501" },
-    { title: "Source Code", type: "Movie", year: 2011, imdb: "tt0945513" },
-    { title: "Gifted", type: "Movie", year: 2017, imdb: "tt4481414" },
-    { title: "Marriage Story", type: "Movie", year: 2019, imdb: "tt7653254" },
-    { title: "Majo no takkyûbin", type: "Movie", year: 1989, imdb: "tt0097814" },
-    { title: "The King's Speech", type: "Movie", year: 2010, imdb: "tt1504320" },
-    { title: "The Bourne Supremacy", type: "Movie", year: 2004, imdb: "tt0372183" },
-    { title: "Moon", type: "Movie", year: 2009, imdb: "tt1182345" },
-    { title: "Perfume: The Story of a Murderer", type: "Movie", year: 2006, imdb: "tt0396171" },
-    { title: "Life of Pi", type: "Movie", year: 2012, imdb: "tt0454876" },
-    { title: "Burning", type: "Movie", year: 2018, imdb: "tt7282468" },
-    { title: "Sully", type: "Movie", year: 2016, imdb: "tt3263904" },
-    { title: "The Theory of Everything", type: "Movie", year: 2014, imdb: "tt2980516" },
-    { title: "Phone Booth", type: "Movie", year: 2003, imdb: "tt0183649" },
-    { title: "Mary and Max", type: "Movie", year: 2009, imdb: "tt0978762" },
-    { title: "Cube", type: "Movie", year: 1998, imdb: "tt0123755" },
-    { title: "Se jie", type: "Movie", year: 2007, imdb: "tt0808357" },
-    { title: "Dead Silence", type: "Movie", year: 2007, imdb: "tt0455760" },
-    { title: "My Brilliant Friend", type: "TV Show", year: 2018, imdb: "tt7278862" },
-    { title: "The Life of David Gale", type: "Movie", year: 2003, imdb: "tt0289992" },
-    { title: "Andhadhun", type: "Movie", year: 2018, imdb: "tt8108198" },
-    { title: "Following", type: "Movie", year: 1999, imdb: "tt0154506" },
-    { title: "Searching", type: "Movie", year: 2018, imdb: "tt7668870" },
-    { title: "Swiss Army Man", type: "Movie", year: 2016, imdb: "tt4034354" },
-    { title: "Non-Stop", type: "Movie", year: 2014, imdb: "tt2024469" },
-    { title: "Persian Lessons", type: "Movie", year: 2020, imdb: "tt9738784" },
-    { title: "Sinners", type: "Movie", year: 2025, imdb: "tt31193180" },
-    { title: "À bout de souffle", type: "Movie", year: 1960, imdb: "tt0053472" },
-    { title: "F1", type: "Movie", year: 2025, imdb: "tt16311594" },
-    { title: "The White Lotus", type: "TV Show", year: 2021, imdb: "tt13406094" },
-    { title: "The Last of Us", type: "TV Show", year: 2023, imdb: "tt3581920" },
-    { title: "Heretic", type: "Movie", year: 2024, imdb: "tt28015403" },
-    { title: "Silo", type: "TV Show", year: 2023, imdb: "tt14688458" },
-    { title: "Anora", type: "Movie", year: 2024, imdb: "tt28607951" },
-    { title: "The Handmaid's Tale", type: "TV Show", year: 2017, imdb: "tt5834204" },
-    { title: "Killers of the Flower Moon", type: "Movie", year: 2023, imdb: "tt5537002" },
-    { title: "You", type: "TV Show", year: 2018, imdb: "tt7335184" },
-    { title: "Prisoners", type: "Movie", year: 2013, imdb: "tt1392214" },
-    { title: "Poor Things", type: "Movie", year: 2023, imdb: "tt14230458" },
-    { title: "City of God", type: "Movie", year: 2002, imdb: "tt0317248" },
-    { title: "Midsommar", type: "Movie", year: 2019, imdb: "tt8772262" },
-    { title: "The Holdovers", type: "Movie", year: 2023, imdb: "tt14849194" },
-    { title: "Bullet Train", type: "Movie", year: 2022, imdb: "tt12593682" },
-    { title: "Mystic River", type: "Movie", year: 2003, imdb: "tt0327056" },
-    { title: "Civil War", type: "Movie", year: 2024, imdb: "tt17279496" },
-    { title: "Love, Death & Robots", type: "TV Show", year: 2019, imdb: "tt9561862" },
-    { title: "Uncut Gems", type: "Movie", year: 2019, imdb: "tt5727208" },
-    { title: "Arrival", type: "Movie", year: 2016, imdb: "tt2543164" },
-    { title: "Don't Look Up", type: "Movie", year: 2021, imdb: "tt11286314" },
-    { title: "The Grand Budapest Hotel", type: "Movie", year: 2014, imdb: "tt2278388" },
-    { title: "Taxi Driver", type: "Movie", year: 1976, imdb: "tt0075314" },
-    { title: "Superbad", type: "Movie", year: 2007, imdb: "tt0829482" },
-    { title: "Pearl", type: "Movie", year: 2022, imdb: "tt18925334" },
-    { title: "The Descent", type: "Movie", year: 2005, imdb: "tt0435625" },
-    { title: "Saltburn", type: "Movie", year: 2023, imdb: "tt17351924" },
-    { title: "Coherence", type: "Movie", year: 2013, imdb: "tt2866360" },
-    { title: "Twisters", type: "Movie", year: 2024, imdb: "tt12584954" },
-    { title: "Dunkirk", type: "Movie", year: 2017, imdb: "tt5013056" },
-    { title: "Beef", type: "TV Show", year: 2023, imdb: "tt14403178" },
-    { title: "Baby Driver", type: "Movie", year: 2017, imdb: "tt3890160" },
-    { title: "The Darjeeling Limited", type: "Movie", year: 2007, imdb: "tt0838221" },
-    { title: "[Rec]", type: "Movie", year: 2007, imdb: "tt1038988" },
-    { title: "Leave the World Behind", type: "Movie", year: 2023, imdb: "tt12747748" },
-    { title: "Notting Hill", type: "Movie", year: 1999, imdb: "tt0125439" },
-    { title: "The Lobster", type: "Movie", year: 2015, imdb: "tt3464902" },
-    { title: "Black Hawk Down", type: "Movie", year: 2001, imdb: "tt0265086" },
-    { title: "The Man from Earth", type: "Movie", year: 2007, imdb: "tt0756683" },
-    { title: "The 400 Blows", type: "Movie", year: 1959, imdb: "tt0053198" },
-    { title: "Snowpiercer", type: "Movie", year: 2013, imdb: "tt1706620" },
-    { title: "Lady Bird", type: "Movie", year: 2017, imdb: "tt4925292" },
-    { title: "The Royal Tenenbaums", type: "Movie", year: 2001, imdb: "tt0265666" },
-    { title: "A Star Is Born", type: "Movie", year: 2018, imdb: "tt1517451" },
-    { title: "Night at the Museum", type: "Movie", year: 2006, imdb: "tt0477347" },
-    { title: "House of Wax", type: "Movie", year: 2005, imdb: "tt0397065" },
-    { title: "The Ballad of Buster Scruggs", type: "Movie", year: 2018, imdb: "tt6412452" },
-    { title: "Baby Reindeer", type: "TV Show", year: 2024, imdb: "tt13649112" },
-    { title: "Crash", type: "Movie", year: 2004, imdb: "tt0375679" },
-    { title: "Rashomon", type: "Movie", year: 1950, imdb: "tt0042876" },
-    { title: "Last Night in Soho", type: "Movie", year: 2021, imdb: "tt9639470" },
-    { title: "I, Robot", type: "Movie", year: 2004, imdb: "tt0343818" },
-    { title: "Aquaman", type: "Movie", year: 2018, imdb: "tt1477834" },
-    { title: "Cashback", type: "Movie", year: 2007, imdb: "tt0460740" },
-    { title: "Cloud Atlas", type: "Movie", year: 2012, imdb: "tt1371111" },
-    { title: "Moonrise Kingdom", type: "Movie", year: 2012, imdb: "tt1748122" },
-    { title: "Witness for the Prosecution", type: "Movie", year: 1957, imdb: "tt0051201" },
-    { title: "The Florida Project", type: "Movie", year: 2017, imdb: "tt5649144" },
-    { title: "The Godfather", type: "Movie", year: 1972, imdb: "tt0068646" },
-    { title: "The Godfather: Part II", type: "Movie", year: 1974, imdb: "tt0071562" },
-    { title: "Aladdin", type: "Movie", year: 2019, imdb: "tt6139732" },
-    { title: "Chungking Express", type: "Movie", year: 1994, imdb: "tt0109424" },
-    { title: "Monsters University", type: "Movie", year: 2013, imdb: "tt1453405" },
-    { title: "127 Hours", type: "Movie", year: 2010, imdb: "tt1542344" },
-    { title: "The Wonderful Story of Henry Sugar", type: "Movie", year: 2023, imdb: "tt16968450" },
-    { title: "Babel", type: "Movie", year: 2006, imdb: "tt0449467" },
-    { title: "tick, tick... BOOM!", type: "Movie", year: 2021, imdb: "tt8721424" },
-    { title: "Run Lola Run", type: "Movie", year: 1998, imdb: "tt0130827" },
-    { title: "And Then There Were None", type: "TV Show", year: 2017, imdb: "tt3581932" },
-    { title: "The Last Emperor", type: "Movie", year: 1987, imdb: "tt0093389" },
-    { title: "Me and Earl and the Dying Girl", type: "Movie", year: 2015, imdb: "tt2582496" },
-    { title: "Buried", type: "Movie", year: 2010, imdb: "tt1462758" },
-    { title: "The Two Popes", type: "Movie", year: 2019, imdb: "tt8404614" },
-    { title: "An Elephant Sitting Still", type: "Movie", year: 2018, imdb: "tt8020896" },
-    { title: "Swan Song", type: "Movie", year: 2021, imdb: "tt13207508" },
-    { title: "A Brighter Summer Day", type: "Movie", year: 1991, imdb: "tt0101985" },
-    { title: "Dung che sai duk", type: "Movie", year: 1994, imdb: "tt0109688" },
-    { title: "Dune", type: "Movie", year: 2021, imdb: "tt1160419" },
-    { title: "Get Out", type: "Movie", year: 2017, imdb: "tt5052448" },
-    { title: "The Thing", type: "Movie", year: 1982, imdb: "tt0084787" },
-    { title: "A Quiet Place", type: "Movie", year: 2018, imdb: "tt6644200" },
-    { title: "Conclave", type: "Movie", year: 2024, imdb: "tt20215234" },
-    { title: "8½", type: "Movie", year: 1963, imdb: "tt0056801" },
-    { title: "Birdman or (The Unexpected Virtue of Ignorance)", type: "Movie", year: 2014, imdb: "tt2562232" },
-    { title: "Under the Skin", type: "Movie", year: 2014, imdb: "tt1441395" },
-    { title: "Aftersun", type: "Movie", year: 2022, imdb: "tt19770238" },
-    { title: "Cloverfield", type: "Movie", year: 2008, imdb: "tt1060277" },
-    { title: "Tetris", type: "Movie", year: 2023, imdb: "tt12758060" },
-    { title: "X", type: "Movie", year: 2022, imdb: "tt13560574" },
-    { title: "Yi yi", type: "Movie", year: 2000, imdb: "tt0244316" },
-    { title: "The Host", type: "Movie", year: 2006, imdb: "tt0468492" },
-    { title: "Monsters, Inc.", type: "Movie", year: 2001, imdb: "tt0198781" },
-    { title: "Midnight in Paris", type: "Movie", year: 2011, imdb: "tt1605783" },
-    { title: "In the Mood for Love", type: "Movie", year: 2000, imdb: "tt0118694" },
-    { title: "Tokyo Story", type: "Movie", year: 1953, imdb: "tt0046438" },
-    { title: "Roma", type: "Movie", year: 2018, imdb: "tt6155172" },
-    { title: "One Battle After Another", type: "Movie", year: 2025, imdb: "tt30144839" },
-    { title: "Ferris Bueller's Day Off", type: "Movie", year: 1986, imdb: "tt0091042" },
-    { title: "Frankenstein", type: "Movie", year: 2025, imdb: "tt1312221" },
-    { title: "Gran Torino", type: "Movie", year: 2008, imdb: "tt1205489" },
-    { title: "Pluribus", type: "TV Show", year: 2025, imdb: "tt22202452" },
-    { title: "Train Dreams", type: "Movie", year: 2025, imdb: "tt29768334" },
-    { title: "No Other Choice", type: "Movie", year: 2025, imdb: "tt1527793" },
-    { title: "Lost in Translation", type: "Movie", year: 2025, imdb: "tt0335266" },
-    { title: "Punch-Drunk Love", type: "Movie", year: 2002, imdb: "tt0272338" },
-    { title: "Klaus", type: "Movie", year: 2019, imdb: "tt4729430" },
-    { title: "Spring Breakers", type: "Movie", year: 2012, imdb: "tt2101441" },
-    { title: "Bicycle Thieves", type: "Movie", year: 1948, imdb: "tt0040522" },
-    { title: "Sunrise: A Song of Two Humans", type: "Movie", year: 1927, imdb: "tt0018455" },
-];
-
-let availableIndices = Array.from({ length: mediaList.length }, (_, i) => i);
-
-const recommendButton = document.getElementById('recommendButton');
-const imdbLink = document.getElementById('imdbLink');
-
-recommendButton.addEventListener('click', () => {
-    recommendButton.classList.add('fade-out');
-    imdbLink.classList.add('fade-out');
-
-    setTimeout(() => {
-        if (availableIndices.length === 0) {
-            availableIndices = Array.from({ length: mediaList.length }, (_, i) => i);
-        }
-
-        const randomIndex = Math.floor(Math.random() * availableIndices.length);
-        const mediaIndex = availableIndices[randomIndex];
-        availableIndices.splice(randomIndex, 1);
-
-        const media = mediaList[mediaIndex];
-
-        recommendButton.textContent = `${media.title} (${media.year})`;
-        imdbLink.href = `https://www.imdb.com/title/${media.imdb}/`;
-        imdbLink.style.display = 'block';
-
-        recommendButton.classList.remove('fade-out');
-        recommendButton.classList.add('fade-in');
-        imdbLink.classList.remove('fade-out');
-        imdbLink.classList.add('fade-in');
-
-        setTimeout(() => {
-            recommendButton.classList.remove('fade-in');
-            imdbLink.classList.remove('fade-in');
-        }, 300);
-    }, 300);
-});
-
 let touchStartY = 0;
-let touchStartX = 0;
+let touchStartScrollTop = 0;
+let hasScrolledInProject = false;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].clientY;
-    touchStartX = e.changedTouches[0].clientX;
+    hasScrolledInProject = false;
+
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    const target = e.target;
+    if (projectsWrapper && projectsWrapper.contains(target)) {
+        touchStartScrollTop = projectsWrapper.scrollTop;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    const target = e.target;
+
+    if (projectsWrapper && projectsWrapper.contains(target)) {
+        if (Math.abs(projectsWrapper.scrollTop - touchStartScrollTop) > 5) {
+            hasScrolledInProject = true;
+        }
+    }
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
-    const touchEndY = e.changedTouches[0].clientY;
-    handleSwipe(touchEndY);
-}, { passive: true });
+    if (isScrolling) return;
 
-function handleSwipe(touchEndY) {
+    const touchEndY = e.changedTouches[0].clientY;
     const swipeThreshold = 50;
     const diff = touchStartY - touchEndY;
 
     if (Math.abs(diff) < swipeThreshold) return;
 
-    const navDots = document.querySelector('.nav-dots');
-    if (!navDots) return;
+    const projectsWrapper = document.querySelector('.projects-wrapper');
+    const target = document.elementFromPoint(e.changedTouches[0].clientX, touchStartY);
 
-    const navRect = navDots.getBoundingClientRect();
-    const allowedZone = touchStartX <= navRect.right;
+    if (projectsWrapper && projectsWrapper.contains(target)) {
+        if (hasScrolledInProject) {
+            return;
+        }
 
-    if (!allowedZone) {
-        return;
+        const isAtTop = projectsWrapper.scrollTop === 0;
+        const isAtBottom = projectsWrapper.scrollTop + projectsWrapper.clientHeight >= projectsWrapper.scrollHeight - 1;
+
+        if ((diff > 0 && !isAtBottom) || (diff < 0 && !isAtTop)) {
+            return;
+        }
     }
-
-    if (isScrolling) return;
 
     isScrolling = true;
 
@@ -409,34 +150,33 @@ function handleSwipe(touchEndY) {
 
     setTimeout(() => {
         isScrolling = false;
-    }, 200);
+    }, 600);
+});
+
+function updateNavDotsVisibility() {
+    if (window.innerWidth <= 768) {
+        const projectsWrapper = document.querySelector('.projects-wrapper');
+        const navDots = document.querySelector('.nav-dots');
+
+        if (projectsWrapper && navDots && currentPage === 2) {
+            const isAtTop = projectsWrapper.scrollTop <= 5;
+            navDots.style.opacity = isAtTop ? '1' : '0';
+        } else if (navDots) {
+            navDots.style.opacity = '1';
+        }
+    }
 }
 
-const colors = [
-    '#060', '#360', '#660', '#960', '#C60', '#F60',
-    '#063', '#363', '#663', '#963', '#C63', '#F63',
-    '#066', '#366', '#666', '#966', '#C66', '#F66',
-    '#069', '#369', '#669', '#969', '#C69', '#F69',
-    '#06C', '#36C', '#66C', '#96C', '#C6C', '#F6C',
-    '#06F', '#36F', '#66F', '#96F', '#C6F', '#F6F',
-    '#090', '#390', '#690', '#990', '#C90', '#F90',
-    '#093', '#393', '#693', '#993', '#C93', '#F93',
-    '#096', '#396', '#696', '#996', '#C96', '#F96',
-    '#099', '#399', '#699', '#999', '#C99', '#F99',
-    '#09C', '#39C', '#69C', '#99C', '#C9C', '#F9C',
-    '#09F', '#39F', '#69F', '#99F', '#C9F', '#F9F',
-    '#0C0', '#3C0', '#6C0', '#9C0', '#CC0', '#FC0',
-    '#0C3', '#3C3', '#6C3', '#9C3', '#CC3', '#FC3',
-    '#0C6', '#3C6', '#6C6', '#9C6', '#CC6', '#FC6',
-    '#0C9', '#3C9', '#6C9', '#9C9', '#CC9', '#FC9',
-    '#0CC', '#3CC', '#6CC', '#9CC', '#CCC', '#FCC',
-    '#0CF', '#3CF', '#6CF', '#9CF', '#CCF', '#FCF'
-];
-
-const textContainer = document.querySelector('.text-container');
-if (textContainer) {
-    textContainer.addEventListener('click', () => {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        textContainer.style.color = randomColor;
-    });
+const projectsWrapper = document.querySelector('.projects-wrapper');
+if (projectsWrapper) {
+    projectsWrapper.addEventListener('scroll', updateNavDotsVisibility);
 }
+
+window.addEventListener('resize', updateNavDotsVisibility);
+
+const originalSwitchPage = switchPage;
+switchPage = function (index) {
+    originalSwitchPage(index);
+    setTimeout(updateNavDotsVisibility, 100);
+};
+
