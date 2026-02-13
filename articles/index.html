@@ -43,20 +43,33 @@
                 const res = await fetch(`md/${title}.md`);
                 if (!res.ok) throw new Error('Not found');
 
-                const md = await res.text();
-                const html = marked.parse(md);
+                let md = await res.text();
 
-                container.innerHTML = html;
-
-                const h1 = container.querySelector('h1');
-                if (h1 && h1.nextElementSibling && h1.nextElementSibling.tagName === 'P') {
-                    const text = h1.nextElementSibling.textContent;
-                    if (/^by\s/i.test(text) || /\d{4}-\d{2}-\d{2}/.test(text)) {
-                        h1.nextElementSibling.classList.add('meta');
-                    }
+                let meta = {};
+                const fmMatch = md.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+                if (fmMatch) {
+                    md = md.slice(fmMatch[0].length).trim();
+                    fmMatch[1].split('\n').forEach(line => {
+                        const [key, ...val] = line.split(':');
+                        if (key && val.length) {
+                            meta[key.trim()] = val.join(':').trim();
+                        }
+                    });
                 }
 
-                document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
+                let header = '';
+                if (meta.title) {
+                    header += `<h1 class="article-title">${meta.title}</h1>`;
+                    document.title = meta.title + ' — Wes';
+                } else {
+                    document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
+                }
+                if (meta.author || meta.date) {
+                    const parts = [meta.author, meta.date].filter(Boolean);
+                    header += `<div class="article-meta">${parts.join(' · ')}</div>`;
+                }
+
+                container.innerHTML = header + marked.parse(md);
             } catch (e) {
                 container.innerHTML = '<div class="error">Article not found.</div>';
             }

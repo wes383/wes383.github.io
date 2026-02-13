@@ -1,7 +1,10 @@
+---
+title: H1 Title Example
+author: Wes
+date: 2026-02-13
+---
+
 # H1 Title Example
-
-by Wes | 2026-02-13
-
 ## H2 Title Example
 ### H3 Title Example
 
