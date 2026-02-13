@@ -70,6 +70,11 @@
                 }
 
                 container.innerHTML = header + marked.parse(md);
+                
+                container.querySelectorAll('a').forEach(link => {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                });
             } catch (e) {
                 container.innerHTML = '<div class="error">Article not found.</div>';
             }
