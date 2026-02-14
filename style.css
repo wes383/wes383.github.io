@@ -24,6 +24,12 @@ body {
 
 .text-container {
     font-size: 38px;
+    /* Ensure it can be placed above the overlay */
+    position: relative;
+    transition: color 0.5s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
 }
 
 .wes {
@@ -185,6 +191,85 @@ body {
     color: #666;
     margin: 0;
     line-height: 1.5;
+}
+
+/* Easter Egg Styles */
+#easter-egg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+body.easter-egg-active #easter-egg-overlay {
+    opacity: 1;
+    transition: none;
+    pointer-events: auto;
+}
+
+#easter-egg-close {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2002;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+    pointer-events: none;
+}
+
+body.easter-egg-active #easter-egg-close {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.easter-egg-active .text-container {
+    color: #fff;
+    z-index: 2001;
+}
+
+body.easter-egg-active .nav-dots {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#easter-egg-pattern {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 2001; /* Same as text, above overlay */
+    transform: rotate(-45deg);
+    pointer-events: none;
+    opacity: 0;
+}
+
+#easter-egg-pattern.active {
+    opacity: 0.55;
+    pointer-events: auto;
+    cursor: grab;
+    cursor: -webkit-grab;
+}
+
+#easter-egg-pattern.active:active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+
+#easter-egg-pattern .text-container {
+    position: absolute;
+    color: #fff;
+    cursor: inherit;
+    white-space: nowrap;
+    /* Reset any specific styles if needed */
 }
 
 @media (max-width: 1024px) {
