@@ -446,7 +446,7 @@ function onPatternMouseUp() {
             let vx = vPx * throwMultiplier;
             let vy = vPy * throwMultiplier;
             
-            const MAX_SPEED = 8;
+            const MAX_SPEED = 5;
             const currentSpeed = Math.sqrt(vx * vx + vy * vy);
             if (currentSpeed > MAX_SPEED) {
                 const scale = MAX_SPEED / currentSpeed;
