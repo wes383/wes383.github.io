@@ -30,12 +30,41 @@
             return params.get('title');
         }
 
+        async function renderArticleList() {
+            const container = document.getElementById('article-content');
+            try {
+                const res = await fetch('manifest.json');
+                if (!res.ok) throw new Error('manifest not found');
+                const items = await res.json();
+
+                document.title = 'Articles';
+
+                let html = '<h1 class="articles-title">Articles</h1>';
+                html += '<div class="articles-list">';
+                items.forEach(item => {
+                    const slug = item.slug;
+                    const title = item.title || slug;
+                    const date = item.date ? `<span class="date">${item.date}</span>` : '';
+                    html += `
+                        <div class="articles-item">
+                            <a class="item-title" href="/articles/${slug}">${title}</a>
+                            <div class="meta">${date}</div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = '<div class="error">Failed to load articles.</div>';
+            }
+        }
+
         async function loadArticle() {
             const title = getArticleTitle();
             const container = document.getElementById('article-content');
 
             if (!title) {
-                container.innerHTML = '<div class="error">No article specified.</div>';
+                await renderArticleList();
                 return;
             }
 
