@@ -30,6 +30,20 @@
             return params.get('title');
         }
 
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            if (Number.isNaN(date.getTime())) return dateString;
+            const locale = (navigator.languages && navigator.languages.length)
+                ? navigator.languages[0]
+                : navigator.language;
+            return date.toLocaleDateString(locale, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
         async function renderArticleList() {
             const container = document.getElementById('article-content');
             try {
@@ -44,7 +58,7 @@
                 items.forEach(item => {
                     const slug = item.slug;
                     const title = item.title || slug;
-                    const date = item.date ? `<span class="date">${item.date}</span>` : '';
+                    const date = item.date ? `<span class="date">${formatDate(item.date)}</span>` : '';
                     html += `
                         <div class="articles-item">
                             <a class="item-title" href="/articles/${slug}">${title}</a>
@@ -94,7 +108,7 @@
                     document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
                 }
                 if (meta.author || meta.date) {
-                    const parts = [meta.author, meta.date].filter(Boolean);
+                    const parts = [meta.author, meta.date ? formatDate(meta.date) : ''].filter(Boolean);
                     header += `<div class="article-meta">${parts.join(' · ')}</div>`;
                 }
 
