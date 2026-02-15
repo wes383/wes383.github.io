@@ -33,7 +33,7 @@
         async function renderArticleList() {
             const container = document.getElementById('article-content');
             try {
-                const res = await fetch('manifest.json');
+                const res = await fetch('/articles-manifest.json');
                 if (!res.ok) throw new Error('manifest not found');
                 const items = await res.json();
 
