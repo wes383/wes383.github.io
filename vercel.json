@@ -1,9 +1,9 @@
 {
     "rewrites": [
-        {
-            "source": "/articles/:file(.*\\.(css|js|json|png|jpg|jpeg|gif|svg|webp|ico))",
-            "destination": "/articles/:file"
-        },
+        { "source": "/articles/index.html", "destination": "/articles/index.html" },
+        { "source": "/articles/article.css", "destination": "/articles/article.css" },
+        { "source": "/articles/manifest.json", "destination": "/articles/manifest.json" },
+        { "source": "/articles/md/:file", "destination": "/articles/md/:file" },
         {
             "source": "/articles/:title",
             "destination": "/articles/index.html"
