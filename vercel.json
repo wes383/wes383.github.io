@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/articles/:file(.*\\.(css|js|json|png|jpg|jpeg|gif|svg|webp|ico))",
+            "destination": "/articles/:file"
+        },
+        {
             "source": "/articles/:title",
             "destination": "/articles/index.html"
         }
