@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Noto+Sans+SC:wght@400;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="/articles/article.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
         async function renderArticleList() {
             const container = document.getElementById('article-content');
             try {
-                const res = await fetch('manifest.json');
+                const res = await fetch('/articles/manifest.json');
                 if (!res.ok) throw new Error('manifest not found');
                 const items = await res.json();
 
@@ -69,7 +69,7 @@
             }
 
             try {
-                const res = await fetch(`md/${title}.md`);
+                const res = await fetch(`/articles/md/${title}.md`);
                 if (!res.ok) throw new Error('Not found');
 
                 let md = await res.text();
