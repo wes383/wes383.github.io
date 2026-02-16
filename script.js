@@ -484,6 +484,9 @@ if (closeBtn) {
             textContainer.style.transform = '';
             textContainer.style.opacity = '';
             textContainer.style.pointerEvents = '';
+            textContainer.style.cursor = 'text';
+            textContainer.style.userSelect = 'text';
+            textContainer.style.webkitUserSelect = 'text';
         }
         
         const patternContainer = document.getElementById('easter-egg-pattern');
