@@ -356,6 +356,11 @@ body.easter-egg-active .nav-dots {
     .project-description {
         font-size: 13px;
     }
+
+    .project-title:hover {
+        color: #333;
+        text-decoration: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -399,5 +404,10 @@ body.easter-egg-active .nav-dots {
 
     .project-description {
         font-size: 12px;
+    }
+
+    .project-title:hover {
+        color: #333;
+        text-decoration: none;
     }
 }
