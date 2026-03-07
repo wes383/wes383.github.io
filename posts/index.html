@@ -103,9 +103,9 @@
                 let header = '';
                 if (meta.title) {
                     header += `<h1 class="article-title">${meta.title}</h1>`;
-                    document.title = meta.title + ' — Wes';
+                    document.title = meta.title;
                 } else {
-                    document.title = title.charAt(0).toUpperCase() + title.slice(1) + ' — Wes';
+                    document.title = title.charAt(0).toUpperCase() + title.slice(1);
                 }
                 if (meta.author || meta.date) {
                     const parts = [meta.author, meta.date ? formatDate(meta.date) : ''].filter(Boolean);
