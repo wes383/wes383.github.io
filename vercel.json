@@ -1,6 +1,6 @@
 {
     "rewrites": [
-        { "source": "/articles", "destination": "/articles/index.html" },
-        { "source": "/articles/:title([^/.]+)", "destination": "/articles/index.html" }
+        { "source": "/posts", "destination": "/posts/index.html" },
+        { "source": "/posts/:title([^/.]+)", "destination": "/posts/index.html" }
     ]
 }

@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article</title>
+    <title>Posts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Noto+Sans+SC:wght@400;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/articles/article.css">
+    <link rel="stylesheet" href="/posts/article.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         function getArticleTitle() {
-            const pathMatch = window.location.pathname.match(/\/articles\/(.+?)(?:\/)?$/);
+            const pathMatch = window.location.pathname.match(/\/posts\/(.+?)(?:\/)?$/);
             if (pathMatch) {
                 return pathMatch[1];
             }
@@ -47,13 +47,13 @@
         async function renderArticleList() {
             const container = document.getElementById('article-content');
             try {
-                const res = await fetch('/articles/manifest.json');
+                const res = await fetch('/posts/manifest.json');
                 if (!res.ok) throw new Error('manifest not found');
                 const items = await res.json();
 
-                document.title = 'Articles';
+                document.title = 'Posts';
 
-                let html = '<h1 class="articles-title">Articles</h1>';
+                let html = '<h1 class="articles-title">Posts</h1>';
                 html += '<div class="articles-list">';
                 items.forEach(item => {
                     const slug = item.slug;
@@ -61,7 +61,7 @@
                     const date = item.date ? `<span class="date">${formatDate(item.date)}</span>` : '';
                     html += `
                         <div class="articles-item">
-                            <a class="item-title" href="/articles/${slug}">${title}</a>
+                            <a class="item-title" href="/posts/${slug}">${title}</a>
                             <div class="meta">${date}</div>
                         </div>
                     `;
@@ -83,7 +83,7 @@
             }
 
             try {
-                const res = await fetch(`/articles/md/${title}.md`);
+                const res = await fetch(`/posts/md/${title}.md`);
                 if (!res.ok) throw new Error('Not found');
 
                 let md = await res.text();
