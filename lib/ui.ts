@@ -10,9 +10,13 @@
  * height: a radius equal to half the height turns the hover background into a
  * pill (this happens to `linkClass` from `rounded-xl` upward, since these links
  * are only 24px tall).
+ *
+ * `cursor-pointer` is spelled out because this class also dresses `<button>`s
+ * (the theme switch), and preflight leaves those on the browser's arrow cursor
+ * — anchors get the hand on their own, so it changes nothing for them.
  */
 export const linkClass =
-  "inline-flex items-center rounded-lg -mx-2 px-2 py-1 text-xs font-medium text-foreground-muted transition-colors hover:bg-hover-bg hover:text-foreground";
+  "inline-flex cursor-pointer items-center rounded-lg -mx-2 px-2 py-1 text-xs font-medium text-foreground-muted transition-colors hover:bg-hover-bg hover:text-foreground";
 
 /** Same treatment, scaled up for links that carry a title (32px tall). */
 export const titleLinkClass =

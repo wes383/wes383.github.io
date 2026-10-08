@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllEssays } from "@/lib/essays";
 import { formatDate } from "@/lib/format";
 import { proseLinkClass, titleLinkClass } from "@/lib/ui";
+import { ThemeToggle } from "./theme-toggle";
 
 export default async function Home() {
   const essays = await getAllEssays();
@@ -45,6 +46,12 @@ export default async function Home() {
           .
         </p>
       </section>
+
+      {/* Above the list rather than below it: the notes can run long, and a
+          switch that needs the whole page scrolled first is no switch at all. */}
+      <div className="mt-4">
+        <ThemeToggle />
+      </div>
 
       <section className="mt-14">
         <h2 className="text-sm font-medium text-foreground-muted">Notes</h2>

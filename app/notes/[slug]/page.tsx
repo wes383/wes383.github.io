@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { getEssay, getEssayHeadings, getEssaySlugs, hasEssay } from "@/lib/essays";
 import { formatDate } from "@/lib/format";
 import { linkClass } from "@/lib/ui";
+import { ThemeToggle } from "@/app/theme-toggle";
 import { TableOfContents } from "./table-of-contents";
 
 export function generateStaticParams() {
@@ -48,9 +49,17 @@ async function Essay({ params }: Pick<PageProps<"/notes/[slug]">, "params">) {
     // through this article, which would push the article down and so start the
     // contents column 2rem below the `top-14` it sticks at.
     <article className="relative">
-      <Link href="/" className={linkClass}>
-        Back
-      </Link>
+      {/* Back on the left, the theme switch pushed to the far right of the same
+          row. The row keeps a child in the flow here, which is what stops the
+          header's top margin from collapsing through this article — that would
+          push the article down and start the contents column 2rem below the
+          `top-14` it sticks at. */}
+      <div className="flex items-center justify-between">
+        <Link href="/" className={linkClass}>
+          Back
+        </Link>
+        <ThemeToggle />
+      </div>
 
       <header className="mt-8 mb-8">
         <h1 className="text-xl font-semibold tracking-tight text-balance">

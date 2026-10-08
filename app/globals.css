@@ -1,13 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --foreground-muted: #737373;
-  --hover-bg: #f5f5f5;
+  /* One palette holding both schemes. `light-dark()` resolves against the
+     element's used `color-scheme`, so letting the reader override the system
+     preference is only a matter of forcing that scheme — see the `data-theme`
+     rules below. */
+  color-scheme: light dark;
+
+  --background: light-dark(#ffffff, #0a0a0a);
+  --foreground: light-dark(#171717, #ededed);
+  --foreground-muted: light-dark(#737373, #a3a3a3);
+  --hover-bg: light-dark(#f5f5f5, #1c1c1c);
+
   /* Checkmark knocked out of the checked box, so it has to oppose
-     `--foreground` and therefore flips with the colour scheme. */
-  --checkbox-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+     `--foreground` and therefore flips with the colour scheme. `light-dark()`
+     takes colours only, so these two images are kept whole and chosen by the
+     rules below instead. */
+  --checkbox-check-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+  --checkbox-check-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+  --checkbox-check: var(--checkbox-check-light);
 }
 
 @theme inline {
@@ -18,19 +29,36 @@
   --font-sans: var(--font-inter);
 }
 
+/* The reader's own choice, written to `data-theme` by the toggle on the home
+   page. Forcing the scheme is all it takes: every colour above resolves
+   against it. */
+:root[data-theme="light"] {
+  color-scheme: only light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: only dark;
+  --checkbox-check: var(--checkbox-check-dark);
+}
+
+/* No choice recorded, so the system decides — `:not()` keeps an explicit light
+   choice from being overridden on a dark machine. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --foreground-muted: #a3a3a3;
-    --hover-bg: #1c1c1c;
-    --checkbox-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+  :root:not([data-theme="light"]) {
+    --checkbox-check: var(--checkbox-check-dark);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Selected text inverts — black on light, white on dark — using the same two
+   tokens as the page itself, so it follows whichever scheme is active. */
+::selection {
+  background-color: var(--foreground);
+  color: var(--background);
 }
 
 /* Inline code. Block code is rendered by the `pre` component, so this
@@ -43,19 +71,12 @@ body {
   font-size: 0.85em;
 }
 
-/* Syntax highlighting. The highlighter writes every theme's token colour into
-   a CSS variable and lists the theme names in `data-theme`, so the switch is
-   the same colour-scheme query the rest of the site uses. */
+/* Syntax highlighting. The highlighter writes both themes' token colours into
+   CSS variables, so the choice follows the same colour scheme as everything
+   else — including a scheme the reader forced with the toggle. */
 code[data-theme*=" "],
 code[data-theme*=" "] span {
-  color: var(--shiki-light);
-}
-
-@media (prefers-color-scheme: dark) {
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-dark);
-  }
+  color: light-dark(var(--shiki-light), var(--shiki-dark));
 }
 
 /* Display math: scroll rather than break the text column. */
