@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/essays/[slug]">): Promise<Metadata> {
+}: PageProps<"/notes/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   if (!hasEssay(slug)) return {};
 
@@ -21,7 +21,7 @@ export async function generateMetadata({
   return { title: metadata.title, description: metadata.summary };
 }
 
-export default function EssayPage({ params }: PageProps<"/essays/[slug]">) {
+export default function EssayPage({ params }: PageProps<"/notes/[slug]">) {
   return (
     <Suspense
       fallback={<p className="text-sm text-foreground-muted">Loading…</p>}
@@ -31,7 +31,7 @@ export default function EssayPage({ params }: PageProps<"/essays/[slug]">) {
   );
 }
 
-async function Essay({ params }: Pick<PageProps<"/essays/[slug]">, "params">) {
+async function Essay({ params }: Pick<PageProps<"/notes/[slug]">, "params">) {
   const { slug } = await params;
   if (!hasEssay(slug)) notFound();
 

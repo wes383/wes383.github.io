@@ -51,7 +51,7 @@ export default async function Home() {
         <ul className="mt-5 space-y-8">
           {essays.map((essay) => (
             <li key={essay.slug}>
-              <Link href={`/essays/${essay.slug}`} className={titleLinkClass}>
+              <Link href={`/notes/${essay.slug}`} className={titleLinkClass}>
                 {essay.title}
               </Link>
               <p className="mt-0.5 text-xs text-foreground-muted">
