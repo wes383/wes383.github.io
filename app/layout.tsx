@@ -10,12 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Field Notes",
-    template: "%s — Field Notes",
-  },
-  description:
-    "Short personal essays on craft, attention, and the small decisions that shape a day.",
+  // A plain title, with no template: pages that set their own — the essays, the
+  // 404 — then show exactly what they say, and the rest fall back to this.
+  title: "Home",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
