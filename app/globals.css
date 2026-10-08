@@ -26,7 +26,11 @@
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-hover-bg: var(--hover-bg);
-  --font-sans: var(--font-inter);
+  /* Two families in one stack: Latin text is taken by Inter, and every
+     character Inter has no glyph for — Chinese above all — falls through to
+     Source Han Sans. Neither variable resolves to anything on its own; they are
+     put on <html> by `next/font`. */
+  --font-sans: var(--font-inter), var(--font-noto-sans-sc);
 }
 
 /* The reader's own choice, written to `data-theme` by the toggle on the home
@@ -52,6 +56,17 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  /* A bare URL — a DOI, a repository handle, a path with underscores in it — is
+     one long word with nowhere in it to break, and a single one in a footnote is
+     enough to push the whole column sideways. This only takes effect on a word
+     that cannot fit its line, so ordinary text is untouched. */
+  overflow-wrap: break-word;
+}
+
+/* Code is the one place that keeps its scrollbar: a wrapped line of code would
+   misrepresent its own indentation. */
+pre {
+  overflow-wrap: normal;
 }
 
 /* Selected text inverts — black on light, white on dark — using the same two
@@ -131,4 +146,12 @@ section[data-footnotes] > h2 {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* Two references on the same word — "…10 hours.[^a][^b]" — would otherwise run
+   together as one number, because GFM gives each its own <sup> and puts nothing
+   between them. The gap is measured in the sup's own size, which is already
+   smaller than the text it follows. */
+sup:has(a[data-footnote-ref]) + sup:has(a[data-footnote-ref]) {
+  margin-left: 0.25em;
 }

@@ -2,9 +2,10 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { proseLinkClass } from "@/lib/ui";
 
 /**
- * Typography for everything that comes out of an MDX file. It intentionally
- * leans on spacing, weight and colour alone — no borders, rules or other
- * decoration.
+ * Typography for everything that comes out of an MDX file. It leans on spacing,
+ * weight and colour rather than decoration. The one exception is the table grid
+ * below: a column of figures is read as a column only if something divides the
+ * rows, so the lines are drawn as faintly as they can be and still be seen.
  */
 export const components = {
   // Every heading forwards its remaining props: `rehype-slug` puts the `id` the
@@ -191,16 +192,22 @@ export const components = {
   ),
   // Authors may use `---` as a beat between sections; keep it as pure space.
   hr: () => <div className="h-8" aria-hidden="true" />,
+  // A table is the one place that gets rules. Every row and every column is
+  // divided, but only *between* cells: `first:border-l-0` keeps the grid from
+  // closing into a frame, and the heading's rule is left a shade darker than
+  // the rest so it still reads as the divider between head and body.
   table: ({ children }: { children?: ReactNode }) => (
     <table className="my-6 w-full text-sm leading-7">{children}</table>
   ),
   th: ({ children }: { children?: ReactNode }) => (
-    <th className="pr-6 pb-2 text-left font-medium text-foreground">
+    <th className="border-b border-l border-b-foreground-muted/30 border-l-foreground-muted/15 pr-3 pb-2 pl-3 text-left font-medium text-foreground first:border-l-0 first:pl-0 last:pr-0">
       {children}
     </th>
   ),
   td: ({ children }: { children?: ReactNode }) => (
-    <td className="py-1.5 pr-6 align-top text-foreground/90">{children}</td>
+    <td className="border-b border-l border-foreground-muted/15 py-1.5 pr-3 pl-3 align-top text-foreground/90 first:border-l-0 first:pl-0 last:pr-0">
+      {children}
+    </td>
   ),
 };
 

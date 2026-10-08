@@ -8,7 +8,7 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import type { EssayHeading } from "@/lib/essays";
+import type { NoteHeading } from "@/lib/notes";
 import { linkClass } from "@/lib/ui";
 
 /** Shortest the bar may get, so a very long contents stays draggable. */
@@ -18,12 +18,11 @@ const MIN_BAR = 24;
 const BESIDE_THE_TEXT = "(min-width: 1280px)";
 
 /**
- * An essay's contents. Collapsible because the longest essay here lists twelve
- * sections, and the toggle is a plain text button like every other control on
- * the site.
+ * A note's contents. Collapsible because a long note can list a dozen sections,
+ * and the toggle is a plain text button like every other control on the site.
  *
  * Whether it starts open depends on where it sits: beside the text on a wide
- * screen there is room for it, in the flow above the essay on a narrow one there
+ * screen there is room for it, in the flow above the note on a narrow one there
  * is not. The breakpoint isn't known while the page is being prerendered, so the
  * initial state is left undecided and the markup carries both answers — the CSS
  * hides the list below `xl` until the effect below settles the matter.
@@ -31,9 +30,17 @@ const BESIDE_THE_TEXT = "(min-width: 1280px)";
  * From `xl` the column is capped to the viewport and scrolls on its own, so a
  * long contents never runs past the bottom of the screen. Its native scrollbar
  * is hidden and replaced by the bar below: a hairline that fades in with the
- * column, sits on the edge rather than taking up width, and can be dragged.
+ * column, takes up no width, and can be dragged. It is held outside the box
+ * rather than on its edge, because the links' `-mx-2` carries their hover
+ * background all the way out — a bar at the edge would sit on top of it.
  */
-export function TableOfContents({ headings }: { headings: EssayHeading[] }) {
+export function TableOfContents({
+  headings,
+  label,
+}: {
+  headings: NoteHeading[];
+  label: string;
+}) {
   // `null` until the reader (or the effect) decides.
   const [open, setOpen] = useState<boolean | null>(null);
   const expanded = open !== false;
@@ -111,7 +118,8 @@ export function TableOfContents({ headings }: { headings: EssayHeading[] }) {
     // has to move by the inverse of that for the bar to track the pointer.
     element.scrollTop =
       origin.scrollTop +
-      (event.clientY - origin.from) * (element.scrollHeight / element.clientHeight);
+      (event.clientY - origin.from) *
+        (element.scrollHeight / element.clientHeight);
   }
 
   function endDrag(event: ReactPointerEvent<HTMLDivElement>) {
@@ -139,7 +147,7 @@ export function TableOfContents({ headings }: { headings: EssayHeading[] }) {
             onClick={() => setOpen(!expanded)}
             className={linkClass}
           >
-            Contents
+            {label}
             <ChevronDown
               aria-hidden="true"
               className={[
@@ -209,7 +217,7 @@ export function TableOfContents({ headings }: { headings: EssayHeading[] }) {
               height: bar.height,
               transform: `translateY(${bar.offset}px)`,
             }}
-            className="absolute top-0 right-0 w-1 touch-none rounded-full bg-foreground-muted/20 opacity-0 transition-opacity group-hover:opacity-100"
+            className="absolute top-0 -right-2 w-1 touch-none rounded-full bg-foreground-muted/20 opacity-0 transition-opacity group-hover:opacity-100"
           />
         ) : null}
       </div>

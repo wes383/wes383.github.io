@@ -1,0 +1,397 @@
+export const metadata = {
+  title: "为什么人类可以吃的东西，对某些动物来说却可能致命？",
+  date: "2026-10-08",
+  summary:
+    "饭后一小块黑巧克力，一把葡萄，一片无糖口香糖，一块蒜香面包。对你来说，这是再普通不过的一个晚上；对一只狗、一只猫或一只宠物鹦鹉来说，其中任何一样都可能意味着一趟急诊。",
+};
+
+我们常常下意识地把“食物”当成一个通用概念：人能吃的，宠物总不至于吃出事吧？生物学的回答是：不一定。每个物种都带着一套由数百万年饮食习惯塑造出来的“工具箱”：酶、受体、转运蛋白和器官。当某种分子遇到一个从未进化出应对机制的身体，零食就会变成毒药。
+
+美国防止虐待动物协会（ASPCA）动物中毒控制中心（APCC）在 2025 年累计处理的动物中毒咨询突破了 **500 万例**；在它 2024 年的“十大毒物”榜单上，人类食物和饮料排名**第二**。仅葡萄和葡萄干一项，2025 年截至 7 月下旬就已超过 **9300 例**。[^aspca-5m]
+
+## 一、巧克力：同一种分子，不同的“时钟”
+
+**有毒成分：** 可可碱，外加少量咖啡因，二者同属甲基黄嘌呤类物质。
+
+**作用机制：** 可可碱和咖啡因会竞争性地阻断腺苷受体。腺苷是身体里“该歇歇了”的信号，被阻断后，神经系统过度兴奋、心跳加快、尿量增加。[^merck-choc] 对人来说，这只是一杯热可可带来的轻微提神；对狗来说，却可能是亢奋、震颤、心律失常和抽搐。
+
+**狗为什么中招？关键不在化学，而在时间。**
+
+- 可可碱在狗体内的半衰期约为 **17.5 小时**（咖啡因约 4.5 小时）。[^merck-choc]
+- 在人体内，一项经典研究测得的平均值为 **6.1 小时**；兽医文献给出的人类范围大约是 **6–10 小时**。[^human-tb][^dvm360]
+
+狗还会“回收”这种物质：肝脏处理后，一部分随胆汁排入肠道，又被重新吸收（肠肝循环）；[^merck-choc] 甲基黄嘌呤甚至能通过膀胱壁被重新吸收。[^tvmdl] 于是前一口还没清除，后一口又叠了上来。
+
+**巧克力和巧克力不一样：**[^pmc-choc]
+
+| 种类 | 可可碱含量（约） |
+|---|---|
+| 可可粉 | 约 20 mg/g |
+| 黑巧克力 / 纯巧克力 | 约 15 mg/g |
+| 牛奶巧克力 | 约 2 mg/g |
+| 白巧克力 | 约 0.1 mg/g |
+
+**剂量与效应。** 根据 ASPCA 中毒控制中心的经验：可可碱加咖啡因约 20 mg/kg 时出现轻度症状，40–50 mg/kg 时出现严重症状，约 60 mg/kg 时可能抽搐。[^aspca-choc] 兽医会议资料把 100 mg/kg 列为最低致死剂量。[^dvm360] 综合来看，**对一只 10 公斤的狗，不到 100 克纯黑巧克力（差不多一板）就可能致命。**[^pmc-choc]
+
+**算一笔账。** 一只 5 公斤的小梗犬吃掉一块 50 克的黑巧克力：50 克 × 15 mg/g = 750 mg 可可碱，即 150 mg/kg，已越过抽搐阈值、进入致死范围。换成同样 50 克的牛奶巧克力（约 100 mg），则约为 20 mg/kg，处于“轻度症状”区间。白巧克力的问题主要是脂肪和糖。
+
+**中毒表现。** 先是呕吐、烦躁、多饮多尿，严重时发展为心跳过速、震颤和抽搐。由于半衰期太长，症状可持续长达 **72 小时**。[^aspca-choc]
+
+**救治。** 没有解毒剂。若刚误食，兽医会催吐，给予活性炭（常需重复给药，以打断“回收”循环），静脉补液加速排泄，并控制心律和抽搐。[^merck-choc]
+
+**猫呢？** 猫同样敏感，但因为尝不出甜味（见第五节），很少主动吃巧克力。[^aspca-vt]
+
+## 二、葡萄和葡萄干：悬了二十年、最后在烘焙货架上破解的谜案
+
+**来龙去脉。** 大约 1989 年，ASPCA 中毒控制中心的毒理学家在数据库里发现一个规律：吃了葡萄或葡萄干的狗，会出现急性肾衰竭。[^aspca-wrath] 2001 年，该中心首次正式报告了这一关联。[^aspca-nye] 2005 年一项针对 43 只病犬（1992–2002 年）的回顾研究显示，只有 **53%** 存活。[^eubig]
+
+可病因始终是个谜。霉菌毒素、农药、重金属、单宁、糖分过多……统统被怀疑过，没有一个被证实。[^dijkman] 更诡异的是，剂量和反应之间似乎毫无规律：四五颗葡萄就足以让一只腊肠犬肾损伤，另一些狗吃下多达 1 公斤葡萄干却毫无症状。[^dijkman]
+
+**突破口来自厨房。** ASPCA 的毒理学家注意到，误食**塔塔粉**（酒石酸氢钾，一种烘焙原料）或**罗望子（酸角）**的狗，出现了与葡萄中毒一模一样的呕吐、肾衰竭和显微镜下的肾脏病变。共同点是**酒石酸**。2022 年，他们在《兽医急诊与重症监护杂志》发表病例系列，把酒石酸确定为葡萄、葡萄干和罗望子中最可能的有毒成分。[^pubmed-tartaric][^aspca-tartaric]
+
+这也解释了“随机性”：罗望子含约 8%–18% 的酒石酸，葡萄最多约 2%，通常为 0.35%–1.1%，[^wiki-grape] 而且会随品种、成熟度和种植条件而变化。[^merck-grape]
+
+**为什么偏偏是狗？** 据《默克兽医手册》，狗缺少其他物种拥有的有机酸转运蛋白，难以排出有机酸，于是酒石酸在近端肾小管细胞中不断积累。[^merck-grape]
+
+**风险阈值。** 默克的经验值：每 4.5 公斤（10 磅）体重只要吃下**超过 1 颗葡萄或葡萄干**，摄入的酒石酸就可能达到有害剂量。[^merck-grape] 黑加仑干（赞特醋栗）和苏丹娜葡萄干同样算在内。
+
+**中毒表现。** 6–12 小时内呕吐或腹泻（呕吐物里常能看到葡萄残渣），接着精神萎靡、食欲下降、口渴、脱水。肾功能指标升高，24–48 小时内可能发展为少尿甚至无尿，一般在 72 小时内出现。[^merck-grape]
+
+**救治。** 对于超过关注剂量的近期误食，ASPCA 建议先催吐，再静脉输液利尿 48 小时。[^aspca-nye] 一旦无尿，预后会差得多。[^eubig]
+
+## 三、木糖醇：“健康代糖”如何劫持狗的胰腺
+
+**藏在哪里。** 木糖醇在配料表上也可能写作“wood sugar”“birch sugar（桦木糖）”或“birch bark extract（桦树皮提取物）”，[^fda-xyl2] 常见于无糖口香糖、薄荷糖、部分花生酱、烘焙食品、牙膏，甚至某些人用液体药物。[^petmd-xyl]
+
+**对人几乎无害。** 它几乎不刺激胰岛素分泌；每天吃超过 130 克，主要后果也只是腹泻。[^pmc-xylitol]
+
+**对狗却像按下开关。** 美国 FDA 解释说，狗吸收木糖醇很快，它会触发胰腺**猛烈释放胰岛素**，在 **10 到 60 分钟内**让血糖骤降。[^fda]
+
+**有多猛？** 一项研究中，狗吃下 1 g/kg 木糖醇后的胰岛素峰值，是吃同等剂量葡萄糖时的**六倍**；血糖不升反降，一小时内跌到约 50 mg/dL。[^aspca-xyl]
+
+**一个意外的发现。** 这一效应最早在 20 世纪 60 年代被注意到：研究人员当时在测试把木糖醇静脉输注作为肠外营养的能量来源，结果发现它会让狗出现剂量相关的胰岛素释放。[^aspca-xyl]
+
+**关键数字：**
+
+- 超过约 **0.1 g/kg** 可导致低血糖；超过约 **0.5 g/kg** 可导致急性肝衰竭。[^pubmed-xyl]
+- 一片口香糖或一粒薄荷糖通常含 **0.22–1.0 克**，所以**一片就可能让一只 4.5 公斤的小狗低血糖**。[^pph]
+
+**两波伤害。** 第一波是低血糖：呕吐、虚弱、走路摇晃、虚脱、抽搐、昏迷。[^merck-xyl] 第二波发生在较高剂量下：肝细胞坏死，并伴随凝血障碍。在一个 8 只狗的病例系列中，3 只被安乐死，2 只死亡，2 只完全康复。[^javma-xyl] 肝损伤的机制至今不明，主流假说是木糖醇代谢消耗 ATP 或产生活性氧。[^merck-xyl]
+
+**救治。** 迅速清除毒物，并静脉补充葡萄糖，直到狗能自行调节血糖，通常需要 12–48 小时。活性炭对木糖醇吸附效果差，不推荐使用。[^pph] 由于肝损伤可能延迟出现，兽医常在几天后复查肝功能。[^cornell]
+
+## 四、洋葱、大蒜、细香葱：让红细胞“生锈”
+
+**家族成员。** 洋葱、大蒜、韭葱、红葱头、细香葱、韭菜都属于葱属（*Allium*）。
+
+**化学原理。** 它们冲鼻的味道，来自切、嚼、煮时释放并转化的含硫化合物。[^dvm360-onion] 在猫狗体内，其中几种，包括**正丙基二硫化物**和一类**硫代硫酸盐**，会充当氧化剂。[^ajvr] 日本北海道大学的研究者从煮过的洋葱中分离出正丙基硫代硫酸钠，证明它会导致狗出现海因茨小体贫血；后来又在煮过的大蒜中发现了类似的 2-丙烯基硫代硫酸钠。[^hk-dogs][^garlic-ts]
+
+**伤害如何发生。** 氧化剂攻击红细胞内的血红蛋白。受损的血红蛋白凝结成小团块，叫做**海因茨小体**（Heinz bodies），附着在细胞膜上；红细胞变得脆弱并被破坏，导致**溶血性贫血**。被氧化的血红蛋白还会变成高铁血红蛋白，携氧能力大幅下降。[^dvm360-allium]
+
+**为什么是猫狗？**
+
+- **猫是最敏感的物种，其次是狗。**[^merck-allium]
+- 猫的血红蛋白对氧化损伤的敏感度约为其他物种的**两到三倍**；狗红细胞里的过氧化氢酶（一种抗氧化酶）活性偏低。[^scielo]
+- 部分狗携带一种遗传特征，红细胞内谷胱甘肽和钾含量高，这类狗更容易中毒。[^hk-dogs]
+
+**一点点就够。** 有猫在吃下**不到一茶匙熟洋葱**或 5 g/kg 生洋葱后中毒。脱水洋葱片、洋葱粉、速溶汤料等浓缩形式最危险。[^merck-allium]
+
+**煮熟也没用。** 烹饪、干燥和加工都不能消除毒性。文献记载的病例包括烤大蒜、洋葱舒芙蕾、黄油炒洋葱，以及**韭菜大蒜馅的中式蒸饺**。[^pmc-household]
+
+**陷阱在于“延迟”。** 海因茨小体和高铁血红蛋白在 24 小时内就会升高，但明显的贫血症状（虚弱、牙龈苍白或发黄、虚脱、尿色变深）可能要**好几天**才出现，[^merck-allium] 那时早没人记得那顿剩菜了。
+
+**救治。** 近期误食时清除毒物，之后支持治疗；严重者可能需要吸氧和输血。[^merck-allium]
+
+## 五、猫与“丢失的基因”
+
+猫是超肉食性动物，它们的基因组上留着进化的“伤疤”。
+
+### 丢失的解毒酶
+
+大多数哺乳动物会用一种叫 **UGT1A6** 的酶，给某些化合物接上葡萄糖醛酸（葡萄糖醛酸化），使它们容易排出。2000 年，研究者证明家猫的这个基因是一个**假基因**：被五处有害突变破坏，根本不表达。互不相关的猫身上都有同样的突变，一种野生小型猫科动物长尾虎猫身上也有其中大部分。[^court2000]
+
+2011 年的一项研究把这一缺陷的出现时间定在 **3500 万到 1100 万年前**，现存所有猫科动物都带着这个坏掉的基因。在另外检测的 22 种食肉目动物中，只有棕鬣狗和北象海豹也存在 UGT1A6 缺陷，而**所有带缺陷的物种都是超肉食性动物**（饮食中动物性食物超过 70%）。[^plos-ugt]
+
+背后的逻辑是：从不吃植物的动物，很少接触植物化合物，自然选择也就不再“维护”清除它们的工具。
+
+**代价体现在我们的药箱里。** 猫对对乙酰氨基酚（扑热息痛）的葡萄糖醛酸化能力比狗和人低约 **10 倍**。[^vin] 当正常代谢途径不堪重负，对乙酰氨基酚就会转化成有毒代谢物 **NAPQI**，损伤血红蛋白和红细胞。猫在剂量低至 **10 mg/kg** 时就可能出现中毒症状，[^aspca-apap] 对一只 4 公斤的猫来说，这只是一片人用药的一小部分。阿司匹林在猫身上的给药间隔也必须大大拉长。[^vin]
+
+### 丢失的甜味受体
+
+哺乳动物通过由 T1R2 和 T1R3 两种蛋白组成的受体尝到甜味。2005 年发表于《PLoS Genetics》的研究发现，猫的 *Tas1r2* 基因缺失了 247 个碱基对，还有多个终止密码子，是一个假基因；老虎和猎豹也一样。[^li2005] 猫根本尝不出糖的甜。鸡也缺少有功能的 *Tas1r2*。[^sweet-genetics]
+
+## 六、牛油果：你的沙拉，鹦鹉的心脏杀手
+
+**有毒成分：** **鳄梨毒素**（persin），存在于叶、果实、果核和树皮中。在被发现能毒害动物之前，它就以抗真菌作用为人所知。[^persin][^aspca-avo]
+
+**谁有风险。** 默克手册列出的易感动物包括牛、山羊、马、小鼠、兔、豚鼠、大鼠、绵羊、虎皮鹦鹉、金丝雀、玄凤鹦鹉、鸵鸟、鸡、火鸡、狐猴、指猴和鱼。**笼养鸟似乎最敏感**，鸡和火鸡则相对耐受。[^merck-avo] 与鸟类和家畜相比，狗相对不敏感。[^aav]
+
+**它造成什么伤害。** 鳄梨毒素会导致鸟类和哺乳动物心肌细胞坏死，以及哺乳期动物的无菌性乳腺炎。在哺乳期小鼠身上，纯化的鳄梨毒素在 60–100 mg/kg 时引起乳腺炎，超过 100 mg/kg 时造成心肌损伤；山羊吃下每公斤体重 20 克叶子会出现严重乳腺炎，30 克则出现心脏损伤。[^merck-avo] 它究竟如何损伤心脏，至今仍不清楚。[^persin]
+
+**证据：**
+
+- **1989 年：** 研究者给 8 只虎皮鹦鹉和 8 只金丝雀喂食牛油果泥，**6 只虎皮鹦鹉和 1 只金丝雀在 24 到 47 小时内死亡**，解剖可见胸部水肿和心包积液。[^budgie]
+- **鸵鸟：** 一个牛油果园里的 120 只鸵鸟中，有 9 只在吃了叶子和未熟果实后 96 小时内死于充血性心力衰竭；喂食试验重现了严重的心肌损伤。[^ostrich]
+- **2026 年 5 月：** 澳大利亚维多利亚州农业部通报，一群家鸭在吃了含有 6 个整牛油果的一餐后 6–7 小时死亡，禽流感已被排除。[^agvic]
+
+**品种有关系。** 危地马拉系牛油果及其杂交种有毒，墨西哥系尚未发现致毒。[^massey] 超市常见的哈斯（Hass）和富尔特（Fuerte）都被认为有毒。[^aav]
+
+## 七、夏威夷果：一个结局还算圆满的谜
+
+狗是**唯一**被报告中毒的物种，**有毒成分和机制至今未知**。[^merck-mac] 猜测包括某种只对狗起作用的成分、加工污染物或霉菌毒素。[^aspca-mac]
+
+**中毒表现。** 在 ASPCA 回顾的 29 个病例中，79% 的狗在 12 小时内出现症状：虚弱（尤其是后腿）、精神沉郁、呕吐、走路不稳、震颤和发热；平均摄入量为 11.7 g/kg。实验中给 4 只狗灌服 20 g/kg，12 小时后它们站不起来，体温最高达 40.5 °C。[^hansen] 约 2.4 g/kg 时就曾出现症状。[^merck-mac] 每颗坚果约重 2.6–5 克，[^cote] 所以一只 10 公斤的狗吃下五到十颗左右就可能出现症状。
+
+**好消息。** 所有狗，无论是实际病例还是实验犬，都在一到两天内康复，治疗与否都一样。[^hansen] **但要注意：** 夏威夷果常裹着巧克力，或与葡萄干一起烤进饼干，那就是严重得多的问题了。
+
+## 八、生面团：胃里开了一家酿酒厂
+
+少量烤好的面包对宠物没问题（只要不是葡萄干面包）。**含酵母的生面团**就是另一回事了。[^aspca-bread]
+
+**双重打击。** 狗的胃温暖湿润，是理想的“发酵箱”。酵母继续发酵，让面团膨胀，同时产生**二氧化碳**和**乙醇（酒精）**。[^merck-bread]
+
+1. **胃胀。** 膨胀的面团撑大胃部，可能影响胃壁血供、造成呼吸困难，在易感犬种中还可能诱发胃扩张-扭转（胃扭转）。[^merck-bread]
+2. **酒精中毒。** 乙醇被吸收入血，导致醉酒样表现、低血糖、代谢性酸中毒、体温过低、呼吸抑制，甚至抽搐和死亡。[^merck-bread][^aspca-bread] **致死原因通常是酒精，而不是胃胀。**[^merck-bread]
+
+**一个关键细节。** 乙醇刺激胃部引发呕吐，同时又让保护气道的肌肉松弛，因此吸入呕吐物的风险很高。[^aspca-bread]
+
+**一个让人安心的细节。** 狗单独吃了一包干酵母，不会酒精中毒：酵母需要糖才能发酵。[^aspca-bread]
+
+## 九、啤酒花：家酿爱好者没注意到的隐患
+
+啤酒花（*Humulus lupulus*）赋予啤酒苦味。无论是新鲜的、颗粒状的还是**用过的残渣**，都可能让狗出现失控的、危及生命的体温飙升，类似**恶性高热**。[^aspca-hops]
+
+**来龙去脉。** 1997 年《美国兽医协会杂志》（JAVMA）报告了 5 只吃了啤酒花残渣的狗，**其中 4 只是灵缇犬**，尽管全力抢救，**5 只中仍有 4 只死亡**。[^duncan] 后来的研究要乐观一些：71 只狗中 77% 经重症治疗存活，[^pfaff] 2023 年一项 177 只狗的研究中存活率为 95.2%，但仍有狗死于严重高热。[^becker]
+
+**谁的风险更高。** 任何狗都可能中毒，但易患恶性高热的犬种，如灵缇、拉布拉多、圣伯纳、指示犬、杜宾、边境牧羊犬和美国可卡犬，风险可能更高。[^pph-hops] 默克手册指出，其他物种尚无啤酒花中毒的报告。[^merck-hops]
+
+**中毒表现。** 症状可能在 30–60 分钟内出现，也可能延迟到 12 小时：剧烈喘气、烦躁、心跳加快、呕吐、高热、震颤和抽搐。[^aspca-hops] 英国一只拉布拉多在积极降温的情况下，体温仍升到了 **42.7 °C**。[^vpis]
+
+**机制：** 未知。主要怀疑是植物中的某些成分让细胞的能量生产（氧化磷酸化）“解偶联”，把肌肉的能量变成了热量。[^merck-hops][^duncan]
+
+**救治。** 清除毒物、积极降温、静脉补液，并使用丹曲林（dantrolene）这种肌肉松弛剂作为恶性高热的解毒药。[^merck-hops]
+
+**狗在哪儿吃到的。** 倒进堆肥或当作花园肥料的啤酒花残渣，似乎对狗特别有吸引力。[^vpis]
+
+## 十、盐和自制橡皮泥
+
+盐是所有动物的必需品，过量对所有动物也都有毒，只是安全边际不同。
+
+**数字。** 默克手册给出的急性口服致死量：猪、马、牛约 **2.2 g/kg**，狗约 **4 g/kg**，但 2–3 g/kg 时就可能出现症状；绵羊最耐受，约 6 g/kg。[^merck-salt]
+
+**意想不到的元凶：自制橡皮泥。** 一种常见配方是 2 杯面粉、1 杯食盐、半杯到一杯水，[^cote-salt] 闻起来香、吃起来咸，狗很容易一口气吃下很多。圣诞节的盐面团装饰品也有同样风险。[^pph-salt] 一个病例中，一只 8 岁的万能梗吃了用盐和面粉做的雕塑黏土，连续抽搐 45 分钟，尽管积极抢救仍然死亡；它的血钠高达 211 mEq/L，而正常范围是 145–158。[^khanna]
+
+**伤害机制。** 过量的钠会把水从细胞（包括脑细胞）里“抽”出来，导致呕吐、口渴、走路不稳、震颤、抽搐和昏迷。**纠正得太快同样危险**：血钠骤降会让水猛地涌回脑细胞，引起脑水肿。[^cote-salt][^merck-salt-pet]
+
+**其他来源：** 海水（狗在海边玩耍却没有淡水喝）、融雪盐、彩弹，以及过去曾被用来给宠物催吐的盐，这种做法现在已不再推荐。[^merck-salt]
+
+## 十一、牛奶：“猫咪舔牛奶”的迷思
+
+并非清单上的每样食物都会致命。牛奶就是一个例子：它很日常，只是**并非人人（猫猫）都适合**。
+
+和大多数哺乳动物（以及大多数成年人类）一样，猫在断奶后会失去大部分消化乳糖的能力。1993 年的一项研究测得，猫小肠乳糖酶活性从新生时的约 96 个单位降到 6 周龄时的约 13，成年后约为 7，不过少数成年猫仍保留较高活性。[^kienzle]
+
+未被消化的乳糖进入结肠，吸走水分并被细菌发酵，导致腹泻、胀气，有时呕吐，通常在 8–12 小时内出现。[^four-paws] 这是剂量问题：研究发现成年猫能耐受约 1.3 克/公斤的乳糖，但耐受不了 4.5 克/公斤。[^vetagro] 舔几口通常没事，每天一碟就未必了。长期腹泻可能导致脱水。[^conversation]
+
+## 十二、兔子、仓鼠和豚鼠：小小的身体，没有退路
+
+袖珍宠物有自己的一套规则。它们的问题不太在于某种奇特的毒素，而更多在于“管道”：吃进去的东西，出不来。
+
+### 没有倒挡
+
+狗吃到坏东西可以呕吐，啮齿动物不行。2013 年一项发表于《PLoS ONE》的研究测试了三大啮齿类动物群的代表，包括大鼠、小鼠、田鼠、河狸、豚鼠和海狸鼠。经典的催吐药物在它们身上都没有引起干呕或呕吐。研究者发现了一些解剖学限制，比如膈肌较弱、胃的形状不利于把内容物推回上来，但结论是最可能的原因在于缺失了一条脑干回路：无法呕吐似乎是啮齿动物的一种普遍特性。[^horn] 兔子也被普遍认为无法呕吐。[^emesis-review]
+
+这带来两个后果。兽医不能简单地用催吐来清空仓鼠或兔子的胃；而任何搅乱肠道的因素，都必须一路处理到底。
+
+### 一缸会被糖毁掉的发酵液
+
+兔子（以及豚鼠和龙猫）是后肠发酵动物。它们庞大的盲肠是一缸微生物，把植物纤维发酵成挥发性脂肪酸，为兔子提供约 **40%** 的热量。兔子随后会吃掉一种特殊的软粪（盲肠便），来吸收微生物制造的营养。[^merck-rabbit-nutr][^illinois]
+
+这套系统靠纤维运转。默克建议粗纤维约 15%，不限量供应牧草就能轻松满足；[^merck-rabbit-nutr] 伊利诺伊大学则建议兔子饮食中应有超过 75% 是牧草。[^illinois] 淀粉和含糖食物恰恰相反。碳水化合物会抑制胃动素（一种推动肠道蠕动的激素），而过多的淀粉到达盲肠，会喂养*梭菌属*（如 *Clostridium spiroforme*）等有害细菌，它们会产生强效毒素。[^merck-rabbit-nutr]
+
+结果可能是**肠毒血症**：突然发生严重腹泻，48 小时内死亡。用默克手册的话说，“兔子可能晚上看起来还好好的，第二天早上就死了。”[^merck-rabbit-pet] 更轻、也常见得多的一种是胃肠停滞，即肠道蠕动减慢，在就诊的兔子中多达 **25%** 可见。[^illinois]
+
+所以，一块饼干、一片梳打饼、几粒酸奶溶豆或一把早餐麦片，对孩子无害，对兔子却是糟糕的食物。正如美国家兔协会所说，成年兔子能消化水果里的果糖，但糖果棒里的糖却会让它生病。[^hrs]
+
+### 药箱里的陷阱：抗生素
+
+这是全文最令人意外的一条：人医里最常用的一些抗生素，能杀死兔子、仓鼠和豚鼠。
+
+默克手册把**克林霉素、林可霉素、红霉素、氨苄西林、阿莫西林-克拉维酸和头孢菌素类**列为不应口服给兔子的药物。[^merck-rabbit-ill] 林可酰胺类（克林霉素和林可霉素）在马、豚鼠、仓鼠、兔、龙猫和反刍动物中属禁忌，因为它们可能致命地破坏肠道细菌。[^merck-linco] 兽医用的克林霉素标签本身就警告：不得用于兔、仓鼠、豚鼠、马、龙猫或反刍动物。[^clinda-label]
+
+**为什么？** 这些药物会杀灭维持食草动物肠道平衡的友好革兰氏阳性菌，为产毒的梭菌（包括*艰难梭菌*）腾出空间、任其占据。[^merck-rabbit-bact] 在一项实验中，6 只兔子接受了单次静脉注射克林霉素，其中 4 只死亡或不得不被安乐死。[^cholestyramine]
+
+**仓鼠在医学史上的奇特地位。** 给仓鼠使用林可霉素导致致死性小肠结肠炎，早在 1968 年就有报告。到 1977 年，仓鼠的克林霉素相关结肠炎已成为人类患者中抗生素相关结肠炎的实验室模型。[^hamster-clinda] 同样一种能在人身上引发*艰难梭菌*腹泻的药物，对于整个消化都依赖肠道微生物的动物来说，要危险得多。
+
+在兽医指导下注射用的青霉素对兔子通常是安全的。[^merck-rabbit-ill] 这里的教训关乎给药途径和具体药物，也是绝不要把剩下的人用药分给宠物的一个理由。
+
+### 别放进兔笼的食物
+
+默克手册列出的对兔子有毒的植物和食物包括**苹果籽、生豆类、红薯、大黄叶、马铃薯的芽眼、嫩芽和绿色部分，以及巧克力**；水果、苜蓿和部分十字花科绿叶菜则应限量。[^merck-rabbit-table]
+
+- **牛油果：** 兔子和豚鼠都在默克手册的易感物种名单上。[^merck-food-pet] ASPCA 警告可能出现胃肠道症状、可能危及生命的心肺问题，以及哺乳母兔的疼痛性乳腺炎。[^aspca-rabbit] 2019 年《Toxicon》的一篇报告描述了吃了牛油果叶的兔子发生急性心力衰竭。[^toxicon-rabbit]
+- **巧克力：** 兔子对巧克力心脏效应的敏感度低于狗，但对胃肠道效应的敏感度更高，考虑到它们的解剖结构，这很严重。[^aspca-rabbit]
+- **盐：** 有宠物兔发生钠中毒的报告。[^rabbit-salt]
+- **一个值得核对的迷思：球生菜（冰山生菜）。** 常说它会让兔子危险地“镇静下来”。证据很薄弱；更有说服力的理由是它几乎全是水分，营养价值很低。[^vetdesk]
+
+**仓鼠**面临大体相同的危害。巧克力、咖啡因、洋葱和大蒜、牛油果、果核和苹果籽常被列为不安全。它们体型极小，一点量就可能出事；而仓鼠会把食物藏在颊囊和垫料里，问题可能几小时都没人发现。[^spectrum-hamster]
+
+### 豚鼠：和我们共享同一个缺陷的啮齿动物
+
+大多数哺乳动物能自行合成维生素 C。人类、其他灵长类和豚鼠不能：我们都缺少这条通路的最后一个酶——L-古洛糖酸内酯氧化酶。[^nature-1957] 1992 年，日本研究者证明豚鼠仍带着这个基因，但它是一个布满突变和三个终止密码子的**假基因**。[^nishikimi] 我们自己的版本大约在 6100 万年前坏掉；豚鼠的则在大约 1400 万年前坏掉。[^genetica]
+
+所以，只喂兔粮或仓鼠混合粮——这些为能自行合成维生素 C 的动物设计的食物——的豚鼠，可能患上**坏血病**，就像远航的水手一样。最早的迹象是毛色变差、伤口愈合不良、食欲不振和体重下降。[^petmd-gp]
+
+## 十三、反过来：动物能吃、人却吃不了的东西
+
+敏感性是双向的，人类也有自己的“短板”。
+
+**鸟和辣椒。** 辣椒的辣，是因为辣椒素激活了痛觉受体 TRPV1。2002 年，David Julius 和 Sven-Eric Jordt 证明，鸡的 TRPV1 对高温和酸依然敏感，却**对辣椒素毫无反应**；他们还找到了鸟类所缺少的辣椒素结合区域。[^jordt]（Julius 后来因发现温度和触觉受体，分享了 2021 年诺贝尔生理学或医学奖。）生态学家在 2001 年就已证明，辣椒素能吓退会嚼碎种子的林鼠、仙人掌鼠等啮齿动物，却吓不退弯嘴嘲鸫这样的鸟，而鸟粪里的种子还能正常发芽。[^tewksbury][^sci-rep] 辣椒的“毒”专门瞄准哺乳动物，这是植物版的“定向威慑”。
+
+**考拉和桉树叶。** 桉树叶的毒性足以杀死大多数哺乳动物。2018 年发表于《自然·遗传学》的考拉基因组显示，它们的细胞色素 P450 CYP2C 家族发生了两次大规模扩增，多达 **31 个基因**，在肝脏中高度活跃；苦味受体也更多，帮助它们挑出毒性最低的叶子。[^koala][^sci-koala] 维持这样特殊的食谱也有代价：考拉一天可能有多达 22 小时在休息或睡觉。[^sci-koala]
+
+考拉和猫恰好互为镜像：一个扩增解毒基因，专吃有毒植物；一个丢掉解毒基因，因为它根本不吃植物。
+
+## 十四、背后的五条规律
+
+1. **剂量决定毒性，而体型改变剂量。** 一只 5 公斤的狗吃 50 克巧克力，按每公斤体重计算，剂量大约是一个 50 公斤成年人吃同一块的十倍。
+2. **清除速度和分子本身一样重要。** 可可碱在狗体内停留的时间约为人的两到三倍，剂量就会不断叠加。
+3. **饮食书写基因组。** 猫丢掉了 UGT1A6 和甜味受体，因为纯肉食让它们失去了用处；考拉复制出大量 P450 基因，才能靠桉树叶活下来。进化用不上的，就任其荒废；需要的，就多复制几份。
+4. **同一个分子，不同的“线路”。** 木糖醇对人的胰腺几乎没影响，对狗却是强力的胰岛素开关；酒石酸对我们只是一点酸味，狗的肾脏却难以排出；辣椒素让哺乳动物的舌头着火，鸟却毫无感觉。
+5. **管道系统和化学性质同样重要。** 啮齿动物无法呕吐，兔子的肠道则依赖一套脆弱的微生物生态系统。一种能治好人类感染的抗生素，或者一块孩子吃了没事的含糖零食，都可能把这套生态系统推成一间致命的毒素工厂。
+
+“天然”“健康”“安全”并不是食物本身的属性，而是**某种食物遇到某个具体的身体**时的结果。
+
+## 十五、速查表
+
+| 食物 | 主要风险物种 | 有毒成分 | 主要伤害 | 大致危险阈值 |
+|---|---|---|---|---|
+| 巧克力 / 可可 | 狗（猫也会） | 可可碱、咖啡因 | 心脏、神经系统 | 约 20 mg/kg 出现症状；约 60 mg/kg 抽搐 |
+| 葡萄、葡萄干、罗望子、塔塔粉 | 狗 | 酒石酸（可能） | 肾脏 | 每 4.5 公斤体重超过 1 颗 |
+| 木糖醇 | 狗 | 木糖醇 | 血糖、肝脏 | >0.1 g/kg 低血糖；>0.5 g/kg 伤肝 |
+| 洋葱、大蒜、细香葱、韭葱 | 猫 > 狗 | 含硫氧化剂 | 红细胞 | 猫：有不到一茶匙熟洋葱致病的报告 |
+| 对乙酰氨基酚（扑热息痛） | 猫 | NAPQI（代谢物） | 红细胞、肝脏 | 猫：10 mg/kg 起可出现症状 |
+| 牛油果 | 宠物鸟、家畜 | 鳄梨毒素 | 心脏、乳腺 | 少量即可毒死虎皮鹦鹉 |
+| 夏威夷果 | 仅狗 | 未知 | 肌肉、神经系统 | 约 2.4 g/kg 出现症状 |
+| 含酵母生面团 | 狗 | 乙醇、二氧化碳 | 胃、全身代谢 | 任何量都需警惕 |
+| 啤酒花 | 狗 | 未知 | 体温调节 | 任何量都属急症 |
+| 盐 / 自制橡皮泥 | 狗（所有物种） | 钠 | 大脑 | 2–3 g/kg 出现症状；约 4 g/kg 致死 |
+| 含糖、淀粉类零食 | 兔、豚鼠、龙猫 | 梭菌毒素（肠道菌群过度生长） | 肠道 | 经常喂零食会增加风险 |
+| 口服克林霉素、林可霉素、阿莫西林等 | 兔、仓鼠、豚鼠、龙猫 | 梭菌毒素（肠道菌群被破坏） | 肠道 | 禁止口服 |
+| 缺乏维生素 C 的饮食 | 豚鼠（以及人类） | 营养素缺乏 | 皮肤、关节、免疫 | 每天都需要维生素 C |
+
+*阈值仅为兽医文献中的大致参考，不是“安全线”。个体差异很大。*
+
+## 十六、宠物误食后该怎么办
+
+- **立即联系兽医或动物中毒热线，即使宠物看起来没事。** 在美国可拨打 ASPCA 动物中毒控制中心 (888) 426-4435（可能收费）；在其他地区，请联系当地的急诊动物医院。
+- **别等症状出现。** 木糖醇可能一小时内发作；葡萄和洋葱的伤害可能一天甚至几天后才显现；啤酒花几个小时内就可能致命。
+- **不要自行催吐**，除非兽医明确指示。曾经流行的“喂盐水催吐”本身就可能导致盐中毒。[^merck-salt]
+- **带上包装。** 配料表、可可含量和吃下的量，能帮兽医算出剂量。
+- **提前预防：** 包（里面有口香糖、薄荷糖、药物）别放在地上，剩菜及时收好，堆肥和家酿材料要盖严，饺子别分给它。
+
+---
+
+*本文仅作科普用途，不能替代兽医的专业建议。*
+
+---
+
+[^aspca-5m]: ASPCA, "ASPCA Poison Control Reaches 5 Million Cases of Animal Exposures" (July 2025). https://www.aspca.org/about-us/press-releases/aspca-poison-control-reaches-5-million-cases-animal-exposures-hotline
+[^merck-choc]: Merck Veterinary Manual, "Chocolate Toxicosis in Animals" (2024). https://www.merckvetmanual.com/toxicology/food-hazards/chocolate-toxicosis-in-animals
+[^human-tb]: "Studies on theobromine disposition in normal subjects," *Clinical Pharmacology & Therapeutics* (1978). https://pubmed.ncbi.nlm.nih.gov/627135/
+[^dvm360]: dvm360, "Chocolate (Proceedings)." https://www.dvm360.com/view/chocolate-proceedings
+[^tvmdl]: Texas A&M Veterinary Medical Diagnostic Laboratory, "Possible chocolate poisoning in a dog" (2024). https://tvmdl.tamu.edu/case-studies/possible-chocolate-poisoning-in-a-dog
+[^pmc-choc]: "Chocolate poisoning," PubMed Central. https://pmc.ncbi.nlm.nih.gov/articles/PMC1215566
+[^aspca-choc]: ASPCA, "Chocolate intoxication," toxicology brief. https://www.aspcapro.org/sites/default/files/m-toxbrief_0201.pdf
+[^aspca-vt]: ASPCA, veterinary technician toxicology brief on methylxanthines. https://www.aspcapro.org/sites/default/files/l-vettech_0301.pdf
+[^aspca-wrath]: ASPCA, "The Wrath of Grapes." https://www.aspcapro.org/sites/default/files/grapes.pdf
+[^aspca-nye]: ASPCApro, "Make a Resolution to Keep Your Veterinary Pet Patients Safe This New Year's Eve" (2025). https://www.aspcapro.org/resource/make-resolution-keep-your-veterinary-pet-patients-safe-new-years-eve
+[^eubig]: "Acute Renal Failure in Dogs After the Ingestion of Grapes or Raisins: A Retrospective Evaluation of 43 Dogs (1992–2002)," *Journal of Veterinary Internal Medicine* (2005). https://onlinelibrary.wiley.com/doi/10.1111/j.1939-1676.2005.tb02744.x
+[^dijkman]: Dijkman MA et al., "Incidence of Vitis fruit-induced clinical signs and acute kidney injury in dogs and cats," *Journal of Small Animal Practice* (2022). https://dspace.library.uu.nl/bitstream/handle/1874/421091/J_of_Small_Animal_Practice_2022_Dijkman_Incidence_of_Vitis_fruit_induced_clinical_signs_and_acute_kidney_injury_in.pdf
+[^pubmed-tartaric]: "Acute kidney injury in dogs following ingestion of cream of tartar and tamarinds and the connection to tartaric acid as the proposed toxic principle in grapes and raisins," *J Vet Emerg Crit Care* (2022). https://pubmed.ncbi.nlm.nih.gov/35869755/
+[^aspca-tartaric]: ASPCApro, "Toxic Component in Grapes and Raisins Identified." https://www.aspcapro.org/resource/toxic-component-grapes-and-raisins-identified
+[^wiki-grape]: Wikipedia, "Grape toxicity in dogs" (with primary citations). https://en.wikipedia.org/wiki/Grape_toxicity_in_dogs
+[^merck-grape]: Merck Veterinary Manual, "Grape, Raisin, and Tamarind Toxicosis in Dogs." https://www.merckvetmanual.com/toxicology/food-hazards/grape-raisin-and-tamarind-vitis-spp-tamarindus-spp-toxicosis-in-dogs
+[^fda-xyl2]: U.S. FDA, "Paws Off! Xylitol is Toxic to Dogs." https://www.fda.gov/animal-veterinary/animal-health-literacy/paws-xylitol-toxic-dogs
+[^petmd-xyl]: PetMD, "Xylitol Poisoning in Dogs" (2024). https://www.petmd.com/dog/poisoning/xylitol-poisoning-in-dogs
+[^pmc-xylitol]: "Acute Hepatic Failure in a Dog after Xylitol Ingestion," PubMed Central. https://pmc.ncbi.nlm.nih.gov/articles/PMC4880608
+[^fda]: U.S. FDA, "Paws Off Xylitol; It's Dangerous for Dogs." https://www.fda.gov/consumers/consumer-updates/paws-xylitol-its-dangerous-dogs
+[^aspca-xyl]: ASPCA / *Veterinary Medicine*, "New findings on the effects of xylitol ingestion in dogs." https://www.aspcapro.org/sites/default/files/ze-vetm0207f_095-100_.pdf
+[^pubmed-xyl]: "Xylitol toxicity in dogs," *Compendium* (2010). https://pubmed.ncbi.nlm.nih.gov/20473849/
+[^pph]: Pet Poison Helpline, "Xylitol in Products." https://www.petpoisonhelpline.com/uncategorized/theres-xylitol/
+[^merck-xyl]: Merck Veterinary Manual, "Xylitol Toxicosis in Dogs" (2024). https://www.merckvetmanual.com/toxicology/food-hazards/xylitol-toxicosis-in-dogs
+[^javma-xyl]: "Acute hepatic failure and coagulopathy associated with xylitol ingestion in eight dogs," *JAVMA* (2006). https://avmajournals.avma.org/view/journals/javma/229/7/javma.229.7.1113.xml
+[^cornell]: Cornell University College of Veterinary Medicine, "Xylitol toxicities." https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/xylitol-toxicities
+[^dvm360-onion]: dvm360, "A pungent poisoning: Onion toxicosis in a cat" (2015). https://www.dvm360.com/view/pungent-poisoning-onion-toxicosis-cat
+[^ajvr]: "Hematologic changes associated with the appearance of eccentrocytes after intragastric administration of garlic extract to dogs," *American Journal of Veterinary Research* (2000). https://avmajournals.avma.org/downloadpdf/journals/ajvr/61/11/ajvr.2000.61.1446.pdf
+[^hk-dogs]: "Induction of onion-induced haemolytic anaemia in dogs with sodium n-propylthiosulphate" (1998); and Hokkaido University study of sodium n-propylthiosulfate (1995). https://exa.ai/library/publication/16nkhl1xbq6 ; https://exa.ai/library/publication/wvjdzhcr9l1
+[^garlic-ts]: "Isolation and Identification of Sodium 2-Propenyl Thiosulfate from Boiled Garlic That Oxidizes Canine Erythrocytes" (2003). https://exa.ai/library/publication/4kln4hpdqmz
+[^dvm360-allium]: dvm360, "Toxicology Brief: Allium species poisoning in dogs and cats" (2005). https://www.dvm360.com/view/toxicology-brief-allium-species-poisoning-dogs-and-cats
+[^merck-allium]: Merck Veterinary Manual, "Garlic and Onion (Allium spp) Toxicosis in Animals" (2024). https://www.merckvetmanual.com/toxicology/food-hazards/garlic-and-onion-allium-spp-toxicosis-in-animals
+[^scielo]: "Allium species poisoning in dogs and cats," *Journal of Venomous Animals and Toxins including Tropical Diseases*. https://www.scielo.br/j/jvatitd/a/HB5wqsgNcbhcg8cGm3hy95j/?lang=en
+[^pmc-household]: "Household Food Items Toxic to Dogs and Cats," *Frontiers in Veterinary Science*, PubMed Central. https://pmc.ncbi.nlm.nih.gov/articles/PMC4801869/
+[^court2000]: Court MH & Greenblatt DJ, "Molecular genetic basis for deficient acetaminophen glucuronidation by cats: UGT1A6 is a pseudogene…," *Pharmacogenetics* (2000). https://europepmc.org/article/MED/10862526
+[^plos-ugt]: "Evolution of a Major Drug Metabolizing Enzyme Defect in the Domestic Cat and Other Felidae: Phylogenetic Timing and the Role of Hypercarnivory," *PLoS ONE* (2011). https://pmc.ncbi.nlm.nih.gov/articles/PMC3065456/
+[^vin]: VIN / WSAVA 2013, "Feline Therapeutics." https://www.vin.com/apputil/content/defaultadv1.aspx?id=5709852&pid=11372
+[^aspca-apap]: ASPCA, "Acetaminophen and Cats." https://www.aspcapro.org/sites/default/files/a-vettech_0103.pdf
+[^li2005]: Li X et al., "Pseudogenization of a Sweet-Receptor Gene Accounts for Cats' Indifference toward Sugar," *PLoS Genetics* (2005). https://journals.plos.org/plosgenetics/article?id=10.1371%2Fjournal.pgen.0010003
+[^sweet-genetics]: "Genetics of sweet taste preferences," PubMed Central. https://pmc.ncbi.nlm.nih.gov/articles/PMC3130742
+[^persin]: "Isolation and identification of a compound from avocado (Persea americana) leaves which causes necrosis of the acinar epithelium of the lactating mammary gland and the myocardium." https://pubmed.ncbi.nlm.nih.gov/8581318
+[^aspca-avo]: ASPCA, "The Scoop on Avocado and Your Pets." https://www.aspca.org/news/scoop-avocado-and-your-pets
+[^merck-avo]: Merck Veterinary Manual, "Avocado (Persea spp) Toxicosis in Animals." https://www.merckvetmanual.com/toxicology/food-hazards/avocado-persea-spp-toxicosis-in-animals
+[^aav]: Association of Avian Veterinarians, "Toxic Plant Series: The Avocado." https://www.aav.org/blogpost/1907684/455565/Toxic-Plant-Series-The-Avocado
+[^budgie]: "Avocado (Persea americana) intoxication in caged birds," *JAVMA* (1989). https://pubmed.ncbi.nlm.nih.gov/2914792/
+[^ostrich]: "Cardiomyopathy in ostriches (Struthio camelus) due to avocado intoxication." https://pubmed.ncbi.nlm.nih.gov/7595917/
+[^agvic]: Agriculture Victoria, "Case study – avocado and domestic ducks don't mix" (May 2026). https://agriculture.vic.gov.au/about/media-centre/media-releases/2026-releases/case-study-avocado-and-domestic-ducks-dont-mix
+[^massey]: Massey University, Poisonous Plants of New Zealand, "Avocado." https://poisonousplants.massey.ac.nz/data/avocado/avocado.html
+[^merck-mac]: Merck Veterinary Manual, "Macadamia Nut Toxicosis in Dogs" (2024). https://www.merckvetmanual.com/toxicology/food-hazards/macadamia-nut-toxicosis-in-dogs
+[^aspca-mac]: ASPCA, "Macadamia nut toxicosis in dogs," toxicology brief (2002). https://www.aspcapro.org/sites/default/files/x-toxbrief_0402.pdf
+[^hansen]: Hansen SR et al., "Weakness, tremors, and depression associated with macadamia nuts in dogs," *Veterinary and Human Toxicology* (2000). https://pubmed.ncbi.nlm.nih.gov/10670081/
+[^cote]: Côté E, *Clinical Veterinary Advisor: Dogs and Cats*, 4th ed., macadamia nut toxicosis entry. https://online.flipbuilder.com/ulbm/gwik/files/basic-html/page1228.html
+[^aspca-bread]: ASPCApro, "Bread Ingestion in Pets on the Rise." https://www.aspcapro.org/resource/bread-ingestion-pets
+[^merck-bread]: Merck Veterinary Manual, "Bread Dough Toxicosis in Animals" (2024). https://www.merckvetmanual.com/toxicology/food-hazards/bread-dough-toxicosis-in-animals
+[^aspca-hops]: ASPCApro, "The Rising Danger of Hops Ingestion in Pets" (2017). https://www.aspcapro.org/resource/rising-danger-hops-ingestion-pets
+[^duncan]: Duncan KL, Hare WR, Buck WB, "Malignant hyperthermia-like reaction secondary to ingestion of hops in five dogs," *JAVMA* (1997). https://pubmed.ncbi.nlm.nih.gov/8977648/
+[^pfaff]: "Retrospective analysis of hops toxicosis in dogs (2002–2014): 71 cases," *J Vet Emerg Crit Care* (2022). https://pubmed.ncbi.nlm.nih.gov/34498796/
+[^becker]: "A retrospective evaluation of hops ingestion in 177 dogs (2005–2018)," *J Vet Emerg Crit Care* (2023). https://onlinelibrary.wiley.com/doi/10.1111/vec.13282
+[^pph-hops]: Pet Poison Helpline, "Hops." https://www.petpoisonhelpline.com/poison/hops/
+[^merck-hops]: Merck Veterinary Manual, "Toxicoses in Animals From Human Dietary and Herbal Supplements" (hops section, 2024). https://www.merckvetmanual.com/toxicology/toxicoses-from-human-vitamins-minerals-and-dietary-supplements/toxicoses-in-animals-from-human-dietary-and-herbal-supplements
+[^vpis]: Veterinary Poisons Information Service, "Hops Toxicosis in dogs" (2022). https://www.vpisglobal.com/2022/01/07/hops-toxicosis-in-dogs/
+[^merck-salt]: Merck Veterinary Manual, "Salt Toxicosis in Animals." https://www.merckvetmanual.com/toxicology/salt-toxicosis/salt-toxicosis-in-animals
+[^merck-salt-pet]: Merck Veterinary Manual (pet owner version), "Salt Poisoning" (2024). https://www.merckvetmanual.com/special-pet-topics/poisoning/salt-poisoning
+[^cote-salt]: Côté E, *Clinical Veterinary Advisor: Dogs and Cats*, 4th ed., salt toxicosis entry. https://online.flipbuilder.com/ulbm/gwik/files/basic-html/page1798.html
+[^pph-salt]: Pet Poison Helpline, "Play Dough (Homemade)." https://www.petpoisonhelpline.com/poison/homemade-play-dough/
+[^khanna]: Khanna C et al., "Fatal hypernatremia in a dog from salt ingestion" (1997). https://pubmed.ncbi.nlm.nih.gov/9111719
+[^kienzle]: Kienzle E, "Carbohydrate metabolism of the cat. 4. Activity of maltase, isomaltase, sucrase and lactase in the gastrointestinal tract in relation to age and diet" (1993). https://onlinelibrary.wiley.com/doi/10.1111/j.1439-0396.1993.tb00310.x
+[^four-paws]: FOUR PAWS, "Milk Is Not Good for Cats." https://www.four-paws.org/our-stories/publications-guides/milk-is-not-good-for-cats
+[^vetagro]: VetAgro Sup Animal Welfare Chair, "Cats can drink cow's milk, TRUE or FALSE?" (2024). https://chaire-bea.vetagro-sup.fr/en/cats-can-drink-cows-milk-true-or-false
+[^conversation]: The Conversation, "Can cats drink milk? Despite the stereotypes, it's actually a bad idea" (2025). https://theconversation.com/can-cats-drink-milk-despite-the-stereotypes-its-actually-a-bad-idea-255227
+[^jordt]: Jordt SE & Julius D, "Molecular Basis for Species-Specific Sensitivity to 'Hot' Chili Peppers," *Cell* (2002). https://www.cell.com/fulltext/S0092-8674(02)00637-2
+[^tewksbury]: Tewksbury JJ & Nabhan GP, "Seed dispersal. Directed deterrence by capsaicin in chilies," *Nature* (2001). https://europepmc.org/article/MED/11473305
+[^sci-rep]: "A single TRPV1 amino acid controls species sensitivity to capsaicin," *Scientific Reports* (2020). https://www.nature.com/articles/s41598-020-64584-2
+[^koala]: Johnson RN et al., "Adaptation and conservation insights from the koala genome," *Nature Genetics* (2018). https://www.nature.com/articles/s41588-018-0153-5
+[^sci-koala]: *Science*, "A koala's diet would kill most mammals. Their genome reveals how they survive." https://www.science.org/content/article/koala-s-diet-would-kill-most-mammals-their-genome-reveals-how-they-survive
+
+[^horn]: Horn CC et al., "Why Can't Rodents Vomit? A Comparative Behavioral, Anatomical, and Physiological Study," *PLoS ONE* (2013). https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0060537
+[^emesis-review]: "Emesis in Rodents: Present or Absent? A Critical Review of the Evidence and Implications for the Use of Rodents in Biomedical Research" (2025). https://exa.ai/library/publication/yr77bxxp057
+[^merck-rabbit-nutr]: Merck Veterinary Manual, "Nutrition of Rabbits" (2021). https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/nutrition-of-rabbits
+[^illinois]: University of Illinois College of Veterinary Medicine, "Rabbit Gastrointestinal Stasis Syndrome" (2024). https://vetmed.illinois.edu/2024/06/04/rabbit-gi-stasis
+[^merck-rabbit-pet]: Merck Veterinary Manual (pet owner version), "Disorders and Diseases of Rabbits" (2025). https://www.merckvetmanual.com/all-other-pets/rabbits/disorders-and-diseases-of-rabbits
+[^hrs]: House Rabbit Society, "Digestibility in the Rabbit Diet" (2024). https://rabbit.org/health/digestibility-in-the-rabbit-diet
+[^merck-rabbit-ill]: Merck Veterinary Manual (pet owner version), "Illness of Rabbits" (2026). https://www.merckvetmanual.com/all-other-pets/rabbits/illness-of-rabbits
+[^merck-linco]: Merck Veterinary Manual, "Lincosamides Use in Animals" (2022). https://www.merckvetmanual.com/pharmacology/antibacterial-agents/lincosamides-use-in-animals
+[^clinda-label]: DailyMed, CLINDA-GUARD Drops (clindamycin hydrochloride) veterinary label. https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=62c83acf-476e-4b35-aadf-5992349849ea
+[^merck-rabbit-bact]: Merck Veterinary Manual, "Bacterial and Mycotic Diseases of Rabbits" (2024). https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits
+[^cholestyramine]: "Utilization of cholestyramine resin as a preventive treatment for antibiotic (clindamycin) induced enterotoxaemia in the rabbit," *Laboratory Animals* (1992). https://journals.sagepub.com/doi/10.1258/002367792780809039
+[^hamster-clinda]: "Clindamycin-associated colitis in hamsters: protection with vancomycin," *Gastroenterology* (1977), citing Small JD, "Fatal enterocolitis in hamsters given lincomycin hydrochloride" (1968). https://pubmed.ncbi.nlm.nih.gov/892381/
+[^merck-rabbit-table]: Merck Veterinary Manual, "Table: Plants and Foods That Are Harmful to Rabbits." https://www.merckvetmanual.com/multimedia/table/plants-and-foods-that-are-harmful-to-rabbits
+[^merck-food-pet]: Merck Veterinary Manual (pet owner version), "Food Hazards." https://www.merckvetmanual.com/special-pet-topics/poisoning/food-hazards
+[^aspca-rabbit]: ASPCA, "Rabbit Pet Parents: Beware of These Common Pet Toxins!" (2024). https://www.aspca.org/news/rabbit-pet-parents-beware-these-common-pet-toxins
+[^toxicon-rabbit]: Aguirre LS et al., "Acute heart failure in rabbits by avocado leaf poisoning," *Toxicon* (2019). https://doi.org/10.1016/j.toxicon.2019.03.024
+[^rabbit-salt]: Patson CN & Sladky KK, "Sodium intoxication in a domestic rabbit," *Journal of Exotic Pet Medicine* (2020). https://doi.org/10.1053/j.jepm.2020.09.005
+[^vetdesk]: The Vet Desk, "10 Foods That Are Harmful to Rabbits: Vet-Reviewed Health Facts & FAQ" (2025). https://thevetdesk.com/pet-health-wellness/rabbits/foods-harmful-to-rabbits
+[^spectrum-hamster]: SpectrumCare, "Toxic Foods for Hamsters" (2026). https://spectrumcare.pet/small-mammals/hamsters/conditions/hamster-toxic-foods
+[^nature-1957]: Burns JJ et al., "Missing Step in Man, Monkey and Guinea Pig required for the Biosynthesis of L-Ascorbic Acid," *Nature* (1957). https://www.nature.com/articles/180553a0
+[^nishikimi]: Nishikimi M, Kawai T, Yagi K, "Guinea pigs possess a highly mutated gene for L-gulono-gamma-lactone oxidase…," *Journal of Biological Chemistry* (1992). https://pubmed.ncbi.nlm.nih.gov/1400507
+[^genetica]: "Inactivation dates of the human and guinea pig vitamin C genes," *Genetica* (2010). https://link.springer.com/article/10.1007/s10709-010-9537-x
+[^petmd-gp]: PetMD, "Vitamin C Deficiency in Guinea Pigs" (2023). https://www.petmd.com/exotic/conditions/cardiovascular/c_ex_gp_vitamin_c_deficiency
