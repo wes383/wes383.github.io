@@ -56,9 +56,14 @@ function escapeXml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
-/** Atom dates are RFC 3339; a note's own date is a plain `YYYY-MM-DD`. */
+/**
+ * Atom dates are RFC 3339; a note's own date is a plain `YYYY-MM-DD`, meaning
+ * the start of that day where the note was written rather than at Greenwich.
+ * Read as UTC it would land up to eight hours in the future, and a reader is
+ * free to hold a future-dated entry back until its time comes.
+ */
 function atomDate(date: string): string {
-  return new Date(`${date}T00:00:00Z`).toISOString();
+  return new Date(`${date}T00:00:00+08:00`).toISOString();
 }
 
 /**
