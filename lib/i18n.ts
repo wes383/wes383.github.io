@@ -30,6 +30,12 @@ export type Dictionary = {
     findMeSuffix: string;
     notes: string;
   };
+  /**
+   * What the feed calls itself and how it describes itself to a reader who has
+   * subscribed to it. RSS 2.0 requires a description, so there is no way to
+   * leave it out.
+   */
+  feed: { title: string; description: string };
   note: {
     back: string;
     contents: string;
@@ -56,6 +62,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       findMeSuffix: ".",
       notes: "Notes",
     },
+    feed: { title: "Notes from Wes", description: "The notes live here." },
     note: {
       back: "Back",
       contents: "Contents",
@@ -79,6 +86,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       findMeSuffix: " 上找到我。",
       notes: "随笔",
     },
+    feed: { title: "Wes 的随笔", description: "随笔在这里。" },
     note: {
       back: "返回",
       contents: "目录",

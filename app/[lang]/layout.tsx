@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "katex/dist/katex.min.css";
 import "../globals.css";
 import { getDictionary, hasLocale, locales } from "@/lib/i18n";
+import { siteUrl } from "@/lib/site";
 import { ThemeScript } from "../theme-script";
 
 const inter = Inter({
@@ -35,7 +36,18 @@ export async function generateMetadata({
 
   // A plain title, with no template: pages that set their own — the notes, the
   // 404 — then show exactly what they say, and the rest fall back to this.
-  return { title: getDictionary(lang).meta.title };
+  //
+  // Every page in the language also points at that language's feed, which is
+  // what a reader or a browser looks for when it is asked to subscribe to a
+  // site. The address is relative here and the base below is what makes it
+  // absolute, since nothing in the repository knows the domain.
+  return {
+    metadataBase: new URL(siteUrl),
+    title: getDictionary(lang).meta.title,
+    alternates: {
+      types: { "application/atom+xml": `/${lang}/atom.xml` },
+    },
+  };
 }
 
 export default async function RootLayout({

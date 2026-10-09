@@ -88,6 +88,20 @@ export async function getAllNotes(lang: Locale): Promise<Note[]> {
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
+/**
+ * A note's own Markdown, for the readers of it that work on the source rather
+ * than on the page's rendering of it — the contents, and the feed.
+ */
+export function getNoteSource(lang: Locale, slug: string): string | null {
+  const source = noteLanguage(lang, slug);
+  if (!source) return null;
+
+  return fs.readFileSync(
+    path.join(notesDirectory(source), `${slug}.mdx`),
+    "utf8",
+  );
+}
+
 export type NoteHeading = {
   /** The `id` `rehype-slug` gives this heading in the rendered page. */
   id: string;
@@ -114,13 +128,8 @@ function toPlainText(markdown: string): string {
  * source. `rehype-slug` derives ids from the same text with the same slugger.
  */
 export function getNoteHeadings(lang: Locale, slug: string): NoteHeading[] {
-  const source = noteLanguage(lang, slug);
-  if (!source) return [];
-
-  const contents = fs.readFileSync(
-    path.join(notesDirectory(source), `${slug}.mdx`),
-    "utf8",
-  );
+  const contents = getNoteSource(lang, slug);
+  if (contents === null) return [];
 
   // `rehype-slug` numbers repeated slugs in document order, so every heading has
   // to pass through the slugger — not only the ones the tree displays — or the

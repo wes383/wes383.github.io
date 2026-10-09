@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
 import { getDictionary, hasLocale, otherLocale, type Locale } from "@/lib/i18n";
 import { getAllNotes } from "@/lib/notes";
-import { proseLinkClass, titleLinkClass } from "@/lib/ui";
+import { linkClass, proseLinkClass, titleLinkClass } from "@/lib/ui";
 
 /** Where to find me. Most of the names read the same in either language, so they
  * are not in the dictionary — the film site is the exception: it is Letterboxd
@@ -75,6 +75,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           label={getDictionary(other).languageName}
           href={`/${other}`}
         />
+        {/* A plain anchor rather than a `Link`: this is a file to subscribe to,
+            not a page to prefetch. `RSS` reads the same in either language. */}
+        <a href={`/${lang}/atom.xml`} className={linkClass}>
+          RSS
+        </a>
       </div>
 
       <section className="mt-14">
