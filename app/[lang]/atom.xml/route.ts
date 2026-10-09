@@ -1,7 +1,5 @@
-import rehypeKatex from "rehype-katex";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
@@ -18,23 +16,21 @@ const AUTHOR = "Wes Wei";
 
 /**
  * Markdown to HTML, with the same extensions the pages are compiled with, so a
- * note's tables, footnotes and formulas come out here the way they do there.
- * Raw HTML is left alone in both directions: a caption is written as a bare
- * `<small>`, and it has to survive the trip as an element.
+ * note's tables and footnotes come out here the way they do there. Raw HTML is
+ * left alone in both directions: a caption is written as a bare `<small>`, and
+ * it has to survive the trip as an element.
  *
- * Math is the one place the two pipelines have to part. A page loads
- * `katex.css`, so it can carry KaTeX's full output; a reader loads nothing of
- * ours. That output hides its MathML half — the half a screen reader reads —
- * with a class, so without the stylesheet both halves would show at once: the
- * formula, then the same formula taken apart. `output: "mathml"` drops the HTML
- * half and leaves the `<math>` element, which a browser draws on its own.
+ * A note's formulas are the one thing left behind. A page renders them with
+ * KaTeX and styles them with `katex.css`; a reader loads nothing of ours, and
+ * throws away whatever it does not recognise — MathML included — so a rendered
+ * formula simply vanishes from the feed. Leaving the math unparsed keeps the
+ * formula visible as the author typed it: a `$`-delimited run of TeX, which
+ * only a reader who knows TeX will follow, but which is at least there.
  */
 const markdownToHtml = unified()
   .use(remarkParse)
   .use(remarkGfm)
-  .use(remarkMath)
   .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeKatex, { output: "mathml" })
   .use(rehypeStringify, { allowDangerousHtml: true });
 
 /**
