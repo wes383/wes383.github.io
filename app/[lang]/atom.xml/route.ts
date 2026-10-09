@@ -85,9 +85,11 @@ export async function GET(
         // Two references on the same words — "…as late as 2020.[^a][^b]" — get
         // one <sup> each with nothing between them, so their numbers run
         // together as a single one. The page separates them with a rule in
-        // `globals.css`, and a reader never sees that stylesheet; the gap has
-        // to be written into the element instead. It is the same distance.
-        .replace(/<\/sup><sup/g, `</sup><sup style="margin-left:0.25em"`);
+        // `globals.css`, which a reader never sees, and a reader that sanitizes
+        // its input ignores a `style` attribute as well — Feedly does. The gap
+        // has to be a character in the text, and a non-breaking space is the one
+        // no reader can collapse or strip away.
+        .replace(/<\/sup><sup/g, "</sup>&nbsp;<sup");
 
       const date = atomDate(note.date);
 
