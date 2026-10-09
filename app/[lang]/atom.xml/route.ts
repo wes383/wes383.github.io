@@ -77,10 +77,17 @@ export async function GET(
         await markdownToHtml.process(
           source.replace(METADATA_EXPORT, "").replace(INTERACTIVE_FIGURE, ""),
         ),
+      )
         // The footnote references and their return arrows are the only in-page
         // links a note writes. Inside a feed reader there is no page for a bare
         // `#id` to belong to, so they carry the note's own address.
-      ).replace(/href="#/g, `href="${page}#`);
+        .replace(/href="#/g, `href="${page}#`)
+        // Two references on the same words — "…as late as 2020.[^a][^b]" — get
+        // one <sup> each with nothing between them, so their numbers run
+        // together as a single one. The page separates them with a rule in
+        // `globals.css`, and a reader never sees that stylesheet; the gap has
+        // to be written into the element instead. It is the same distance.
+        .replace(/<\/sup><sup/g, `</sup><sup style="margin-left:0.25em"`);
 
       const date = atomDate(note.date);
 
