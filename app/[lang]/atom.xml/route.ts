@@ -1,5 +1,7 @@
+import rehypeKatex from "rehype-katex";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
@@ -16,14 +18,23 @@ const AUTHOR = "Wes Wei";
 
 /**
  * Markdown to HTML, with the same extensions the pages are compiled with, so a
- * note's tables and footnotes come out here the way they do there. Raw HTML is
- * left alone in both directions: a caption is written as a bare `<small>`, and
- * it has to survive the trip as an element.
+ * note's tables, footnotes and formulas come out here the way they do there.
+ * Raw HTML is left alone in both directions: a caption is written as a bare
+ * `<small>`, and it has to survive the trip as an element.
+ *
+ * Math is the one place the two pipelines have to part. A page loads
+ * `katex.css`, so it can carry KaTeX's full output; a reader loads nothing of
+ * ours. That output hides its MathML half — the half a screen reader reads —
+ * with a class, so without the stylesheet both halves would show at once: the
+ * formula, then the same formula taken apart. `output: "mathml"` drops the HTML
+ * half and leaves the `<math>` element, which a browser draws on its own.
  */
 const markdownToHtml = unified()
   .use(remarkParse)
   .use(remarkGfm)
+  .use(remarkMath)
   .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeKatex, { output: "mathml" })
   .use(rehypeStringify, { allowDangerousHtml: true });
 
 /**
@@ -81,15 +92,7 @@ export async function GET(
         // The footnote references and their return arrows are the only in-page
         // links a note writes. Inside a feed reader there is no page for a bare
         // `#id` to belong to, so they carry the note's own address.
-        .replace(/href="#/g, `href="${page}#`)
-        // Two references on the same words — "…as late as 2020.[^a][^b]" — get
-        // one <sup> each with nothing between them, so their numbers run
-        // together as a single one. The page separates them with a rule in
-        // `globals.css`, which a reader never sees, and a reader that sanitizes
-        // its input ignores a `style` attribute as well — Feedly does. The gap
-        // has to be a character in the text, and a non-breaking space is the one
-        // no reader can collapse or strip away.
-        .replace(/<\/sup><sup/g, "</sup>&nbsp;<sup");
+        .replace(/href="#/g, `href="${page}#`);
 
       const date = atomDate(note.date);
 

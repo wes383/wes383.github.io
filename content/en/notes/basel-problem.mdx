@@ -1,0 +1,68 @@
+export const metadata = {
+  title: "The Basel Problem: Why π Turns Up in the Sum of Every Square's Reciprocal",
+  date: "2026-10-10",
+  summary:
+    "Add up the reciprocals of 1, 4, 9, 16 … and a π appears. Euler's answer of 1735 is one of the first pieces of magic in analysis.",
+};
+
+## A π that has no business being there
+
+In 1735 Euler worked out a sum that, on its face, has nothing to do with circles:
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2} = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \cdots = \frac{\pi^2}{6}
+$$
+
+There are only natural numbers on the left, and yet $\pi$ is standing on the right. It converges painfully slowly, too: the first thousand terms come to $1.6439$, still off from $\pi^2/6 \approx 1.644934$ in the third decimal place. What Euler gave was an exact answer, not a fit.
+
+This is the **Basel problem**. It takes its name from the home town of the Bernoulli brothers, and from the city where Euler studied; Pietro Mengoli posed it in 1644, so it had been open for ninety-one years by the time Euler closed it.
+
+## Euler's argument
+
+Euler used neither integrals nor geometry. He treated the sine function as a "polynomial of infinite degree."
+
+The zeros of $\sin x$ sit at $x = 0, \pm\pi, \pm2\pi, \pm3\pi, \dots$, so those zeros ought to break the function into an infinite product:
+
+$$
+\frac{\sin x}{x} = \prod_{n=1}^{\infty} \left(1 - \frac{x^2}{n^2\pi^2}\right)
+$$
+
+The Taylor series of $\sin x / x$, meanwhile, was already known:
+
+$$
+\frac{\sin x}{x} = 1 - \frac{x^2}{3!} + \frac{x^4}{5!} - \cdots
+$$
+
+Both expressions describe the same function, so their $x^2$ coefficients must agree:
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2\pi^2} = \frac{1}{3!} = \frac{1}{6}
+$$
+
+Multiply by $\pi^2$ and the conclusion lands.
+
+## What falls out of it
+
+One more step of the same matching, on the $x^4$ coefficient, gives
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^4} = \frac{\pi^4}{90}
+$$
+
+Write $\zeta(s) = \sum_{n=1}^{\infty} n^{-s}$ and those two results are $\zeta(2)$ and $\zeta(4)$. For every positive even $s$, $\zeta(2k)$ has a closed form, and it is always a rational multiple of $\pi^{2k}$.
+
+- $s = 2$: $\zeta(2) = \pi^2/6 \approx 1.644934$
+- $s = 4$: $\zeta(4) = \pi^4/90 \approx 1.082323$
+- $s = 3$: $\zeta(3) \approx 1.202057$, Apéry's constant. It is known to be irrational, but nobody knows whether it is a rational multiple of $\pi^3$.
+
+## A rather beautiful ending
+
+The same "zeros are factors" idea leads, in the end, to Euler's identity:
+
+$$
+\begin{aligned} e^{i\pi} &= \cos\pi + i\sin\pi \\ &= -1 \end{aligned}
+$$
+
+That is, $e^{i\pi} + 1 = 0$. The five most basic constants — $0$, $1$, $e$, $i$, $\pi$ — in a single equation, using one addition, one multiplication and one power.
+
+> A sum built only from squares — how does it know about $\pi$? Euler's answer is that it knows about the zeros of $\sin x$, and the definition of $\sin x$ already contains a circle.
