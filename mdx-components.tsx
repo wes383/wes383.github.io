@@ -1,4 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { DirectionSwitch } from "@/components/direction-switch";
+import { TabletRotation } from "@/components/tablet-rotation";
 import { proseLinkClass } from "@/lib/ui";
 
 /**
@@ -184,9 +186,16 @@ export const components = {
       {children}
     </figure>
   ),
+  // The width is left to the image itself. Preflight caps it at the column, but
+  // a picture with fewer pixels than the column now keeps its own size instead of
+  // being stretched up to the text — which only ever made it blurrier. It is
+  // centred whatever its width; the caption below stays left aligned, which is
+  // where a full sentence is easier to read.
   img: ({ className, ...props }: ComponentPropsWithoutRef<"img">) => (
     <img
-      className={["my-6 w-full rounded-xl", className].filter(Boolean).join(" ")}
+      className={["mx-auto my-6 max-w-full rounded-xl", className]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
     />
   ),
@@ -209,6 +218,12 @@ export const components = {
       {children}
     </td>
   ),
+  // Interactive figures a note may call for. A capitalised key here is a
+  // component in MDX with no import: the article writes `<TabletRotation
+  // lang="zh" />` and gets the client component, which is why `lang` has to be
+  // passed by hand — nothing in the MDX tree knows what language it is in.
+  TabletRotation,
+  DirectionSwitch,
 };
 
 export function useMDXComponents() {

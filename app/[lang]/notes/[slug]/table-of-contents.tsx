@@ -18,6 +18,23 @@ const MIN_BAR = 24;
 const BESIDE_THE_TEXT = "(min-width: 1280px)";
 
 /**
+ * How far below the top of the viewport a heading counts as reached, in pixels.
+ * A heading jumped to by its own link comes to rest at the very top of the
+ * screen, so this line sits just under that: the entry lights up as the
+ * heading arrives rather than after it has passed.
+ */
+const REACHED = 96;
+
+/**
+ * How far inside the visible list an entry is brought when it would otherwise
+ * sit at an edge, in pixels. It doubles as the band along each edge that counts
+ * as "at the edge": an entry deeper than this into the view is left alone. It is
+ * kept wider than the fade over the top 40px, so the entry that was scrolled to
+ * is never left under it.
+ */
+const EDGE = 48;
+
+/**
  * A note's contents. Collapsible because a long note can list a dozen sections,
  * and the toggle is a plain text button like every other control on the site.
  *
@@ -33,6 +50,10 @@ const BESIDE_THE_TEXT = "(min-width: 1280px)";
  * column, takes up no width, and can be dragged. It is held outside the box
  * rather than on its edge, because the links' `-mx-2` carries their hover
  * background all the way out — a bar at the edge would sit on top of it.
+ *
+ * It also tracks the reading position: as the page scrolls, the entry for the
+ * section being read takes the full-strength colour and the rest stay muted, so
+ * the contents doubles as a marker of how far through the note the reader is.
  */
 export function TableOfContents({
   headings,
@@ -52,6 +73,9 @@ export function TableOfContents({
   } | null>(null);
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{ from: number; scrollTop: number } | null>(null);
+  // The section the reader is in, or `null` while the note's opening lines —
+  // which belong to no section — are on screen.
+  const [current, setCurrent] = useState<string | null>(null);
 
   useEffect(() => {
     setOpen(window.matchMedia(BESIDE_THE_TEXT).matches);
@@ -100,6 +124,93 @@ export function TableOfContents({
       observer.disconnect();
     };
   }, [measure, open]);
+
+  // Which section the reader is in. The headings are watched through the page's
+  // own scroll rather than with an observer, because the answer isn't "which
+  // heads are on screen" but "which heading was the last to pass the line" —
+  // the section above the one being read stays the current one for as long as
+  // its successor is still below `REACHED`.
+  useEffect(() => {
+    // Document order — each heading followed by the ones under it — which is
+    // the order the links are drawn in, and the order the loop below relies on.
+    const ids = headings.flatMap((heading) => [
+      heading.id,
+      ...heading.children.map((child) => child.id),
+    ]);
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (elements.length === 0) return;
+
+    let frame = 0;
+
+    const track = () => {
+      frame = 0;
+
+      // The last section of a note can be too short to ever reach the top, so
+      // it would never light up on the rule below. At the foot of the page the
+      // scroll position stands in for the missing headroom.
+      const limit = document.documentElement.scrollHeight - window.innerHeight;
+      if (limit > 0 && window.scrollY >= limit - 1) {
+        setCurrent(elements[elements.length - 1].id);
+        return;
+      }
+
+      let reached: string | null = null;
+      for (const element of elements) {
+        if (element.getBoundingClientRect().top > REACHED) break;
+        reached = element.id;
+      }
+      setCurrent(reached);
+    };
+
+    // A scroll fires faster than the page can be read, and the loop above
+    // measures every heading, so the work is held to one pass per frame.
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(track);
+    };
+
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [headings]);
+
+  // From `xl` a long contents scrolls inside its own capped column, so the
+  // current entry can be out of sight even though the page is tracking it
+  // correctly. This scrolls the column only when that happens — an entry still
+  // well inside the view is left where it is — and never touches the page's own
+  // scroll.
+  useEffect(() => {
+    const element = scroller.current;
+    if (!element || !current) return;
+    // Not capped on a narrow screen, and short enough above `xl`: nothing to do.
+    if (element.scrollHeight <= element.clientHeight) return;
+
+    const link = Array.from(
+      element.querySelectorAll<HTMLAnchorElement>("a[href]"),
+    ).find((anchor) => anchor.getAttribute("href") === `#${current}`);
+    if (!link) return;
+
+    // `getBoundingClientRect` rather than `offsetTop`, since the links are
+    // nested and their offset parent isn't the scrolling box. The column's own
+    // limits do the clamping: the first few entries stay put at the top, and
+    // the last few settle at the foot.
+    const box = element.getBoundingClientRect();
+    const rect = link.getBoundingClientRect();
+
+    if (rect.top < box.top + EDGE) {
+      element.scrollTop -= box.top + EDGE - rect.top;
+    } else if (rect.bottom > box.bottom - EDGE) {
+      element.scrollTop += rect.bottom - box.bottom + EDGE;
+    }
+  }, [current]);
 
   function startDrag(event: ReactPointerEvent<HTMLDivElement>) {
     const element = scroller.current;
@@ -169,14 +280,26 @@ export function TableOfContents({
           >
             {headings.map((heading) => (
               <li key={heading.id}>
-                <a href={`#${heading.id}`} className={linkClass}>
+                <a
+                  href={`#${heading.id}`}
+                  aria-current={
+                    current === heading.id ? "location" : undefined
+                  }
+                  className={linkClass}
+                >
                   {heading.text}
                 </a>
                 {heading.children.length > 0 ? (
                   <ul className="mt-1 space-y-1 pl-4">
                     {heading.children.map((child) => (
                       <li key={child.id}>
-                        <a href={`#${child.id}`} className={linkClass}>
+                        <a
+                          href={`#${child.id}`}
+                          aria-current={
+                            current === child.id ? "location" : undefined
+                          }
+                          className={linkClass}
+                        >
                           {child.text}
                         </a>
                       </li>

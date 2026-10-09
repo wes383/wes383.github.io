@@ -1,0 +1,358 @@
+export const metadata = {
+  title: "向左、向右、向下、向上：文字书写方向的历史",
+  date: "2026-10-09",
+  summary:
+    "文字几乎被排过所有能想到的方向：竖排、从右往左、从下往上，甚至像牛耕地一样来回换行。",
+};
+
+## 我们为什么这样读字，一个习惯又如何延续五千年
+
+把一本英文小说和一本日本漫画并排打开，你翻页的方向正好相反。在特拉维夫拿起一份报纸，它的头版在英文读者看来是“封底”。抬头看东京一块老招牌，你可能把店名倒着念了，自己还没察觉。
+
+大约公元前 430 年，古希腊历史学家希罗多德就注意到了这个谜题。他写道：“希腊人写字和计算都是从左到右，埃及人正好相反；可埃及人却说他们的写法是朝右的，希腊人的才是朝左的。”[^herodotus] 连写字的人自己都说不清该怎么称呼这个方向。
+
+对学会它的人来说，书写方向自然得几乎像身体本能。但它其实是一种文化里最随意、也最顽固的选择之一。这篇文章从最早的泥板一路追到 Unicode 标准：谁转了向、什么时候转的，以及大多数流行解释背后，证据其实薄弱得出人意料。
+
+## 一、楔形文字：最早的文字竖着写，后来躺倒了
+
+我们所知最早的文字，约公元前 3200 年出现在美索不达米亚南部的乌鲁克，是压在泥板上的。早期的符号还是图画，正立着排成**竖行**，从上往下读，各行从右向左排列。[^mnamon]
+
+![早期苏美尔泥板](https://i.ibb.co/HLC83GSx/01-sumerian-tablet.jpg)
+
+<small>美索不达米亚杰姆代特·奈斯尔出土的早期苏美尔行政泥板，约前 3100–前 2900 年：符号仍是图画，排列方式在 90 度转向之前。图片来源：大都会艺术博物馆。</small>
+
+后来发生了一件怪事：整套文字在某个时间点**逆时针转了 90 度**。符号全都“仰面躺倒”，文字改成从左往右的横行。[^britannica-cuneiform] 所以今天的楔形文字字表里，“头”或“鱼”这样的符号是侧躺着的：我们看到的，是一幅四千五百年前被推倒的图画。
+
+**什么时候转的？** 学界并无定论。维基百科的综述把最早的转向定在阿卡德时期稍前、乌鲁克统治者卢伽尔扎吉西在位前后，即公元前 24 世纪；它还提到，约公元前 1750 年，汉谟拉比国王在纪念碑上仍使用竖排楔形文字。[^wiki-cuneiform] 楔形文字数字图书馆计划（CDLI）称，这个年代问题“长期以来一直存在争议”。[^cdli] 一项研究认为楔形文字直到约公元前 2300 年都是竖写竖读；[^visible-language] 另一项针对萨尔贡时期一件学校用棱柱的研究则显示，同一件器物上，词表正文已是新的横向排列，题记却仍然竖排。[^prism]
+
+**为什么转？** 主要有几种说法：
+
+- **泥板倾斜说。** 学者亚当·法尔肯施泰因认为，书吏握泥板时本来就斜着约 45 度，所以完整的 90 度转向，实际上没有听起来那么突兀。[^cdli]
+- **书写工具说。** 另一种早期理论认为，按当时芦苇笔的握法，横着压出楔形更顺手。[^cdli] 后来的一项研究通过泥板上芦苇纤维的纹路，推断笔是如何转动的，并认为这正是改为横写的动力。[^visible-language]
+- **两种材料、两种习惯。** 弗里德里希·德里奇最早提出的“旋转理论”认为，石头等硬质材料上沿用竖写的同时，泥板上已经在横写。[^cdli]
+
+规律从这里就开始了：人类最早有记录的书写方向变化之一，至今都没有完全解释清楚。
+
+<TabletRotation lang="zh" />
+
+## 二、埃及：跟着“脸”的朝向读
+
+埃及象形文字是古代世界最灵活的书写系统。它可以横排也可以竖排，可以从左往右也可以从右往左，有时同一件器物上两种都有。[^bibalex]
+
+读者有一条简单规则：**找一个有脸的符号，迎着它的脸读。** 人、鸟和动物都面朝一行的开头。[^collombert] 如果猫头鹰面朝右，你就从右边开始读。
+
+![埃及石碑](https://i.ibb.co/JgqdpLW/02-egyptian-stela.jpg)
+
+<small>卢浮宫藏埃及石碑。人物和符号都面朝每行的开头，告诉读者从哪边读起。图片来源：Wikimedia Commons。</small>
+
+埃及人偏爱从右往左。大都会艺术博物馆亨利·乔治·费舍尔的经典研究，开篇就指出象形文字铭文“通常面朝右、从右往左读”，然后逐一梳理了反过来的各种情况。[^fischer] 原因通常是艺术需要：配合人像的文字会和人像朝同一方向，这样门两侧或雕像两侧的铭文才能左右对称。[^fischer][^cambridge-egypt]
+
+日常草书更能说明书吏们真正的偏好。用芦苇笔蘸墨在莎草纸上快速书写的**僧侣体**和**世俗体**，始终是从右往左。[^collombert][^bm-hieroglyphs] 象形文字可以为了美观掉头，日常手写却不行。
+
+## 三、字母的旅程：从右往左，到“像牛耕地一样”
+
+今天使用的字母文字，几乎都源自同一个祖先：腓尼基字母。这是地中海东岸一套只有辅音的字母，**从右往左**写。
+
+### 希腊人的实验
+
+公元前 8 世纪，希腊人借用腓尼基字母时，连方向也一并借来。最古老的希腊铭文和闪米特文字一样从右往左。[^britannica-greek] 接着出现了一个叫 **boustrophedon（牛耕式）** 的阶段，希腊语意为“像牛［耕地时］转身那样”。[^wiki-boustrophedon] 一行从右往左写，到头后写字的人直接掉头，下一行从左往右写，就像牛走到田边转身回来。在反方向的那几行里，字母本身也是镜像的。[^wiki-greek]
+
+![戈提那法典](https://i.ibb.co/Y48nSKSv/03-gortyn-boustrophedon.jpg)
+
+<small>克里特岛戈提那法典局部，公元前 5 世纪，以牛耕式刻成：相邻两行方向相反。图片来源：Wikimedia Commons。</small>
+
+大英百科全书把牛耕式阶段定在公元前 6 世纪前后，并说“公元前 500 年以后，希腊文一律从左往右写”。[^britannica-greek] 英国开放大学给出的时间稍晚：最早的希腊文字两种方向都有，有时出现在同一篇文字里，从左往右在公元前 5 世纪“开始占主导”。[^open-univ] 公元前 403 年，雅典正式采用爱奥尼亚字母，这就是后来的古典希腊字母。[^britannica-kids-greek]
+
+为什么转向？没人能确定。1989 年发表于《Perceptual and Motor Skills》的一篇论文，质疑了“右撇子希腊人只是觉得从左往右更好写”这种简单说法，并提出：希腊文加入元音之后，从左往右**阅读**可能更有效率。[^reading-efficiency] 这只是一种假说，并非定论。
+
+<DirectionSwitch lang="zh" />
+
+### 罗马继承了结果
+
+同样从希腊人那里学到字母的伊特鲁里亚人，几乎总是从右往左写，也有少数牛耕式铭文。[^britannica-kids-alphabet] 拉丁文起初也不固定。最古老的拉丁铭文之一，即罗马广场“黑石”（Lapis Niger）下发现的石碑，就是牛耕式，而且相当不规则：有的行从右往左，有的从左往右，还有几行是倒着的。[^wiki-boustrophedon]
+
+到了古典时期，拉丁文定型为从左往右。所有源自希腊文和拉丁文的文字，从西里尔字母到你现在看到的英文字母，都随之而来。
+
+## 四、希伯来文与阿拉伯文：从右往左的家族，和它从左往右的数字
+
+腓尼基字母的另一些后代始终没有转向。和腓尼基文关系很近的**希伯来文**至今从右往左；[^open-univ] **阿拉伯文**、**叙利亚文**，以及从它们衍生出来的波斯文、乌尔都文等也是如此。
+
+例外之中还有例外：**数字**。在阿拉伯文和希伯来文里，即使身处从右往左的文本，数字也从左往右写。无论用的是欧洲数字（1234）还是阿拉伯-印度数字（١٢٣٤），都是这样。[^w3c-bidi] 所以“三”这个词要从右往左读，而 1,234 这个数，却是从千位开始、从左往右排在行中。
+
+计算机出现后，这成了真正的工程难题。Unicode 标准按“逻辑顺序”（大致就是打字和说话的顺序）存储文字，再用一套详细的规则，即 **Unicode 双向算法**，决定怎么显示。该标准附件解释说：“由于这些从右往左的文字使用从左往右书写的数字，文本实际上是双向的。”[^uax9] 每一部显示带电话号码的阿拉伯文短信的手机，都在运行这套算法。
+
+## 五、印度：两种文字、两个方向、一位皇帝
+
+约公元前 250 年，孔雀王朝的阿育王把诏令刻在印度次大陆各地的岩石和石柱上。诏令用了四种文字：婆罗米文、佉卢文、希腊文和阿拉米文。[^wiki-ashoka]
+
+两种印度本土文字方向正好相反：
+
+- **佉卢文**用于西北地区（今巴基斯坦和阿富汗一带），**从右往左**写。它与阿拉米文有关，后者是曾统治这一地区的波斯阿契美尼德帝国的行政文字。[^wiki-ashoka][^ignca]
+- **婆罗米文**通行于次大陆大部分地区，**从左往右**写。[^wiki-brahmi]
+
+![沙赫巴兹加尔希佉卢文诏令](https://i.ibb.co/ymBPRT3J/04-kharosthi-edict.png)
+
+<small>阿育王沙赫巴兹加尔希岩石诏令，佉卢文从右往左书写，取自《印度铭文集成》（Corpus Inscriptionum Indicarum）。图片来源：Wikimedia Commons。</small>
+
+婆罗米文的起源至今仍有争议。一种由来已久的观点认为它源自某种闪米特文字，很可能是阿拉米文；许多文字学者接受这一观点，但仍有争论。[^wiki-brahmi] 哈里·法尔克认为，婆罗米文是在阿育王时代前后有意创制的，结合了希腊文和佉卢文的特点，并因为方便而采用从左往右书写。[^wiki-brahmi-falk] 理查德·所罗门指出，如今大多数学者认同佉卢文更古老，并可能影响了婆罗米文。[^gandhara]
+
+而且方向也不是完全固定的。埃兰出土的一枚早期钱币上，婆罗米文就像阿拉米文一样从右往左排。[^wiki-brahmi] 在印度南部的埃拉古迪，阿育王婆罗米文小岩石诏令中也有几行从右往左，但字母并没有像真正的牛耕式那样镜像翻转。[^erragudi]
+
+佉卢文后来消失了，婆罗米文胜出。它的后代包括天城文、孟加拉文、泰米尔文、藏文、泰文以及东南亚的许多文字。所以古印度做出的一个选择，至今仍在为十几亿以上的读者决定方向。
+
+## 六、中国：从上到下，从右到左
+
+传统汉字**竖行书写，从上到下，各行从右往左排列**。一位研究汉字排版的学者指出，甲骨、青铜器、竹木简、绢帛与纸卷、雕版印刷和活字排版，“都呈现出这种书写顺序，鲜有例外”。[^chor]
+
+最早的例子，商代甲骨文，还有一些灵活性。字有时为了配合占卜的裂纹而横排，竖行偶尔也会在句中转 90 度。但铭文从不自下而上读，而各行从右往左的顺序，最早就见于商代。[^wiki-oracle]
+
+**为什么竖写，又为什么从右往左？** 最流行的解释是**竹简**，也就是“简牍”。纸张出现之前，中国的书写在约 0.6 厘米宽的细长竹片或木片上，每片写一行字，再用麻绳、丝绳或皮绳编连起来。[^wiki-jiandu] 这么窄的竹片只能容下一竖行字。牛津大学博德利图书馆指出，“在长竹片上书写的限制，似乎赋予了中国书籍传统的版式”，这种版式后来又延续到帛书和纸卷上。[^bodleian]
+
+![竹简](https://i.ibb.co/7tTKx1vN/05-bamboo-slips.jpg)
+
+<small>战国竹简（复制品）：每支竹简写一竖行字，这正是汉字竖写的版式来源。图片来源：Wikimedia Commons。</small>
+
+从右往左的顺序也有相应的解释。钱存训在经典著作《书于竹帛》（1962）中提出，“右手执笔的书吏的习惯”在排放写好的竹简时，“可能导致了各行从右往左的排列”。[^tsien] 另一种说法设想书吏左手持空白竹片、右手执笔书写，每写完一片，就放在前一片的左边。[^chor]
+
+甲骨本身也提供了一些佐证：有些字是转了 90 度的，仿佛为了适应又高又窄的竹片而设计，说明这种字形很可能先在竹简上形成，后来才刻到甲骨上。[^wiki-oracle] 不过，2007 年一篇中文论文给出了不同的时间线：它认为单行自上而下的格式最晚在商代就因甲骨材料的限制而形成，而整篇文字从右往左的格式最晚在西周初年因青铜铭文的铸范而形成。[^textual-research] 和楔形文字的转向一样，这仍是个悬而未决的问题。
+
+## 七、丝绸之路上的转折：蒙古文为什么变成从左往右换行
+
+这是文字史上最离奇的一段家族故事。
+
+**粟特文**是中亚一个商业民族的文字，源自阿拉米文，像它的闪米特祖先一样横写、**从右往左**。回鹘人借用它时，把它**逆时针转了 90 度**改为竖写，很可能是为了模仿汉字，但字母之间的相对朝向并没有改变。[^unicode-mongolian][^wiki-mongolian]
+
+算一算几何：原本从右往左的横行，逆时针转四分之一圈后，就变成**从上往下，每一新行都在上一行的右边**。约 1204 年，成吉思汗的军队俘获了一位名叫塔塔统阿的回鹘书记官，他用这套文字来书写蒙古语。[^wiki-mongol-writing]
+
+![蒙古文书法](https://i.ibb.co/Q76DFKxw/06-mongolian-calligraphy.jpg)
+
+<small>传统蒙古文书法：从上往下书写，每一新行在上一行的右边。图片来源：Wikimedia Commons。</small>
+
+结果独一无二。回鹘文及其后代，即传统蒙古文、托忒文、满文和布里亚特文，是已知仅有的**各行从左往右排列**的竖写文字。[^wiki-mongolian] 其他所有竖写传统，无论汉文、日文还是韩文，都是从右往左换行。一本蒙古文书和一本中文书，虽然都是从上往下写，横向翻阅的方向却正好相反。
+
+回鹘人为什么要转动文字，并无定论。“濒危字母图集”列举了几种可能：模仿汉字、敬奉天神腾格里，或某种我们今天已经想不到的实用便利。[^endangered-mongolian] 20 世纪 40 年代初，蒙古国用西里尔字母取代了传统蒙古文；但它在中国内蒙古一直沿用至今，并在 90 年代初在蒙古国复兴。[^unicode-mongolian]
+
+## 八、异类：从下往上，以及颠倒着读
+
+大多数文字要么横写，要么从上往下写。少数几种走了更奇特的路。
+
+**欧甘文：像爬树一样。** 欧甘文是约公元 4 至 10 世纪爱尔兰和不列颠西部使用的文字，看起来像条形码：一到五道短线成组，刻在一条中轴线两侧。[^ogham-dias] 在最早的立石上，中轴线就是石头本身的棱边。铭文从左下方开始，**沿棱向上**，越过顶部，再沿另一侧向下读。[^heritage-ogham] 中世纪爱尔兰语法书《学者入门》（*Auraicept na nÉces*）说得很美：“欧甘文要像爬树一样往上爬。”[^ucr-ogham]
+
+![欧甘石](https://i.ibb.co/bMbTVr1H/07-ogham-stones.jpg)
+
+<small>爱尔兰凯里郡的邓洛欧甘石。刻痕沿石头棱边分布，自下而上阅读。图片来源：Wikimedia Commons。</small>
+
+**哈努诺文：朝远离身体的方向写。** 菲律宾民都洛岛芒扬人使用的哈努诺文，习惯上**从下往上**写，各列从左往右排列。[^wiki-hanunoo] 它传统上用刀刻在竹子上，而顺手的动作就是朝远离自己的方向刻。[^language-closet] 左撇子常常把整段文字写成镜像。[^wiki-hanunoo] 一位语言学家指出，由于字形本身也一起转了向，这其实是竹子被转了方向，而不是阅读方向不同。[^r12a-hanunoo] 这提醒我们：所谓“方向”，取决于你把什么当作不动的参照。
+
+**朗格朗格文：把木板转过来。** 复活节岛（拉帕努伊）上至今未被破译的朗格朗格文，使用**反向牛耕式**。读者从左下角开始，从左往右读完一行，然后把木板旋转 180 度，再从左往右读下一行。读任何一行时，上下两行看起来都是倒着的。[^wiki-rongorongo]
+
+![朗格朗格木板](https://i.ibb.co/TMkhbrM9/08-rongorongo-tablet.jpg)
+
+<small>复活节岛朗格朗格文 C 号木板（正面）。每隔一行就是倒着的，即反向牛耕式。图片来源：Internet Archive。</small>
+
+## 九、20 世纪：东亚文字“躺”了下来
+
+在历史上大部分时间里，书写方向的变化都很缓慢，几乎没有记录。20 世纪不同了。短短几十年里，竖写了一千多年的中国、日本和韩国，把大部分日常文字改成了**从左往右的横排**，而且转变的日期可以精确到天。
+
+### 中国：一份报纸领了头
+
+争论始于新文化运动。1917 年，钱玄同在《新青年》上给陈独秀写公开信，主张中文书籍改为横写，陈独秀表示赞同，但这个主张始终没有成为主流。[^zhwiki-vertical] 1919 年 11 月，《新青年》开设了“中文改用横行的讨论”专栏。[^netbei]
+
+1949 年后，这一主张得到国家支持。1952 年 2 月 5 日，在中国文字改革研究委员会成立大会上，**郭沫若**从生理角度论证了横排的好处：眼睛直看向上能看到 55 度、向下 65 度，共 120 度；横看每只眼向外 90 度、向内 60 度，两眼相加除去重叠，可看到 250 度。“横的视野比直的要宽一倍以上”，所以文字横行能减少目力损耗，“并且现代科学论著多半已经是横写”。[^gmw-2025] 实业家、慈善家**陈嘉庚**也提出过汉字横写横排的建议。[^rmzxw]
+
+接着，一份报纸率先行动。**1955 年 1 月 1 日**，《光明日报》在全国各大报纸中率先从右起竖排改为左起横排。当天的《告读者》写道：“中国文字的横排横写，是发展的趋势”，改为横排后，过去文字和标题“有直有横，上下左右没有一定标准的混乱现象，就可完全消除”。[^gmw-history] 到 1955 年 11 月，全国 17 家中央级报纸中已有 13 家改为横排。[^cpc-directive] **1956 年 1 月 1 日**，《人民日报》也改为横排，全国性报纸和地方报纸随之全部改横。[^moe][^people-1956] 第二天，《纽约时报》报道说，中国报纸开始“从左往右横排，而不再从上往下竖排”。[^nyt-1956]
+
+![光明日报版面](https://i.ibb.co/XfZYSXw2/09-guangming-daily.jpg)
+
+<small>《光明日报》2025 年 1 月 6 日纪念率先横排七十周年的版面。图片来源：光明网。</small>
+
+### 台湾和香港：一个靠法律，一个靠市场，都更慢
+
+台湾的转变是通过立法完成的。2004 年，立法院修订《公文程式条例》，规定政府公文一律横排印刷，以方便电子政务、便于混排西文和数字；从 2005 年起，公务机关与学校公文依法全面改为横式书写。[^zhwiki-vertical] 不过，文史类教科书大多仍保持竖排。[^zhwiki-vertical]
+
+在台湾、香港和澳门，报纸从 20 世纪 90 年代起逐步改为横排；到 21 世纪初，大多数报纸已全面横排，或采用竖排正文搭配横排标题的组合。[^wiki-east-asian] 还有一个有趣的“遗迹”：香港《明报》2003 年改版后全部横排，却继续沿用适合竖排的翻页方向。[^zhwiki-vertical]
+
+### 日本：那些其实并不“从右往左”的招牌
+
+日本的老招牌、旧纸币和店铺牌匾，常常是一行**从右往左**的横字。看起来像阿拉伯文式的右起横写，但日本学者指出，它通常并非如此。它其实是**每行只有一个字的竖写**。招牌只有一个字高时，每一竖行只能容下一个字，换行自然就往左走。同样的字如果写在更高的牌匾上，就会是正常的竖行。[^og-cel]
+
+现代从左往右的横写，是明治时代随着西文词典传入的。[^wiki-east-asian] 此后几十年里，右横写和左横写并存，左横写在战争年代还遭到强烈抵制。福井县文书馆对报纸广告的研究发现，1941 至 1945 年间，横排广告中右横写占了近九成，1945 年比例还更高。[^fukui]
+
+战后，风向很快逆转。日本亚洲历史资料中心逐家列出了各报改版的日期：《读卖报知新闻》于 **1946 年 1 月 1 日**改为左横写，《每日新闻》于 1946 年 11 月 16 日，《朝日新闻》于 1947 年 1 月 1 日，《日本经济新闻》最晚，于 1950 年 7 月 25 日。[^jacar] 《读卖》在社告中宣称，要“作为象征新生日本的最进步的报纸”与读者见面。[^scitech]
+
+不过，日本从未完全放弃竖写。小说和许多报纸仍用“縦書き”（竖写），教科书和网站则用“横書き”（横写）。[^edrdg] 《朝日新闻》的一篇专栏注意到，日本绘画中的四季一向是**从右往左**描绘的，日语学者屋名池诚认为，这很可能源于日文竖写、从右往左换行的习惯。[^asahi-vox]
+
+### 韩国：北方靠法令，南方靠竞争
+
+朝鲜是按规定一次改过来的。1948 年的正字法规定：“所有文书原则上从左往右横写。”[^korean-se]
+
+韩国则改得很慢，报纸是最后的“钉子户”。到 20 世纪 80 年代，包括教科书在内的大多数书籍早已横排，只有报纸还坚持竖排。[^peace-news] 《体育首尔》于 1985 年全面横排。[^fairn] **1988 年 5 月 15 日**由民主化运动中的记者创办的《韩民族日报》，成为第一份横排印刷的全国性大报，也是第一份只用韩文字母的报纸。[^wiki-hankyoreh] 《中央日报》于 1995 年 10 月 9 日韩文日当天全面横排。[^joongang-2000] 《朝鲜日报》是最后一家：1999 年 3 月 1 日那期是它最后一期竖排报纸，第二天就改了。[^wiki-chosun]
+
+横排真的更好读吗？1995 年报道的一项研究中，高丽大学教授林尚源让高中生用 5 分钟阅读等量的报纸文章。纯韩文的文章，横排读了 1,824 字，竖排读了 1,707 字；韩汉混用的文章，横排 1,660 字，竖排 1,613 字。[^joongang-1995] 优势不算大，而且测试对象本就是读横排教科书长大的。
+
+## 十、一种 1949 年才发明的文字，也得做出选择
+
+大多数文字的方向是继承来的。偶尔，也有人能亲自选择。
+
+1949 年，几内亚学者**索勒马纳·康泰**发明了**恩科字母（N'Ko）**，用来书写西非的曼丁语。据一个流传很广的故事，他是被一位作家激怒的，那人声称非洲语言“像鸟叫一样，无法记录”。[^wiki-nko] 恩科字母**从右往左**写。[^wiki-nko][^cambridge-nko] 它在没有政府支持的情况下，从冈比亚到尼日利亚，在西非民间传播开来。[^history-africa]
+
+为什么从右往左？恩科支持者中流传的说法是：康泰请一群不识字的人在地上画线，十个人里有七个从右往左画，于是他选了这个方向。[^kanjamadi] 其他流行版本给出的理由又不一样。不妨把它当作创始传说，而不是实验。但它说明了一件重要的事：即使是 20 世纪由一个人从零设计的全新文字，也没有简单照搬周围殖民者字母的从左往右。
+
+## 十一、到底为什么？各种理论及其漏洞
+
+大家最想问的是：一种文字为什么朝这边写，而不是那边？流行的答案都很整齐，证据却不是。
+
+### 理论一：锤子和凿子
+
+这个说法是：刻字的人左手握凿、右手持锤，所以从右往左刻最顺手。据称，这能解释埃及象形文字、腓尼基文这类刻在石头上的早期文字为什么从右往左。[^childrens-museum][^ijpam]
+
+**问题在于：** 埃及人自己的**墨书**文字，僧侣体和世俗体，也是从右往左。[^collombert] 腓尼基文、阿拉米文和后来的阿拉伯文同样如此，而它们都大量用笔书写。凿子理论解释不了，为什么在刻石早已不是主要书写方式之后，这些文字仍然从右往左。
+
+### 理论二：墨水会蹭花
+
+右撇子用湿墨从左往右写，手就不会压到刚写好的字上。[^childrens-museum] 这个效应确实存在。最有名的“反例”是**列奥纳多·达·芬奇**：这位左撇子的大部分私人笔记，都是从右往左的镜像字。和他同时代的卢卡·帕乔利描述过这一点；乔尔乔·瓦萨里也写道，他“用左手、以奇特的字体做笔记，从右往左写，不经练习读不了，只能对着镜子看”。[^leonardo-lateral] 维多利亚与艾伯特博物馆指出，最可能的原因只是他是左撇子、这样写更顺手，而不是什么密码。[^vam]（有意思的是，乌菲兹美术馆 2019 年研究的一幅 1473 年素描，正面的日期是镜像字，背面的一段笔记却是正常的从左往右，说明他可能左右手都能写。[^smithsonian]）
+
+![达·芬奇笔记本](https://i.ibb.co/PZqs9ZXN/10-leonardo-notebook.jpg)
+
+<small>达·芬奇笔记本的复制本，笔记为从右往左的镜像字。图片来源：西弗吉尼亚大学图书馆。</small>
+
+**问题在于：** 如果蹭墨能决定方向，那么一千多年来主要由右撇子用墨书写的阿拉伯文、希伯来文和叙利亚文，早就该翻过来了。它们并没有。蹭墨是一种压力，而不是定律。
+
+### 理论三：书写材料
+
+这个理论最有说服力，但只适用于竖写文字。窄窄的竹简几乎肯定促成了中国的单行竖写，[^bodleian] 欧甘文的方向则顺着立石的棱边，[^heritage-ogham] 哈努诺文的自下而上也顺着刀在竹子上的走向。[^language-closet] 材料能解释一种文字的“起点”。但它解释不了，为什么材料变了之后方向依然延续，比如汉字在纸上又竖写了将近两千年。
+
+### 证据真正指向的：继承
+
+最有说服力的答案，来自同时比较许多文字。人类学家奥利维耶·莫兰在《Cognitive Science》上发表的一项研究考察了 116 种书写系统，发现阅读方向“高度保守，超过 95% 的文字与其祖先保持一致”。[^morin] 相比之下，那些让字母易于辨认的基本视觉特征，几乎没有怎么遗传下来。[^morin]
+
+换句话说，一种文字的方向，主要由**它的“父母”**决定。拉丁文从左往右，是因为希腊文如此；希腊文如此，是因为它在一两百年的试验后定了下来。阿拉伯文从右往左，是因为阿拉米文和腓尼基文如此。历史上少数几次大转变，希腊文的转向、楔形文字的旋转、回鹘人的四分之一圈，以及东亚在 20 世纪的改横，之所以令人难忘，正是因为它们罕见。
+
+而且，这种习惯确实来自学习，而非生理。2007 年的一项研究中，德国和以色列的学龄前儿童听到一个角色对另一个角色做某事的简单句子，再画出或摆出场景时，**没有**表现出左右偏好；成年人则表现出与自己文字方向一致的偏好。[^dobel]
+
+## 十二、书写方向会影响我们的思维吗？
+
+故事到这里，从历史转向了心理学。如果你一辈子都从左往右读，你的思维会不会也开始“从左往右”？
+
+**时间。** 1991 年，芭芭拉·特沃斯基等人请说英语、希伯来语和阿拉伯语的人，把代表早餐、午餐、晚餐等事件的贴纸贴在一张纸上。说英语的人从左往右排；说阿拉伯语的人大多从右往左；说希伯来语的人则两者都有。[^bergen-lau] 2010 年，奥莉·富尔曼和莉拉·博罗迪茨基在《Cognitive Science》上做了更严格的测试。说英语的人把图片序列从左往右排，说希伯来语的人从右往左排。而当被试需要快速判断一张图片比另一张表示的时刻更早还是更晚时，如果“更早”是**左边**的键，说英语的人反应更快；说希伯来语的人则完全相反。[^fuhrman]
+
+**竖向的时间。** 汉语里关于时间的竖向比喻更多，又有竖写传统。一项研究发现，当“更早”键放在上方时，说普通话的人反应更快。[^stanford-thesis] 本杰明·伯根（Benjamin Bergen）和 Ting Ting Chan Lau 的研究发现，说英语的人总是把时间卡片从左往右排；中国大陆的被试大多也是如此，只有一小部分从上往下排；而接触竖排文字多得多的台湾被试，从上往下和从左往右排的可能性一样大，还有相当一部分人从右往左排。[^bergen-lau]
+
+**是读还是写？** 2025 年发表于《Language and Cognition》的一项研究更进一步，结论是塑造这些时间概念的是**阅读**方向，而不是书写方向。作者认为，写字时手部在各个方向上的细小动作太多，不足以训练出一条稳定的“时间线”。[^crossley]
+
+这并不意味着说希伯来语的人在什么深层意义上对时间的体验不同。但它确实意味着：三千年前一位腓尼基书吏的选择，今天可能仍在决定你的拇指先找到哪个按键。
+
+## 十三、五千年得出的五条规律
+
+1. **方向多半是继承来的，而非发明的。** 超过 95% 的文字保持了祖先的方向。[^morin] 问“它为什么是这个方向”之前，先问“它是从哪种文字来的”。
+2. **材料决定起点。** 竹简、石棱和泥板都留下了印记。但习惯一旦形成，就会比造就它的材料活得更久。
+3. **转变很少见，而且往往是整页转了个方向，而不是写法变了。** 楔形文字和回鹘文并没有改变符号的先后顺序，而是把整页转了过来。日本“从右往左”的招牌，其实是一个字高的竖写。
+4. **到了现代，方向成了政策。** 中国 1955–1956 年的改版、台湾 2004 年的立法、朝鲜 1948 年的规定，把一种文化习惯变成了一项在明确时间、出于明确理由做出的决定。
+5. **这种习惯比纸面更深。** 我们觉得时间朝哪边流、故事从哪边开始，都在悄悄跟随我们学会阅读的方向。
+
+## 十四、速查表
+
+| 文字 | 方向 | 时间 / 地区 | 备注 |
+|---|---|---|---|
+| 早期楔形文字 | 竖行，从上到下，各行从右往左 | 美索不达米亚，约前 3200 年起 | 后转 90 度，改为从左往右横写 |
+| 埃及象形文字 | 通常从右往左；任何方向都可能 | 埃及，约前 3200 年至公元 4 世纪 | 迎着符号的“脸”读 |
+| 僧侣体、世俗体 | 从右往左 | 埃及 | 日常墨书文字 |
+| 腓尼基文、阿拉米文、希伯来文、阿拉伯文 | 从右往左 | 黎凡特等地，约前 1000 年起 | 数字从左往右 |
+| 古风时期希腊文 | 从右往左，后为牛耕式 | 前 8 至前 6 世纪 | 约前 500 年后从左往右 |
+| 伊特鲁里亚文 | 通常从右往左 | 意大利，约前 8 世纪起 | 少数为牛耕式 |
+| 拉丁文及其后代 | 从左往右 | 古典罗马以来 | 最早的铭文有时为牛耕式 |
+| 佉卢文 | 从右往左 | 南亚西北部，约前 3 世纪起 | 与阿拉米文有关 |
+| 婆罗米文及其后代 | 从左往右 | 南亚，约前 3 世纪起 | 天城文、泰米尔文、泰文、藏文等 |
+| 传统中文、日文、韩文 | 从上到下，各行从右往左 | 商代以来 | 今天大多横排 |
+| 回鹘文、蒙古文、满文 | 从上到下，各行**从左往右** | 约公元 8 世纪起 | 粟特文逆时针转 90 度而来 |
+| 欧甘文 | 从下往上 | 爱尔兰和不列颠，公元 4 至 10 世纪 | 沿立石棱边书写 |
+| 哈努诺文 | 从下往上，各列从左往右 | 菲律宾民都洛岛 | 刻在竹子上 |
+| 朗格朗格文 | 反向牛耕式 | 复活节岛 | 尚未破译 |
+| 恩科字母 | 从右往左 | 西非，1949 年发明 | 索勒马纳·康泰创制 |
+
+*年代均为大致时间。大多数文字都有例外，尤其在早期。*
+
+---
+
+[^herodotus]: Herodotus, *Histories* 2.36, as quoted in Pharaoh.se, "Script and Language of Ancient Egypt." https://pharaoh.se/ancient-egypt/hieroglyphs
+[^mnamon]: Scuola Normale Superiore, Mnamon, "Sumerian Cuneiform." https://mnamon.sns.it/index.php?id=28&lang=en&page=Scrittura
+[^britannica-cuneiform]: Encyclopaedia Britannica, "Cuneiform." https://www.britannica.com/topic/cuneiform
+[^wiki-cuneiform]: Wikipedia, "Cuneiform." https://en.wikipedia.org/wiki/Cuneiform
+[^cdli]: Cuneiform Digital Library Initiative, "pisan dub-ba and the Direction of Cuneiform Script," *Cuneiform Digital Library Bulletin* 2003:2. https://cdli.earth/articles/cdlb/2003-2
+[^visible-language]: "Three Problems in the History of Cuneiform Writing: Origins, Direction of Script, and Literacy," *Visible Language*. https://journals.uc.edu/index.php/vl/article/view/5328
+[^prism]: "The Prism of Lugal-ušumgal: Didactic Methods and the Orientation of Cuneiform in the Sargonic Period" (2020). https://www.academia.edu/44319797/The_Prism_of_Lugal_u%C5%A1umgal_Didactic_Methods_and_the_Orientation_of_Cuneiform_in_the_Sargonic_Period
+[^bibalex]: Bibliotheca Alexandrina, "Arrangement and Direction of Writing." https://www.bibalex.org/learnhieroglyphs/Lesson/LessonDetails_En.aspx?l=57
+[^collombert]: Collombert, P., "Form, Layout, and Specific Potentialities of the Ancient Egyptian Hieroglyphic Script," Oxford Handbooks (preprint, University of Geneva). https://www.unige.ch/lettres/application/files/7616/3240/3272/qdr_collombert_lectures.pdf
+[^fischer]: Fischer, H. G., *The Orientation of Hieroglyphs: Part 1. Reversals*, The Metropolitan Museum of Art (1977). https://www.metmuseum.org/met-publications/the-orientation-of-hieroglyphs-part-1-reversals
+[^cambridge-egypt]: Cambridge University Press, "1. Language and Writing" (excerpt). https://assets.cambridge.org/97811070/53649/excerpt/9781107053649_excerpt.pdf
+[^bm-hieroglyphs]: The British Museum, "Hieroglyphs: unlocking ancient Egypt," large print guide (2022). https://www.britishmuseum.org/sites/default/files/2022-10/Hieroglyphs_unlocking_ancient_Egypt_large_print_guide_The_British_Museum_2.pdf
+[^britannica-greek]: Encyclopaedia Britannica, "Alphabet: Greek alphabet." https://www.britannica.com/topic/alphabet-writing/Greek-alphabet
+[^wiki-boustrophedon]: Wikipedia, "Boustrophedon." https://en.wikipedia.org/wiki/Boustrophedon
+[^wiki-greek]: Wikipedia, "Greek alphabet." https://en.wikipedia.org/wiki/Greek_Alphabet
+[^open-univ]: The Open University, OpenLearn, "7 The direction of Greek writing." https://www.open.edu/openlearn/mod/oucontent/view.php?id=114207&section=7
+[^britannica-kids-greek]: Britannica Kids (Scholars), "Greek alphabet." https://kids.britannica.com/scholars/article/Greek-alphabet/37912
+[^reading-efficiency]: "Reading Efficiency and the Development of Left-to-Right Writing by the Ancient Greeks," *Perceptual and Motor Skills* (1989). https://journals.sagepub.com/doi/10.1177/00315125890693-234
+[^britannica-kids-alphabet]: Britannica Kids (Scholars), "alphabet." https://kids.britannica.com/scholars/article/alphabet/110478
+[^w3c-bidi]: W3C, "Unicode Bidirectional Algorithm basics." https://www.w3.org/International/articles/inline-bidi-markup/uba-basics/uba-basics-data/mirrored_chars
+[^uax9]: Unicode Consortium, "UAX #9: Unicode Bidirectional Algorithm." https://unicode.org/reports/tr9
+[^wiki-ashoka]: Wikipedia, "Edicts of Ashoka." https://en.wikipedia.org/wiki/Edicts_of_Ashoka
+[^ignca]: Indira Gandhi National Centre for the Arts, "Asoka's Edicts" (PDF). https://ignca.gov.in/Asi_data/5282.pdf
+[^wiki-brahmi]: Wikipedia, "Brahmi script." https://en.wikipedia.org/wiki/Ashokan_Brahmi
+[^wiki-brahmi-falk]: Wikipedia, "Brahmi script" (section on Harry Falk's 2018 view). https://en.wikipedia.org/wiki/Brahmi
+[^gandhara]: "The Introduction of Writing into Achaemenid Gandhāra and the Origin of Pāṇini's Grammar" (2024), citing Salomon (1998). https://exa.ai/library/publication/h2fjb8h7j8k
+[^erragudi]: Jignashi, "Minor Rock Edicts at Erragudi" (2012). https://jignashi.blogspot.com/2012/06/minor-rock-edicts-at-erragudi-by.html
+[^chor]: Chor, L., "Online Vertical Layout: Chinese Characters, Images and the Web," *Journal of East Asian Libraries*. https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=2324&context=jeal
+[^wiki-oracle]: Wikipedia, "Oracle bone script." https://en.wikipedia.org/wiki/Oracle_bone_script
+[^wiki-jiandu]: Wikipedia, "Bamboo and wooden slips." https://en.wikipedia.org/wiki/Bamboo_and_wooden_slips
+[^bodleian]: Bodleian Libraries, University of Oxford, "Chinese books before paper." https://www.cabinet.ox.ac.uk/chinese-books-paper
+[^tsien]: Tsien, T.-H., *Written on Bamboo and Silk: The Beginnings of Chinese Books and Inscriptions*, 2nd ed., University of Chicago Press (2004), p. 204, as quoted in "Tablets (Du) and Passages (Zhang)" (2024). https://exa.ai/library/publication/cg62h9nt90g
+[^textual-research]: "A Textual Research of Writing Pattern of Ancient Chinese Words" (2007). https://exa.ai/library/publication/3frj5drb7xm
+[^unicode-mongolian]: Unicode Consortium, "13.5 Mongolian" (Unicode 12 Mongolian block). https://www.unicode.org/mwg/mwg3docs/mwg3-2UnicodeV12MongolianBlockR.pdf
+[^wiki-mongolian]: Wikipedia, "Mongolian script." https://en.wikipedia.org/wiki/Mongolian_script
+[^wiki-mongol-writing]: Wikipedia, "Mongolian writing systems." https://en.wikipedia.org/wiki/Mongolian_alphabet
+[^endangered-mongolian]: Atlas of Endangered Alphabets, "Mongolian." https://www.endangeredalphabets.net/alphabets/mongolian/
+[^ogham-dias]: Dublin Institute for Advanced Studies, Ogham in 3D, "About Ogham." https://ogham.celt.dias.ie/about
+[^heritage-ogham]: The Heritage Council (Ireland), "Ogham Stones" (PDF). https://www.heritagecouncil.ie/content/files/Ogham-Stones.pdf
+[^ucr-ogham]: University of California, Riverside, "Ogam (Ogham) Writing System & Ogam Alphabet," quoting McManus. https://faculty.ucr.edu/~legneref/bronze/ogamscri.htm
+[^wiki-hanunoo]: Wikipedia, "Hanunoo script." https://en.wikipedia.org/wiki/Hanunoo_script
+[^language-closet]: The Language Closet, "Yet another vertical writing system" (2022). https://thelanguagecloset.com/2022/11/19/hanunoo-script
+[^r12a-hanunoo]: Ishida, R. (r12a), "Hanunó'o orthography notes." https://r12a.github.io/scripts/hano/hnn
+[^wiki-rongorongo]: Wikipedia, "Rongorongo." https://en.wikipedia.org/wiki/Rongorongo
+[^zhwiki-vertical]: 维基百科, "纵书与横书." https://zh.wikipedia.org/zh-hans/%E7%B8%B1%E6%9B%B8%E8%88%87%E6%A9%AB%E6%9B%B8
+[^netbei]: 网贝建站, "排版什么时候用横向，我国从什么时候开始实施横排版." http://m.netbei.com/soft/other/17339.html
+[^gmw-2025]: 光明网, "勇于迈出第一步——纪念《光明日报》在全国报纸首先横排七十周年" (2025). https://news.gmw.cn/2025-01/06/content_37778831.htm
+[^rmzxw]: 人民政协网, "陈嘉庚建议'汉字横写横排'" (2023). http://www.rmzxw.com.cn/c/2023-08-03/3388407.shtml
+[^gmw-history]: 光明日报网上报史馆, "率先由文字直排版改为横排版" (2009). https://www.gmw.cn/history/2009-06/01/content_933696.htm
+[^cpc-directive]: 维基文库, "中共中央关于文字改革工作问题的指示." https://zh.wikisource.org/wiki/%E4%B8%AD%E5%85%B1%E4%B8%AD%E5%A4%AE%E5%85%B3%E4%BA%8E%E6%96%87%E5%AD%97%E6%94%B9%E9%9D%A9%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E7%9A%84%E6%8C%87%E7%A4%BA
+[^moe]: 中华人民共和国教育部, "新中国初期语言文字工作重要大事." http://www.moe.gov.cn/s78/A18/s8357/moe_808/tnull_14054.html
+[^people-1956]: 人民网, "《人民日报》1956年改版述议" (2012). http://media.people.com.cn/n/2012/1128/c194310-19728769.html
+[^nyt-1956]: *The New York Times*, "Peiping Press Adopts Horizontal Typesetting" (2 January 1956). https://www.nytimes.com/1956/01/02/archives/peiping-press-adopts-horizontal-typesetting.html
+[^wiki-east-asian]: Wikipedia, "Horizontal and vertical writing in East Asian scripts." https://en.wikipedia.org/wiki/Horizontal_and_vertical_writing_in_East_Asian_scripts
+[^og-cel]: 大阪ガスネットワーク エネルギー・文化研究所 (CEL), "鬼っ子「右横書き」とその時代" (2020). https://www.og-cel.jp/search/1285020_16068.html
+[^fukui]: 福井県文書館, "戦時中は右横書き？戦後は左横書き？" https://www.library-archives.pref.fukui.lg.jp/bunsho/category/column/42455.html
+[^jacar]: アジア歴史資料センター (JACAR), "日本語の表記はどう変わったの？" https://www.jacar.go.jp/english/exhibition/glossary_en/tochikiko-henten/qa/qa23.html
+[^scitech]: 科学技術のアネクドート, "戦後の新聞、右横書きから左横書きへ（下）" (2015). https://sci-tech.jugem.jp/?eid=3616
+[^edrdg]: Breen, J., EDRDG, "Japanese Writing." https://www.edrdg.org/~jwb/mondir/jwriting.html
+[^asahi-vox]: *The Asahi Shimbun*, "VOX POPULI: Vertical writing an indispensable part of thinking in Japanese" (2024). https://www.asahi.com/ajw/articles/15221957
+[^korean-se]: Korean Language Stack Exchange, "When did writing Hangul left-to-right become more common?" (citing the 1948 조선어 신철자법). https://korean.stackexchange.com/questions/2862/when-did-writing-hangul-left-to-right-become-more-common
+[^peace-news]: *Peace News*, "Voice of the People: An interview with the Hankyoreh." https://peacenews.info/node/6346/voice-people-interview-hankyoreh
+[^fairn]: 공정뉴스, "스포츠서울, 15년 앞서간 신문 가로쓰기 혁명" (2021). http://www.fairn.co.kr/news/articleView.html?idxno=62528
+[^wiki-hankyoreh]: Wikipedia, "The Hankyoreh." https://en.wikipedia.org/wiki/The_Hankyoreh
+[^joongang-2000]: 중앙일보, "[중앙일보 제2창사 1주년] 섹션·가로쓰기" (2000). https://www.joongang.co.kr/article/3885517
+[^wiki-chosun]: Wikipedia, "The Chosun Ilbo." https://en.wikipedia.org/wiki/Chosun_Biz
+[^joongang-1995]: 중앙일보, "중앙일보 전면가로쓰기 앞으로 15일 학계도 대환영" (1995). https://www.joongang.co.kr/article/3134245
+[^wiki-nko]: Wikipedia, "N'Ko script." https://en.wikipedia.org/wiki/N%27Ko_script
+[^cambridge-nko]: "Linguistic and Civic Refinement in the N'ko Movement of Manding-Speaking West Africa," *Signs and Society* (2025). https://www.cambridge.org/core/journals/signs-and-society/article/linguistic-and-civic-refinement-in-the-nko-movement-of-mandingspeaking-west-africa/22BCE1074BD8F08FD5F998BB259E3E60
+[^history-africa]: "The N'ko Alphabet as a Vehicle of Indigenist Historiography," *History in Africa*. https://www.cambridge.org/core/journals/history-in-africa/article/abs/nko-alphabet-as-a-vehicle-of-indigenist-historiography1/D095250EBB95F2CF3F237D12A7AB6710
+[^kanjamadi]: Kanjamadi, "N'ko and oral tradition," citing Oyler's interviews. http://kanjamadi.com/n'ko&oraltradition.html
+[^childrens-museum]: The Children's Museum of Indianapolis, "Why Do We Write from Left to Right?" https://www.childrensmuseum.org/blog/why-do-we-write-left-right
+[^ijpam]: *International Journal of Pure and Applied Mathematics* (2010), vol. 61, no. 3, citing Kondo (2004). https://ijpam.eu/contents/2010-61-3/9/9.pdf
+[^leonardo-lateral]: "The handedness of Leonardo da Vinci: A tale of the complexities of lateralisation," *Brain and Cognition*. https://www.sciencedirect.com/science/article/abs/pii/S0278262604000612
+[^vam]: Victoria and Albert Museum, "Leonardo da Vinci's notebooks." https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks
+[^smithsonian]: *Smithsonian Magazine*, "Was Leonardo da Vinci, a Famous Lefty, Actually Ambidextrous?" (2019). https://www.smithsonianmag.com/smart-news/was-leonardo-da-vinci-famous-lefty-actually-ambidextrous-180971938/
+[^morin]: Morin, O., "Spontaneous Emergence of Legibility in Writing Systems: The Case of Orientation Anisotropy," *Cognitive Science* (2018). https://onlinelibrary.wiley.com/doi/10.1111/cogs.12550
+[^dobel]: Dobel, C. et al., "How Writing System and Age Influence Spatial Representations of Actions: A Developmental, Cross-Linguistic Study," *Psychological Science* (2007). https://journals.sagepub.com/doi/10.1111/j.1467-9280.2007.01926.x
+[^bergen-lau]: Bergen, B. K. & Chan Lau, T. T., "Writing Direction Affects How People Map Space Onto Time," *Frontiers in Psychology* (2012). https://pmc.ncbi.nlm.nih.gov/articles/PMC3322406/
+[^fuhrman]: Fuhrman, O. & Boroditsky, L., "Cross-Cultural Differences in Mental Representations of Time: Evidence From an Implicit Nonlinguistic Task," *Cognitive Science* (2010). https://onlinelibrary.wiley.com/doi/10.1111/j.1551-6709.2010.01105.x
+[^stanford-thesis]: Fuhrman, O., "Mental time lines across the world: how do people think about time in Hebrew, Mandarin, and English?" Stanford Digital Repository. https://purl.stanford.edu/cz142gh0899
+[^crossley]: Crossley & Bylund, "Direction of reading, not writing, shapes concepts of time," *Language and Cognition* (2025). https://www.cambridge.org/core/journals/language-and-cognition/article/direction-of-reading-not-writing-shapes-concepts-of-time/E6EF809D0235A311468C83167059623E

@@ -53,6 +53,36 @@
   }
 }
 
+/* The eight cuneiform signs the writing-direction note draws on. It is Noto Sans
+   Cuneiform, cut down by Google's own subsetting service to those eight
+   codepoints — the whole block would have been 467 KB for a handful of glyphs.
+   The `unicode-range` is what keeps it honest: no browser fetches this file
+   unless it is drawing one of the characters below, and the family is not in
+   `--font-sans`, so nothing but the figure can reach for it. */
+@font-face {
+  font-family: "Noto Sans Cuneiform";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/noto-sans-cuneiform-subset.woff2") format("woff2");
+  unicode-range:
+    U+12000, U+1202D, U+1208D, U+12111, U+12157, U+121B3, U+122BA, U+12313;
+}
+
+/* The two words of the Mongolian sample in the writing-direction note — the
+   script's own name, Mongol bichig. It is subset the same way, and for the same
+   reason: the whole family is about 200 KB, and Mongolian is not a script most
+   readers' systems have a font for. Adding text in this script means cutting this
+   file again, since a subset carries only the letters it was asked for. */
+@font-face {
+  font-family: "Noto Sans Mongolian";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/noto-sans-mongolian-subset.woff2") format("woff2");
+  unicode-range: U+1822-1823, U+1829-182A, U+182D-182F, U+1834;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -154,4 +184,35 @@ section[data-footnotes] > h2 {
    smaller than the text it follows. */
 sup:has(a[data-footnote-ref]) + sup:has(a[data-footnote-ref]) {
   margin-left: 0.25em;
+}
+
+/* A caption under an image, written in the note as a bare `<small>` on its own
+   line. It is styled here rather than in `mdx-components.tsx` because MDX hands
+   a literal tag like this one through as the plain element instead of looking it
+   up in the components object — and it is the only place on the site that needs
+   text below the body's size. One step down, muted, like every other aside; it
+   is block-level because that is the only way it is ever used. */
+small {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  color: var(--foreground-muted);
+}
+
+/* An image sits alone in its own paragraph, and that paragraph is what carries
+   the wide margin around it. A caption written as a bare `<small>` underneath is
+   therefore pulled back up, so that it reads as belonging to the image above it
+   rather than to the paragraph that follows. */
+p:has(> img) + small {
+  margin-top: -1rem;
+}
+
+/* The contents marks the section being read: that entry takes the full-strength
+   colour while every other stays muted. The state is carried on `aria-current`,
+   which is the attribute a screen reader announces for exactly this — the
+   reader's place in the note. Written out by hand because `linkClass` sets the
+   muted colour, and the id in the selector is what lifts this above it. */
+#contents a[aria-current="location"] {
+  color: var(--foreground);
 }
