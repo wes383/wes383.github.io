@@ -4,18 +4,27 @@ import { Fragment } from "react";
 import { LanguageSwitcher } from "@/app/language-switcher";
 import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
-import { getDictionary, hasLocale, otherLocale } from "@/lib/i18n";
+import { getDictionary, hasLocale, otherLocale, type Locale } from "@/lib/i18n";
 import { getAllNotes } from "@/lib/notes";
 import { proseLinkClass, titleLinkClass } from "@/lib/ui";
 
-/** Where to find me. The names are the same in either language, so they are not
- * in the dictionary — only the words around them are. */
-const places = [
-  { href: "mailto:why5807@gmail.com", label: "Email", external: false },
-  { href: "https://x.com/wes457", label: "X", external: true },
-  { href: "https://github.com/wes383", label: "GitHub", external: true },
-  { href: "https://boxd.it/5TMbd", label: "Letterboxd", external: true },
-];
+/** Where to find me. Most of the names read the same in either language, so they
+ * are not in the dictionary — the film site is the exception: it is Letterboxd
+ * to an English reader, but 豆瓣 to a Chinese one. */
+function getPlaces(lang: Locale) {
+  return [
+    { href: "mailto:why5807@gmail.com", label: "Email", external: false },
+    { href: "https://x.com/wes457", label: "X", external: true },
+    { href: "https://github.com/wes383", label: "GitHub", external: true },
+    lang === "zh"
+      ? {
+          href: "https://www.douban.com/people/km6/",
+          label: "豆瓣",
+          external: true,
+        }
+      : { href: "https://boxd.it/5TMbd", label: "Letterboxd", external: true },
+  ];
+}
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -24,6 +33,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const dict = getDictionary(lang);
   const other = otherLocale(lang);
   const notes = await getAllNotes(lang);
+  const places = getPlaces(lang);
 
   return (
     <div>
