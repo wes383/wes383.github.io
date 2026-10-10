@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/format";
 import { getDictionary, hasLocale, otherLocale } from "@/lib/i18n";
 import { getNote, getNoteHeadings, getNoteSlugs } from "@/lib/notes";
 import { linkClass } from "@/lib/ui";
+import { NoteFoot } from "./note-foot";
 import { TableOfContents } from "./table-of-contents";
 
 export async function generateStaticParams() {
@@ -129,6 +130,22 @@ async function Note({
       <div lang={note.source}>
         <note.default />
       </div>
+
+      {/* The same plain-text links the site uses everywhere. Home reuses the
+          top row's label — it goes to the same place. The empty fragment is the
+          one way to scroll to the very beginning of the document: the article
+          starts below the header and the page's top padding, so an anchor on it
+          would leave that strip of page above the viewport. The row itself is
+          left to `NoteFoot`, because on a note that fits in one screenful
+          neither link has anything to do. */}
+      <NoteFoot>
+        <Link href={`/${lang}`} className={linkClass}>
+          {dict.note.back}
+        </Link>
+        <a href="#" className={linkClass}>
+          {dict.note.top}
+        </a>
+      </NoteFoot>
     </article>
   );
 }

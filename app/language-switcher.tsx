@@ -25,6 +25,9 @@ export function LanguageSwitcher({
     <Link
       href={href}
       hrefLang={to}
+      // The label is written in the language it names, so a Chinese "English"
+      // needs its own tag for the screen reader's voice to switch with it.
+      lang={to}
       className={linkClass}
       onClick={() => {
         // A year, so that coming back to `/` lands on the language they chose

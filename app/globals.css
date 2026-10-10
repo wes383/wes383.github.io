@@ -53,6 +53,16 @@
   }
 }
 
+/* Keyboard focus. The site's links and buttons are borderless text, so the
+   browser's default two-tone focus ring reads as foreign chrome against them;
+   a thin line in the palette's own muted colour keeps the affordance without
+   the noise. `:focus-visible` keeps pointer clicks undecorated, and the outline
+   follows each element's rounded corners on its own. */
+:focus-visible {
+  outline: 1px solid var(--foreground-muted);
+  outline-offset: 2px;
+}
+
 /* The eight cuneiform signs the writing-direction note draws on. It is Noto Sans
    Cuneiform, cut down by Google's own subsetting service to those eight
    codepoints — the whole block would have been 467 KB for a handful of glyphs.
@@ -184,6 +194,38 @@ section[data-footnotes] > h2 {
    smaller than the text it follows. */
 sup:has(a[data-footnote-ref]) + sup:has(a[data-footnote-ref]) {
   margin-left: 0.25em;
+}
+
+/* The footnote backref. remark-gfm writes a bare U+21A9 with no variation
+   selector, and the fonts the footnotes are drawn in — Inter, then the CJK
+   fallbacks — have no glyph for it, so on iOS the fallback chain ends at the
+   emoji font and the arrow arrives as the chunky coloured ↩️. The character
+   is hidden and drawn again as `::before` with the text-presentation selector
+   (U+FE0E) appended, which every renderer honours: a thin monochrome arrow.
+   Muted and underline-free — a utility mark beside the text, not a link
+   dressed like prose. */
+a[data-footnote-backref] {
+  font-size: 0;
+  text-decoration: none;
+}
+
+/* `::before`, not `::after`: a footnote referenced from several places in the
+   text gets one of these anchors per reference, and the second and later ones
+   end with a <sup> holding their reference number, which the arrow must
+   precede. */
+a[data-footnote-backref]::before {
+  content: "\21a9\FE0E";
+  margin-left: 0.25em;
+  font-size: 0.75rem;
+  color: var(--foreground-muted);
+}
+
+/* That reference number is a real <sup> inside the anchor, so preflight's
+   `75%` resolves against the anchor's zero size above. Give it its own size
+   to bring the numbers back. */
+a[data-footnote-backref] sup {
+  font-size: 0.625rem;
+  color: var(--foreground-muted);
 }
 
 /* A caption under an image, written in the note as a bare `<small>` on its own

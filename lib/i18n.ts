@@ -38,6 +38,7 @@ export type Dictionary = {
   feed: { title: string; description: string };
   note: {
     back: string;
+    top: string;
     contents: string;
     /**
      * Shown when a note is being read in a language it was never written in.
@@ -65,6 +66,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     feed: { title: "Notes from Wes", description: "The notes live here." },
     note: {
       back: "Back",
+      top: "Back to top",
       contents: "Contents",
       fallbackNotice: null,
     },
@@ -89,6 +91,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     feed: { title: "Wes 的随笔", description: "随笔在这里。" },
     note: {
       back: "返回",
+      top: "回到顶部",
       contents: "目录",
       fallbackNotice: "本文暂无中文版本，以下为英文原文。",
     },

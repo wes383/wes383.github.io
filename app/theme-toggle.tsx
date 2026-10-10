@@ -40,7 +40,15 @@ export function ThemeToggle({ labels }: { labels: Dictionary["theme"] }) {
   }
 
   return (
-    <button type="button" onClick={() => choose(next)} className={linkClass}>
+    // `aria-live` because the button's text is its state: when the click
+    // changes that text in place, polite live regions announce the new label,
+    // which is the only way a screen reader hears which theme it landed on.
+    <button
+      type="button"
+      onClick={() => choose(next)}
+      aria-live="polite"
+      className={linkClass}
+    >
       {labels.prefix}
       {labels[theme]}
     </button>
