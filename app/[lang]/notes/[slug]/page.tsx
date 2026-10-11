@@ -7,7 +7,7 @@ import { LanguageSwitcher } from "@/app/language-switcher";
 import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
 import { getDictionary, hasLocale, otherLocale } from "@/lib/i18n";
-import { getNote, getNoteHeadings, getNoteSlugs } from "@/lib/notes";
+import { getNote, getNoteHeadings, getNoteSlugs, noteLanguage } from "@/lib/notes";
 import { linkClass } from "@/lib/ui";
 import { NoteFoot } from "./note-foot";
 import { TableOfContents } from "./table-of-contents";
@@ -78,11 +78,17 @@ async function Note({
           {dict.note.back}
         </Link>
         <div className="flex items-center gap-6">
-          <LanguageSwitcher
-            to={other}
-            label={getDictionary(other).languageName}
-            href={`/${other}/notes/${slug}`}
-          />
+          {/* The switch is only offered when the other language can actually
+              serve this slug — a translation, or the fallback original. A note
+              written only in English points zh readers at it; pointing en
+              readers at a zh-only note would land on not-found. */}
+          {noteLanguage(other, slug) && (
+            <LanguageSwitcher
+              to={other}
+              label={getDictionary(other).languageName}
+              href={`/${other}/notes/${slug}`}
+            />
+          )}
           <ThemeToggle labels={dict.theme} />
         </div>
       </div>

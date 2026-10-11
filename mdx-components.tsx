@@ -132,7 +132,11 @@ export const components = {
     <em className="italic">{children}</em>
   ),
   blockquote: ({ children }: { children?: ReactNode }) => (
-    <blockquote className="my-6 text-sm leading-7 text-foreground-muted italic">
+    // No `italic`: the site's quotations are mostly Chinese, and CJK italics
+    // are the browser's synthetic slant, not a real face — Chinese typographic
+    // practice avoids them. The voice change is carried by size and colour,
+    // with a thin border marking the borrowed text.
+    <blockquote className="my-6 border-l border-foreground-muted/40 pl-4 text-sm leading-7 text-foreground-muted">
       {children}
     </blockquote>
   ),
