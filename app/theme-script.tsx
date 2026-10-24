@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 
 /**
@@ -24,11 +24,13 @@ export function ThemeScript() {
   // The server asks for inserted HTML more than once while it writes a
   // document, and every ask re-registers this callback; handing the script over
   // once per mounted component keeps it from being written out on each of them.
-  const [handedOver] = useState(() => ({ done: false }));
+  // A ref, not state: this is a flag the renderer writes to, never something
+  // the UI reads, so changing it must not schedule a render.
+  const handedOver = useRef(false);
 
   useServerInsertedHTML(() => {
-    if (handedOver.done) return null;
-    handedOver.done = true;
+    if (handedOver.current) return null;
+    handedOver.current = true;
 
     return (
       <script

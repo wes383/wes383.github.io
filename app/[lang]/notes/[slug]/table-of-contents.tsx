@@ -6,6 +6,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { NoteHeading } from "@/lib/notes";
@@ -16,6 +17,21 @@ const MIN_BAR = 24;
 
 /** Mirrors `xl`, the width at which the contents moves beside the text. */
 const BESIDE_THE_TEXT = "(min-width: 1280px)";
+
+function subscribeToBreakpoint(onChange: () => void) {
+  const query = window.matchMedia(BESIDE_THE_TEXT);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function isBesideTheText() {
+  return window.matchMedia(BESIDE_THE_TEXT).matches;
+}
+
+/** Undecided: a prerender has no viewport, so the markup carries both answers. */
+function undecided() {
+  return null;
+}
 
 /**
  * How far below the top of the viewport a heading counts as reached, in pixels.
@@ -42,7 +58,7 @@ const EDGE = 48;
  * screen there is room for it, in the flow above the note on a narrow one there
  * is not. The breakpoint isn't known while the page is being prerendered, so the
  * initial state is left undecided and the markup carries both answers — the CSS
- * hides the list below `xl` until the effect below settles the matter.
+ * hides the list below `xl` until the media query subscription settles it.
  *
  * From `xl` the column is capped to the viewport and scrolls on its own, so a
  * long contents never runs past the bottom of the screen. Its native scrollbar
@@ -62,8 +78,15 @@ export function TableOfContents({
   headings: NoteHeading[];
   label: string;
 }) {
-  // `null` until the reader (or the effect) decides.
-  const [open, setOpen] = useState<boolean | null>(null);
+  // `null` until the breakpoint (or the reader) decides.
+  const besideTheText = useSyncExternalStore<boolean | null>(
+    subscribeToBreakpoint,
+    isBesideTheText,
+    undecided,
+  );
+  // A toggle the reader presses outranks the breakpoint from then on.
+  const [chosen, setChosen] = useState<boolean | null>(null);
+  const open = chosen ?? besideTheText;
   const expanded = open !== false;
   const [bar, setBar] = useState<{
     height: number;
@@ -76,10 +99,6 @@ export function TableOfContents({
   // The section the reader is in, or `null` while the note's opening lines —
   // which belong to no section — are on screen.
   const [current, setCurrent] = useState<string | null>(null);
-
-  useEffect(() => {
-    setOpen(window.matchMedia(BESIDE_THE_TEXT).matches);
-  }, []);
 
   const measure = useCallback(() => {
     const element = scroller.current;
@@ -255,7 +274,7 @@ export function TableOfContents({
             type="button"
             aria-expanded={expanded}
             aria-controls="contents"
-            onClick={() => setOpen(!expanded)}
+            onClick={() => setChosen(!expanded)}
             className={linkClass}
           >
             {label}

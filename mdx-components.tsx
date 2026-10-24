@@ -195,8 +195,15 @@ export const components = {
   // being stretched up to the text — which only ever made it blurrier. It is
   // centred whatever its width; the caption below stays left aligned, which is
   // where a full sentence is easier to read.
-  img: ({ className, ...props }: ComponentPropsWithoutRef<"img">) => (
+  //
+  // A plain `img` on purpose: these come from Markdown, so neither their size
+  // nor their intrinsic aspect ratio is known here, which `next/image` needs —
+  // and the site is served statically, with no optimiser behind it anyway. An
+  // `alt` the author left out becomes empty, marking the picture decorative.
+  img: ({ className, alt, ...props }: ComponentPropsWithoutRef<"img">) => (
+    // eslint-disable-next-line @next/next/no-img-element -- see above
     <img
+      alt={alt ?? ""}
       className={["mx-auto my-6 max-w-full rounded-xl", className]
         .filter(Boolean)
         .join(" ")}

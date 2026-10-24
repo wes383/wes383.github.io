@@ -1,11 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { Dictionary } from "@/lib/i18n";
 import { linkClass } from "@/lib/ui";
 
 const themes = ["auto", "light", "dark"] as const;
 type Theme = (typeof themes)[number];
+
+/**
+ * The theme actually applied to the page, read back from `<html data-theme>`.
+ *
+ * That attribute is the single source of truth: the layout's script writes it
+ * before the first paint and `choose` writes it on every click, so reading it
+ * here avoids holding a second, easily-desynced copy in state.
+ */
+function appliedTheme(): Theme | null {
+  const applied = document.documentElement.dataset.theme;
+  return applied === "light" || applied === "dark" ? applied : null;
+}
+
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+  return () => observer.disconnect();
+}
+
+/** Nothing is applied while prerendering, so the script has yet to speak. */
+function serverTheme(): Theme {
+  return "auto";
+}
 
 /**
  * One button cycling through three states, rather than three buttons: at this
@@ -17,19 +43,15 @@ type Theme = (typeof themes)[number];
  * before the first paint by the script in the layout.
  */
 export function ThemeToggle({ labels }: { labels: Dictionary["theme"] }) {
-  const [theme, setTheme] = useState<Theme>("auto");
+  // Subscribing to the attribute rather than seeding state in an effect means
+  // the label follows every write to it — including the layout script's, which
+  // lands before hydration and would otherwise leave "Auto" showing on a dark
+  // page until something else re-rendered.
+  const theme =
+    useSyncExternalStore(subscribe, appliedTheme, serverTheme) ?? "auto";
   const next = themes[(themes.indexOf(theme) + 1) % themes.length];
 
-  // The layout's script may already have run, so the applied theme is the
-  // truth; start from it rather than flashing "Auto" on a dark page.
-  useEffect(() => {
-    const applied = document.documentElement.dataset.theme;
-    if (applied === "light" || applied === "dark") setTheme(applied);
-  }, []);
-
   function choose(choice: Theme) {
-    setTheme(choice);
-
     if (choice === "auto") delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = choice;
 
