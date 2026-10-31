@@ -63,6 +63,45 @@
   outline-offset: 2px;
 }
 
+/* The skip link. Hidden with the same clip-path trick as `sr-only` rather than
+   `display: none`, so it stays focusable; on focus it is pinned over the page
+   in the site's own colours, out of the flow and impossible to miss. */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  overflow: visible;
+  clip-path: none;
+  border-radius: 0.375rem;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+/* The skip link's destination. It is a place in the page, not a control, so
+   the site-wide focus ring would only draw a box around the content. */
+#content-start:focus-visible {
+  outline: none;
+}
+
 /* The eight cuneiform signs the writing-direction note draws on. It is Noto Sans
    Cuneiform, cut down by Google's own subsetting service to those eight
    codepoints — the whole block would have been 467 KB for a handful of glyphs.
@@ -194,6 +233,18 @@ section[data-footnotes] > h2 {
    smaller than the text it follows. */
 sup:has(a[data-footnote-ref]) + sup:has(a[data-footnote-ref]) {
   margin-left: 0.25em;
+}
+
+/* The reference number is a link, but an underline under a superscript hangs
+   below the line of text and reads as a stray rule; the raised number is
+   affordance enough, and hovering mutes it as the click cue. Only the note
+   numbers lose the underline — prose links keep theirs. */
+sup a[data-footnote-ref] {
+  text-decoration: none;
+}
+
+sup a[data-footnote-ref]:hover {
+  color: var(--foreground-muted);
 }
 
 /* The footnote backref. remark-gfm writes a bare U+21A9 with no variation

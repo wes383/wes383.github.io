@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { lang as rootLang } from "next/root-params";
@@ -6,8 +6,24 @@ import { Suspense } from "react";
 import { LanguageSwitcher } from "@/app/language-switcher";
 import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
-import { getDictionary, hasLocale, otherLocale } from "@/lib/i18n";
-import { getNote, getNoteHeadings, getNoteSlugs, noteLanguage } from "@/lib/notes";
+import {
+  getDictionary,
+  hasLocale,
+  locales,
+  otherLocale,
+} from "@/lib/i18n";
+import {
+  getNote,
+  getNoteHeadings,
+  getNoteSlugs,
+  noteLanguage,
+  noteLanguagePaths,
+} from "@/lib/notes";
+import {
+  openGraphLocale,
+  siteName,
+  twitterHandle,
+} from "@/lib/site";
 import { linkClass } from "@/lib/ui";
 import { NoteFoot } from "./note-foot";
 import { TableOfContents } from "./table-of-contents";
@@ -21,16 +37,54 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps<"/[lang]/notes/[slug]">): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: PageProps<"/[lang]/notes/[slug]">,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!hasLocale(lang)) return {};
 
   const note = await getNote(lang, slug);
   if (!note) return {};
 
-  return { title: note.metadata.title, description: note.metadata.summary };
+  // Writing `openGraph` here replaces the layout's whole object, and the card
+  // image is part of it — it comes from `opengraph-image.tsx` beside the
+  // layout, not from the object itself. Carry the images over by hand.
+  const { openGraph, twitter } = await parent;
+  const paths = noteLanguagePaths(slug);
+  const translations = locales.filter((other) => other !== lang && paths[other]);
+  const xDefault = paths.en ?? paths.zh ?? `/${lang}/notes/${slug}`;
+
+  return {
+    title: note.metadata.title,
+    description: note.metadata.summary,
+    alternates: {
+      canonical: `/${lang}/notes/${slug}`,
+      languages: { ...paths, "x-default": xDefault },
+      types: { "application/atom+xml": `/${lang}/atom.xml` },
+    },
+    openGraph: {
+      type: "article",
+      siteName,
+      locale: openGraphLocale[lang],
+      alternateLocale: translations.map((other) => openGraphLocale[other]),
+      url: `/${lang}/notes/${slug}`,
+      title: note.metadata.title,
+      description: note.metadata.summary,
+      // The note's date is a day where it was written, not UTC midnight.
+      publishedTime: `${note.metadata.date}T00:00:00+08:00`,
+      authors: [siteName],
+      images: openGraph?.images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: twitterHandle,
+      creator: twitterHandle,
+      title: note.metadata.title,
+      description: note.metadata.summary,
+      images: twitter?.images,
+    },
+  };
 }
 
 export default function NotePage({
@@ -93,7 +147,10 @@ async function Note({
         </div>
       </div>
 
-      <header className="mt-8 mb-8">
+      {/* The skip link's landing point: past the row of controls, but still on
+          the title, which is where a reader — or a screen reader — wants to
+          start. */}
+      <header id="content-start" tabIndex={-1} className="mt-8 mb-8">
         <h1 className="text-xl font-semibold tracking-tight text-balance">
           {note.metadata.title}
         </h1>

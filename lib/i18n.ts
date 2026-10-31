@@ -17,7 +17,9 @@ export function otherLocale(lang: Locale): Locale {
 }
 
 export type Dictionary = {
-  meta: { title: string };
+  meta: { title: string; description: string };
+  /** Strings the page needs for reasons other than the text it says. */
+  a11y: { skipToContent: string };
   home: {
     heading: string;
     /**
@@ -54,7 +56,12 @@ export type Dictionary = {
 
 export const dictionaries: Record<Locale, Dictionary> = {
   en: {
-    meta: { title: "Home" },
+    meta: {
+      title: "Home",
+      description:
+        "Notes by Wes Wei on history, technology, and why things are the way they are.",
+    },
+    a11y: { skipToContent: "Skip to content" },
     home: {
       heading: "I'm Wes Wei.",
       findMePrefix: "Find me on ",
@@ -79,7 +86,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     languageName: "English",
   },
   zh: {
-    meta: { title: "首页" },
+    meta: {
+      title: "首页",
+      description: "Wes Wei 的随笔：关于历史、技术，以及事物为何如此。",
+    },
+    a11y: { skipToContent: "跳到正文" },
     home: {
       heading: "我是 Wes Wei。",
       findMePrefix: "在 ",

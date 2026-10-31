@@ -23,7 +23,8 @@ export default async function NotFound() {
   const dict = getDictionary(language);
 
   return (
-    <div>
+    // The skip link's landing point, so the link still works on a dead end.
+    <div id="content-start" tabIndex={-1}>
       <h1 className="text-sm font-medium">{dict.notFound.title}</h1>
       <p className="mt-3 max-w-md text-sm leading-7 text-foreground-muted">
         {dict.notFound.body}

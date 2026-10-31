@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ComponentType } from "react";
 import GithubSlugger from "github-slugger";
-import type { Locale } from "./i18n";
+import { locales, type Locale } from "./i18n";
 
 export type NoteMeta = {
   title: string;
@@ -48,6 +48,21 @@ export function noteLanguage(lang: Locale, slug: string): Locale | null {
   if (slugsIn(lang).includes(slug)) return lang;
   if (lang !== FALLBACK && slugsIn(FALLBACK).includes(slug)) return FALLBACK;
   return null;
+}
+
+/**
+ * Every language a note can be read in — a fallback counts, since that URL is
+ * a real page — and the path it lives at. For hreflang, the sitemap, and the
+ * canonical links that point the two versions at each other.
+ */
+export function noteLanguagePaths(
+  slug: string,
+): Partial<Record<Locale, string>> {
+  const paths: Partial<Record<Locale, string>> = {};
+  for (const lang of locales) {
+    if (noteLanguage(lang, slug)) paths[lang] = `/${lang}/notes/${slug}`;
+  }
+  return paths;
 }
 
 /** Everything on the site for a reader browsing `lang`, translations included. */

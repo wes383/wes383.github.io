@@ -82,7 +82,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </a>
       </div>
 
-      <section className="mt-14">
+      {/* The skip link's landing point: past the introduction and the row of
+          controls, at the notes themselves. */}
+      <section id="content-start" tabIndex={-1} className="mt-14">
         <h2 className="text-sm font-medium text-foreground-muted">
           {dict.home.notes}
         </h2>
