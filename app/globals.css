@@ -279,26 +279,50 @@ a[data-footnote-backref] sup {
   color: var(--foreground-muted);
 }
 
-/* A caption under an image, written in the note as a bare `<small>` on its own
-   line. It is styled here rather than in `mdx-components.tsx` because MDX hands
-   a literal tag like this one through as the plain element instead of looking it
-   up in the components object — and it is the only place on the site that needs
-   text below the body's size. One step down, muted, like every other aside; it
-   is block-level because that is the only way it is ever used. */
-small {
+/* An image and its caption are one figure, written out as raw HTML in the note
+   so the caption stays attached to the picture for assistive technology. The
+   figure owns the vertical rhythm; the image itself sits flush inside it. */
+figure:has(> img) {
+  margin: 1.5rem 0;
+}
+
+/* Self-contained because a raw `<img>` in MDX may reach the browser without the
+   component's utility classes. `display: block` also removes the baseline gap an
+   inline image leaves under itself. */
+figure > img {
   display: block;
-  margin-bottom: 1.5rem;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+}
+
+/* One step below the body, muted, like every other aside. */
+figure > figcaption {
+  margin-top: 0.5rem;
   font-size: 0.75rem;
   line-height: 1.5rem;
   color: var(--foreground-muted);
 }
 
-/* An image sits alone in its own paragraph, and that paragraph is what carries
-   the wide margin around it. A caption written as a bare `<small>` underneath is
-   therefore pulled back up, so that it reads as belonging to the image above it
-   rather than to the paragraph that follows. */
-p:has(> img) + small {
-  margin-top: -1rem;
+/* Captions carry attribution links. Styled here as well as in the link
+   component, because raw HTML inside the figure is not guaranteed to pass
+   through it. */
+figure > figcaption a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(
+    in oklab,
+    var(--foreground-muted) 40%,
+    transparent
+  );
+  text-underline-offset: 4px;
+  transition: text-decoration-color 150ms;
+}
+
+figure > figcaption a:hover {
+  text-decoration-color: var(--foreground);
 }
 
 /* The contents marks the section being read: that entry takes the full-strength

@@ -179,8 +179,10 @@ export const components = {
       </div>
     );
   },
-  // The highlighter wraps every block in a `<figure>`; clear its default margins
-  // so code lines up with the text column.
+  // The highlighter wraps every code block in a `<figure>`; clear its default
+  // margins so code lines up with the text column. Image figures are raw HTML in
+  // the notes — the same markup has to survive into the Atom feed — so their
+  // spacing lives in `globals.css`.
   figure: ({
     children,
     className,
