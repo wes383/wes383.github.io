@@ -47,6 +47,10 @@ export function proxy(request: NextRequest) {
 
   if (hasLocale(first)) return;
 
+  // API routes have no language version; prefixing them would break the paths
+  // the browser fetches.
+  if (first === "api") return;
+
   // A language picked by hand outlives the browser's own preference: the reader
   // who switched once should not be switched back on their next visit.
   const chosen = request.cookies.get("lang")?.value;

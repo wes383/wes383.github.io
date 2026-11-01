@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { DirectionSwitch } from "@/components/direction-switch";
+import { ReleaseTimeline } from "@/components/release-timeline";
 import { TabletRotation } from "@/components/tablet-rotation";
 import { proseLinkClass } from "@/lib/ui";
 
@@ -237,6 +238,7 @@ export const components = {
   // passed by hand — nothing in the MDX tree knows what language it is in.
   TabletRotation,
   DirectionSwitch,
+  ReleaseTimeline,
 };
 
 export function useMDXComponents() {
