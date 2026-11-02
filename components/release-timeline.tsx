@@ -6,10 +6,11 @@ import type {
   MovieReleases,
   MovieSearchPage,
   MovieSearchResult,
-  ReleaseRecord,
 } from "@/lib/tmdb";
 
 type Mode = "cinema" | "all";
+
+const CINEMA_TYPES = [1, 2, 3];
 
 type Status = "idle" | "loading" | "done" | "error" | "unavailable";
 
@@ -88,7 +89,7 @@ const COPY: Record<Locale, Copy> = {
     cinema: "Cinema",
     all: "All releases",
     modeNote:
-      "Cinema uses the earliest premiere, limited or wide theatrical date. All releases also includes digital, physical and TV dates.",
+      "Cinema lists every premiere, limited and wide theatrical date. All releases also include digital, physical and TV dates.",
     first: "First release",
     last: "Last release",
     markets: "Markets with a date",
@@ -160,7 +161,7 @@ const COPY: Record<Locale, Copy> = {
     cinema: "影院上映",
     all: "所有发行",
     modeNote:
-      "影院上映取最早的预售/首映、有限院线或广泛院线日期；所有发行还包括数字、实体和电视。",
+      "影院上映列出每一条预售/首映、有限院线和广泛院线日期；所有发行还包括数字、实体和电视。",
     first: "最早",
     last: "最晚",
     markets: "有记录的市场",
@@ -323,7 +324,13 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
         }
         setMovie(data);
         setMode(
-          data.countries.some((country) => country.cinema) ? "cinema" : "all",
+          data.countries.some((country) =>
+            country.records.some((record) =>
+              CINEMA_TYPES.includes(record.type),
+            ),
+          )
+            ? "cinema"
+            : "all",
         );
         setReleaseStatus("done");
       })
@@ -341,13 +348,23 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
   const rows = useMemo(() => {
     if (!movie) return [];
     return movie.countries
-      .map((country) => (mode === "cinema" ? country.cinema : country.all))
-      .filter((entry): entry is ReleaseRecord => entry !== null)
+      .flatMap((country) =>
+        country.records.filter(
+          (record) => mode === "all" || CINEMA_TYPES.includes(record.type),
+        ),
+      )
       .sort(
         (a, b) =>
-          a.date.localeCompare(b.date) || a.country.localeCompare(b.country),
+          a.date.localeCompare(b.date) ||
+          a.country.localeCompare(b.country) ||
+          a.type - b.type,
       );
   }, [movie, mode]);
+
+  const marketCount = useMemo(
+    () => new Set(rows.map((record) => record.country)).size,
+    [rows],
+  );
 
   const first = rows[0] ?? null;
   const last = rows[rows.length - 1] ?? null;
@@ -686,7 +703,7 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
                           {copy.markets}
                         </dt>
                         <dd className="mt-1 text-xs text-foreground">
-                          {numberFormatter.format(rows.length)}
+                          {numberFormatter.format(marketCount)}
                         </dd>
                       </div>
                     </dl>
@@ -707,7 +724,9 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
                               ? 0
                               : Math.max(2, (delay / maxDelay) * 100);
                           return (
-                            <li key={entry.country}>
+                            <li
+                              key={`${entry.country}-${entry.date}-${entry.type}`}
+                            >
                               <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                                 <span className="min-w-0 truncate text-xs text-foreground">
                                   {countryName(entry.country)}

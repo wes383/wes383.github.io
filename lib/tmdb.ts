@@ -24,10 +24,8 @@ export type ReleaseRecord = {
 
 export type CountryRelease = {
   country: string;
-  /** Earliest premiere, limited or wide theatrical date. */
-  cinema: ReleaseRecord | null;
-  /** Earliest record of any kind, including digital, physical and TV. */
-  all: ReleaseRecord | null;
+  /** Every dated release, earliest first. */
+  records: ReleaseRecord[];
 };
 
 export type MovieReleases = {
@@ -148,16 +146,10 @@ function displayTitle(
   );
 }
 
-function earliest(
-  records: ReleaseRecord[],
-  types?: number[],
-): ReleaseRecord | null {
-  const eligible = types
-    ? records.filter((record) => types.includes(record.type))
-    : records;
-  if (eligible.length === 0) return null;
+function earliest(records: ReleaseRecord[]): ReleaseRecord | null {
+  if (records.length === 0) return null;
 
-  return eligible.reduce((first, record) => {
+  return records.reduce((first, record) => {
     if (record.date < first.date) return record;
     if (record.date === first.date && record.type < first.type) return record;
     return first;
@@ -211,34 +203,28 @@ export async function getMovieReleases(
     const code = country.iso_3166_1?.toUpperCase();
     if (!code) continue;
 
-    const records: ReleaseRecord[] = [];
+    const recordsByDate = new Map<string, ReleaseRecord>();
     for (const release of country.release_dates ?? []) {
       const date = isoDate(release.release_date);
       if (!date) continue;
-      records.push({
-        country: code,
-        date,
-        type: Number(release.type) || 0,
-      });
+      const type = Number(release.type) || 0;
+      const key = `${date}:${type}`;
+      if (!recordsByDate.has(key)) {
+        recordsByDate.set(key, { country: code, date, type });
+      }
     }
 
-    const all = earliest(records);
-    if (!all) continue;
+    const records = [...recordsByDate.values()].sort(
+      (a, b) => a.date.localeCompare(b.date) || a.type - b.type,
+    );
+    if (records.length === 0) continue;
 
-    countries.push({
-      country: code,
-      cinema: earliest(records, [1, 2, 3]),
-      all,
-    });
+    countries.push({ country: code, records });
   }
 
-  const earliestOverall = countries
-    .map((country) => country.all)
-    .filter((record): record is ReleaseRecord => record !== null)
-    .reduce<ReleaseRecord | null>(
-      (first, record) => (!first || record.date < first.date ? record : first),
-      null,
-    );
+  const earliestOverall = earliest(
+    countries.flatMap((country) => country.records),
+  );
 
   return {
     id: Number(data.id) || id,
