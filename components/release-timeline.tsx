@@ -6,6 +6,7 @@ import type {
   MovieReleases,
   MovieSearchPage,
   MovieSearchResult,
+  ReleaseRecord,
 } from "@/lib/tmdb";
 
 type Mode = "cinema" | "all";
@@ -366,9 +367,23 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
     [rows],
   );
 
+  const last = useMemo(() => {
+    // Rows are date-sorted, so a country's first appearance is its debut.
+    const seen = new Set<string>();
+    let latest: ReleaseRecord | null = null;
+    for (const record of rows) {
+      if (seen.has(record.country)) continue;
+      seen.add(record.country);
+      if (!latest || record.date > latest.date) latest = record;
+    }
+    return latest;
+  }, [rows]);
+
   const first = rows[0] ?? null;
-  const last = rows[rows.length - 1] ?? null;
-  const maxDelay = first && last ? daysBetween(first.date, last.date) : 0;
+  const lastRecord = rows[rows.length - 1] ?? null;
+  const maxDelay =
+    first && lastRecord ? daysBetween(first.date, lastRecord.date) : 0;
+  const lastDelay = first && last ? daysBetween(first.date, last.date) : 0;
 
   function countryName(code: string) {
     const override = copy.countryNames[code];
@@ -688,9 +703,9 @@ export function ReleaseTimeline({ lang }: { lang: Locale }) {
                                 {dateLabel(last.date)}
                               </time>
                               {" · "}
-                              {maxDelay === 0
+                              {lastDelay === 0
                                 ? copy.sameDay
-                                : `${spanLabel(maxDelay)}${copy.laterSuffix}`}
+                                : `${spanLabel(lastDelay)}${copy.laterSuffix}`}
                             </>
                           ) : (
                             copy.sameDay
