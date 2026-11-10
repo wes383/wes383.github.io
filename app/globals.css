@@ -158,6 +158,13 @@
   outline: none;
 }
 
+/* The same for a heading the contents has jumped to: it takes focus so that the
+   next Tab carries on from that section rather than from the contents, but it is
+   a destination, not a control — see `jumpTo` in `table-of-contents.tsx`. */
+[data-jump-target]:focus-visible {
+  outline: none;
+}
+
 /* The eight cuneiform signs the writing-direction note draws on. It is Noto Sans
    Cuneiform, cut down by Google's own subsetting service to those eight
    codepoints — the whole block would have been 467 KB for a handful of glyphs.
@@ -433,6 +440,19 @@ figure > figcaption a:hover {
 
 ::view-transition-new(.page) {
   animation: var(--dur-page) var(--ease-out) 70ms both site-fade;
+}
+
+/* A language switch is the same page in another language, so it is a cross-fade
+   rather than a cut: the two versions overlap while they trade places, which
+   says "this page, in English" instead of "you have gone somewhere else". It is
+   the only pair that overlaps, and the only one where nothing moves — the
+   layout is identical on both sides, so there is never text at two positions. */
+::view-transition-old(.lang) {
+  animation: var(--dur-fast) ease-in both site-fade reverse;
+}
+
+::view-transition-new(.lang) {
+  animation: var(--dur-base) var(--ease-out) both site-fade;
 }
 
 /* The root snapshot is suppressed everywhere: page fades are driven by `.page`

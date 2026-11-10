@@ -97,8 +97,13 @@ export default function NotePage({
       {/* The note fades in over the list it was opened from, and back out when
           the reader leaves — see `.page` in `globals.css`. It wraps the note
           inside the boundary, so the enter belongs to the article rather than
-          to the placeholder above it. */}
-      <ViewTransition enter="page" exit="page" default="none">
+          to the placeholder above it. The same note in the other language takes
+          the overlapping `.lang` pair, since nothing has been left behind. */}
+      <ViewTransition
+        enter={{ lang: "lang", default: "page" }}
+        exit={{ lang: "lang", default: "page" }}
+        default="none"
+      >
         <Note params={params} />
       </ViewTransition>
     </Suspense>

@@ -29,6 +29,10 @@ export function LanguageSwitcher({
       // needs its own tag for the screen reader's voice to switch with it.
       lang={to}
       className={linkClass}
+      // What is being replaced is the same page, not the site: the pages map
+      // this type to a cross-fade so the two languages trade places instead of
+      // one leaving before the other arrives.
+      transitionTypes={["lang"]}
       onClick={() => {
         // A year, so that coming back to `/` lands on the language they chose
         // rather than the one their system suggests.
