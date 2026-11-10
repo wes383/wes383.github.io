@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { NoteHeading } from "@/lib/notes";
@@ -49,6 +50,14 @@ const REACHED = 96;
  * is never left under it.
  */
 const EDGE = 48;
+
+/**
+ * Read at the moment of the jump rather than once at load: a reader can turn the
+ * setting on while the note is open, and the next link should obey it.
+ */
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 /**
  * A note's contents. Collapsible because a long note can list a dozen sections,
@@ -259,6 +268,50 @@ export function TableOfContents({
     }
   }
 
+  /**
+   * A contents link is a move through the note, and a jump gives that move no
+   * direction: the reader lands somewhere with no sense of having travelled, and
+   * in a long note no idea whether the section was above or below where they
+   * were. Scrolling there says which, and takes the same time either way.
+   *
+   * It stays an ordinary link underneath. The hash is written by hand because
+   * preventing the default jump also prevents the one that writes it, and the
+   * heading is focused — with `preventScroll`, so focus does not snap to it
+   * ahead of the animation — because the browser's own jump would have moved the
+   * point the next Tab continues from. Without that, Tab after a jump would walk
+   * the contents instead of the note.
+   */
+  function jumpTo(event: ReactMouseEvent<HTMLAnchorElement>, id: string) {
+    const heading = document.getElementById(id);
+    if (!heading) return;
+
+    // A modified click opens a new tab or window, and the browser's own
+    // navigation is the right one there.
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    history.pushState(null, "", `#${id}`);
+
+    // A heading is where the reader lands rather than a control, so it asks not
+    // to draw the site's focus ring — see `[data-jump-target]` in `globals.css`.
+    heading.dataset.jumpTarget = "";
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+
+    heading.scrollIntoView({
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+      block: "start",
+    });
+  }
+
   return (
     <div className="group xl:sticky xl:top-14">
       {/* The links carry `-mx-2`, so the box that clips them has to be 8px wider
@@ -312,6 +365,7 @@ export function TableOfContents({
                 <li key={heading.id}>
                   <a
                     href={`#${heading.id}`}
+                    onClick={(event) => jumpTo(event, heading.id)}
                     aria-current={
                       current === heading.id ? "location" : undefined
                     }
@@ -325,6 +379,7 @@ export function TableOfContents({
                         <li key={child.id}>
                           <a
                             href={`#${child.id}`}
+                            onClick={(event) => jumpTo(event, child.id)}
                             aria-current={
                               current === child.id ? "location" : undefined
                             }
