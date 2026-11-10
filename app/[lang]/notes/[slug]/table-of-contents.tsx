@@ -217,7 +217,8 @@ export function TableOfContents({
   // current entry can be out of sight even though the page is tracking it
   // correctly. This brings it back only when that happens — an entry still well
   // inside the view is left where it is — and never touches the page's own
-  // scroll.
+  // scroll. It glides rather than jumps: a column that snapped an entry into
+  // view every few lines of reading would draw attention to itself on every one.
   const reveal = useCallback((id: string) => {
     const element = scroller.current;
     if (!element) return;
@@ -236,11 +237,23 @@ export function TableOfContents({
     const box = element.getBoundingClientRect();
     const rect = link.getBoundingClientRect();
 
+    // How far the column has to travel, and in which direction — nothing at all
+    // for an entry that is still well inside the visible part.
+    let by = 0;
     if (rect.top < box.top + EDGE) {
-      element.scrollTop -= box.top + EDGE - rect.top;
+      by = rect.top - (box.top + EDGE);
     } else if (rect.bottom > box.bottom - EDGE) {
-      element.scrollTop += rect.bottom - box.bottom + EDGE;
+      by = rect.bottom - (box.bottom - EDGE);
     }
+    if (by === 0) return;
+
+    // `scrollTo` rather than assigning `scrollTop`: the bar below is dragged by
+    // writing `scrollTop` on every pointer move, and it must answer the pointer
+    // without a lag. The smoothness belongs to this call, not to the element.
+    element.scrollTo({
+      top: element.scrollTop + by,
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
   }, []);
 
   // A jump of several sections moves `current` through each one on the way, and
