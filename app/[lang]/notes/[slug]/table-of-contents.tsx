@@ -287,47 +287,59 @@ export function TableOfContents({
             />
           </button>
 
-          {/* Undecided: hide below `xl`, show at it. Decided: the class alone. */}
-          <ul
-            id="contents"
+          {/* Undecided: hidden below `xl`, open at it. Decided: the row alone.
+              The list stays in the DOM while closed — a height can only be
+              animated, not `display` — so its links are taken out of the tab
+              order by hand (`inert`); otherwise Tab would walk through a list
+              nobody can see. The row is what animates, from nothing to its own
+              height, and the list clips its contents on the way. */}
+          <div
             className={[
-              "mt-2 space-y-1",
-              open === null ? "hidden xl:block" : !open && "hidden",
-            ]
-              .filter(Boolean)
-              .join(" ")}
+              "grid transition-[grid-template-rows] duration-200 ease-[var(--ease-out)]",
+              open === null
+                ? "hidden xl:grid xl:grid-rows-[1fr]"
+                : open
+                  ? "grid-rows-[1fr]"
+                  : "grid-rows-[0fr]",
+            ].join(" ")}
           >
-            {headings.map((heading) => (
-              <li key={heading.id}>
-                <a
-                  href={`#${heading.id}`}
-                  aria-current={
-                    current === heading.id ? "location" : undefined
-                  }
-                  className={linkClass}
-                >
-                  {heading.text}
-                </a>
-                {heading.children.length > 0 ? (
-                  <ul className="mt-1 space-y-1 pl-4">
-                    {heading.children.map((child) => (
-                      <li key={child.id}>
-                        <a
-                          href={`#${child.id}`}
-                          aria-current={
-                            current === child.id ? "location" : undefined
-                          }
-                          className={linkClass}
-                        >
-                          {child.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+            <ul
+              id="contents"
+              inert={!expanded}
+              className="mt-2 min-h-0 space-y-1 overflow-hidden"
+            >
+              {headings.map((heading) => (
+                <li key={heading.id}>
+                  <a
+                    href={`#${heading.id}`}
+                    aria-current={
+                      current === heading.id ? "location" : undefined
+                    }
+                    className={linkClass}
+                  >
+                    {heading.text}
+                  </a>
+                  {heading.children.length > 0 ? (
+                    <ul className="mt-1 space-y-1 pl-4">
+                      {heading.children.map((child) => (
+                        <li key={child.id}>
+                          <a
+                            href={`#${child.id}`}
+                            aria-current={
+                              current === child.id ? "location" : undefined
+                            }
+                            className={linkClass}
+                          >
+                            {child.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {bar && !bar.atStart ? (
