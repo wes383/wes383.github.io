@@ -356,10 +356,14 @@ export function TableOfContents({
                   : "grid-rows-[0fr]",
             ].join(" ")}
           >
+            {/* `-mx-2 px-2` widens the box that clips by the same 8px the links'
+                `-mx-2` reaches out, so their hover background is cut at the
+                column's edge exactly as it was when nothing clipped it at all —
+                corners included. */}
             <ul
               id="contents"
               inert={!expanded}
-              className="mt-2 min-h-0 space-y-1 overflow-hidden"
+              className="mt-2 -mx-2 min-h-0 space-y-1 overflow-hidden px-2"
             >
               {headings.map((heading) => (
                 <li key={heading.id}>
