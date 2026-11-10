@@ -442,17 +442,29 @@ figure > figcaption a:hover {
   animation: var(--dur-page) var(--ease-out) 70ms both site-fade;
 }
 
-/* A language switch is the same page in another language, so it is a cross-fade
-   rather than a cut: the two versions overlap while they trade places, which
-   says "this page, in English" instead of "you have gone somewhere else". It is
-   the only pair that overlaps, and the only one where nothing moves — the
-   layout is identical on both sides, so there is never text at two positions. */
-::view-transition-old(.lang) {
-  animation: var(--dur-fast) ease-in both site-fade reverse;
+/* A switch of language is the one navigation React's own view transitions never
+   see: the route changes, but the page it renders is the same component in the
+   same place, and no transition is started for it at all. Nothing survives the
+   switch either — the tree is rebuilt from `<html>` down — so there is no
+   element left on the far side of it to carry a transition into. It is faded by
+   hand instead, on each side of the cut: the page dims on `leaving-language`
+   while the navigation waits (`language-fade.ts` holds it, then lets it go), and
+   the page that arrives fades itself in on its own animation — the one thing a
+   freshly built element can do where a transition cannot.
+
+   The same arrival is what a first load gets, which is why the page fades in
+   there too: it is the same event seen from the outside, a page appearing where
+   there was none. */
+main {
+  animation: var(--dur-base) var(--ease-out) site-fade;
 }
 
-::view-transition-new(.lang) {
-  animation: var(--dur-base) var(--ease-out) both site-fade;
+/* A running animation outranks a plain declaration, so the arrival has to be
+   taken off the page before it can be dimmed. */
+:root.leaving-language main {
+  animation: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease-in;
 }
 
 /* The root snapshot is suppressed everywhere: page fades are driven by `.page`
@@ -494,6 +506,13 @@ figure > figcaption a:hover {
   }
 
   .swap {
+    animation: none;
+  }
+
+  /* The page fades itself in when it is built; without motion it is simply
+     there. The dim before a language switch is skipped by the script that would
+     start it, so there is nothing to cancel here. */
+  main {
     animation: none;
   }
 }

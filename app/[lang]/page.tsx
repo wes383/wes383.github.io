@@ -41,16 +41,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     // layouts persist across navigations: an enter animation placed there would
     // never fire. `default="none"` keeps the page out of any other transition it
     // runs, such as the theme switch.
-    <ViewTransition
-      enter={{ lang: "lang", default: "page" }}
-      exit={{ lang: "lang", default: "page" }}
-      // A switch of language swaps the words of the page and leaves it where it
-      // is, so React reports an update rather than a mount — and only `update`
-      // answers that. Without this, the one navigation that is most obviously
-      // the same page again would be the only one that happened instantly.
-      update="lang"
-      default="none"
-    >
+    <ViewTransition enter="page" exit="page" default="none">
       <div>
         <section>
           <h1 className="text-sm font-medium">{dict.home.heading}</h1>

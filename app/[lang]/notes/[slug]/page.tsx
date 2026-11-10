@@ -97,15 +97,9 @@ export default function NotePage({
       {/* The note fades in over the list it was opened from, and back out when
           the reader leaves — see `.page` in `globals.css`. It wraps the note
           inside the boundary, so the enter belongs to the article rather than
-          to the placeholder above it. The same note in the other language keeps
-          the page in place and only replaces its words, which React reports as
-          an update — hence `update`, overlapping, rather than a mount. */}
-      <ViewTransition
-        enter={{ lang: "lang", default: "page" }}
-        exit={{ lang: "lang", default: "page" }}
-        update="lang"
-        default="none"
-      >
+          to the placeholder above it. A switch of language is faded by hand
+          instead, since no transition is started for it at all. */}
+      <ViewTransition enter="page" exit="page" default="none">
         <Note params={params} />
       </ViewTransition>
     </Suspense>
