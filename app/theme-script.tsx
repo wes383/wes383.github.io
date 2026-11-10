@@ -1,7 +1,31 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useServerInsertedHTML } from "next/navigation";
+
+/** What the toggle records, and what both halves below read back. */
+const KEY = "theme";
+
+/**
+ * The theme the reader picked, or `null` for one they left to the system — which
+ * is the absence of the attribute, not a third value to write.
+ */
+function storedTheme(): string | null {
+  try {
+    const theme = localStorage.getItem(KEY);
+    return theme === "light" || theme === "dark" ? theme : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * `useLayoutEffect` warns when it runs on the server, where there is nothing to
+ * lay out; the no-op stands in for it on that pass. In the browser this is the
+ * real thing, and it is the point: the theme has to be back before the paint.
+ */
+const useBeforePaint =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * The reader's stored theme, put back on <html> before the first paint.
@@ -19,6 +43,13 @@ import { useServerInsertedHTML } from "next/navigation";
  * nothing and this component renders nothing, so there is no script tag for
  * React to object to — and the one in the HTML still runs, because the parser
  * finds it there.
+ *
+ * Which leaves the one navigation that rebuilds the document after the fact: a
+ * switch of language is rendered from `<html>` down, and the attribute written
+ * by that script goes with the old root. Nothing on the far side runs the script
+ * again, so the theme is applied a second time here — in a layout effect, before
+ * the paint, rather than in an effect that would let the system's colours show
+ * for a frame first.
  */
 export function ThemeScript() {
   // The server asks for inserted HTML more than once while it writes a
@@ -35,12 +66,19 @@ export function ThemeScript() {
     return (
       <script
         dangerouslySetInnerHTML={{
-          __html:
-            'try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}',
+          __html: `try{var t=localStorage.getItem("${KEY}");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
         }}
       />
     );
   });
+
+  // Runs on mount, which is every page load — the script has usually done this
+  // already, so the write is a no-op — and after the document is rebuilt by a
+  // switch of language, where it is the only thing that puts the theme back.
+  useBeforePaint(() => {
+    const theme = storedTheme();
+    if (theme) document.documentElement.dataset.theme = theme;
+  }, []);
 
   return null;
 }
