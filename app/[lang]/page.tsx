@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment, ViewTransition } from "react";
+import { HomeScroll } from "@/app/home-scroll";
 import { LanguageSwitcher } from "@/app/language-switcher";
 import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
@@ -43,6 +44,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     // runs, such as the theme switch.
     <ViewTransition enter="page" exit="page" default="none">
       <div>
+        {/* Puts the list back where the reader left it — see `home-scroll.tsx`. */}
+        <HomeScroll />
         <section>
           <h1 className="text-sm font-medium">{dict.home.heading}</h1>
           <p className="mt-3 max-w-md text-sm leading-7 text-foreground-muted">

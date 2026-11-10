@@ -135,7 +135,7 @@ async function Note({
           this article — that would push the article down and start the contents
           column 2rem below the `top-14` it sticks at. */}
       <div className="flex items-center justify-between">
-        <Link href={`/${lang}`} className={linkClass}>
+        <Link href={`/${lang}`} scroll={false} className={linkClass}>
           {dict.note.back}
         </Link>
         <div className="flex items-center gap-6">
@@ -209,7 +209,7 @@ async function Note({
           left to `NoteFoot`, because on a note that fits in one screenful
           neither link has anything to do. */}
       <NoteFoot>
-        <Link href={`/${lang}`} className={linkClass}>
+        <Link href={`/${lang}`} scroll={false} className={linkClass}>
           {dict.note.back}
         </Link>
         <a href="#" className={linkClass}>
