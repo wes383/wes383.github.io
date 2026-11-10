@@ -101,17 +101,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   href={`/${lang}/notes/${note.slug}`}
                   className={titleLinkClass}
                 >
-                  {/* The same string, under the same name, is the note's own
-                      heading — so the title travels into the article rather
-                      than being replaced by it. Only the text is named: the
-                      link's padding and hover background stay behind. */}
-                  <ViewTransition
-                    name={`note-${note.slug}`}
-                    share="morph"
-                    default="none"
-                  >
-                    <span>{note.title}</span>
-                  </ViewTransition>
+                  {note.title}
                 </Link>
                 <p className="mt-0.5 text-xs text-foreground-muted">
                   {formatDate(note.date, lang)}

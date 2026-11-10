@@ -442,17 +442,6 @@ figure > figcaption a:hover {
   animation: var(--dur-page) var(--ease-out) 70ms both site-fade;
 }
 
-/* A title that leaves the list and becomes the article's heading. It is the one
-   element both pages hold, so it is the one thing allowed to take its time — a
-   little longer than the page fading around it, so the eye follows the words
-   across rather than arriving to find them already moved. Opacity is left alone:
-   the two copies are the same string, and a cross-fade between them would only
-   make it flicker. */
-::view-transition-group(.morph) {
-  animation-duration: 320ms;
-  animation-timing-function: var(--ease-out);
-}
-
 /* A switch of language has no animation, and cannot be given one here: it is the
    one navigation React starts no view transition for — the page it renders is
    the same component in the same place — and the tree is rebuilt from `<html>`
