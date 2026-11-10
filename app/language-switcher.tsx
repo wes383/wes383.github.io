@@ -9,6 +9,13 @@ import { linkClass } from "@/lib/ui";
  * server works out where it goes and this component exists only to remember the
  * choice: a language picked by hand should outlast the browser's own
  * preference, and only the reader's own browser can record it.
+ *
+ * It is also the one navigation on the site that does not animate. React starts
+ * no view transition for it — the page rendered is the same component in the
+ * same place — and the tree is rebuilt from `<html>` down, so nothing survives
+ * the switch to carry a fade into. Everything tried on top of that either left
+ * the page blank for as long as the payload took, or showed the old language
+ * again before the new one arrived. A plain cut is the honest result.
  */
 export function LanguageSwitcher({
   to,

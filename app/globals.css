@@ -397,26 +397,19 @@ figure > figcaption a:hover {
   color: var(--foreground);
 }
 
-/* Motion. The whole vocabulary is five values: four durations, for the
-   distances something can travel, and two curves. Everything below, and every
+/* Motion. The whole vocabulary is four values: three durations, for the three
+   distances something can travel, and one curve. Everything below, and every
    `transition-*` in the components, is one of them — a site this quiet cannot
    afford a second set of timings that nobody can see agreeing.
 
    Arrivals ease out, so they come to rest rather than stop; departures ease in,
    so they are already moving when they go. Nothing here animates a position:
-   the text is the page, and moving it would undo the typography.
-
-   The exception is a page's own opacity, which takes the even curve: the strong
-   ease-out is right for an element arriving into a page that is already there,
-   but over a whole page it puts nine tenths of the fade into the first fifth of
-   the time, and what is left reads as a page that appeared and then lingered. */
+   the text is the page, and moving it would undo the typography. */
 :root {
   --dur-fast: 120ms; /* pointer feedback, and anything leaving */
   --dur-base: 200ms; /* a state change inside the page */
   --dur-page: 180ms; /* a page arriving, after a 70ms beat */
-  --dur-arrive: 300ms; /* a page appearing where there was none */
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
-  --ease-fade: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes site-fade {
@@ -449,26 +442,11 @@ figure > figcaption a:hover {
   animation: var(--dur-page) var(--ease-out) 70ms both site-fade;
 }
 
-/* A switch of language is the one navigation React's own view transitions never
-   see: the route changes, but the page it renders is the same component in the
-   same place, and no transition is started for it at all. Nothing survives the
-   switch either — the tree is rebuilt from `<html>` down — so there is no
-   element on the far side of it to carry a transition into. What is left is the
-   arrival, and an arrival is what an animation does and a transition cannot: the
-   page fades itself in as it is built, with no help from the route.
-
-   Only the arrival, though. The page is not dimmed before the switch, because
-   the wait for the other language is a network's, not a designer's: dimming
-   first means staring at a blank page for as long as the payload takes, on a
-   slow connection, and any timer put in to cut that short shows the old page
-   again before the new one is ready.
-
-   The same arrival is what a first load gets, which is why the page fades in
-   there too: it is the same event seen from the outside — a page appearing
-   where there was none. */
-main {
-  animation: var(--dur-arrive) var(--ease-fade) site-fade;
-}
+/* A switch of language has no animation, and cannot be given one here: it is the
+   one navigation React starts no view transition for — the page it renders is
+   the same component in the same place — and the tree is rebuilt from `<html>`
+   down, so nothing on either side of it survives to carry a transition. See
+   `language-switcher.tsx`. */
 
 /* The root snapshot is suppressed everywhere: page fades are driven by `.page`
    above, and letting the browser's default cross-fade run on the root as well
@@ -509,12 +487,6 @@ main {
   }
 
   .swap {
-    animation: none;
-  }
-
-  /* The page fades itself in when it is built; without motion it is simply
-     there. */
-  main {
     animation: none;
   }
 }
