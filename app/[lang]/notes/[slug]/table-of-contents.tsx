@@ -105,6 +105,9 @@ export function TableOfContents({
   } | null>(null);
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{ from: number; scrollTop: number } | null>(null);
+  // Set while the page is carrying the reader to a section, so the column does
+  // not follow it through every section on the way — see `reveal` below.
+  const jumping = useRef(false);
   // The section the reader is in, or `null` while the note's opening lines —
   // which belong to no section — are on screen.
   const [current, setCurrent] = useState<string | null>(null);
@@ -212,18 +215,18 @@ export function TableOfContents({
 
   // From `xl` a long contents scrolls inside its own capped column, so the
   // current entry can be out of sight even though the page is tracking it
-  // correctly. This scrolls the column only when that happens — an entry still
-  // well inside the view is left where it is — and never touches the page's own
+  // correctly. This brings it back only when that happens — an entry still well
+  // inside the view is left where it is — and never touches the page's own
   // scroll.
-  useEffect(() => {
+  const reveal = useCallback((id: string) => {
     const element = scroller.current;
-    if (!element || !current) return;
+    if (!element) return;
     // Not capped on a narrow screen, and short enough above `xl`: nothing to do.
     if (element.scrollHeight <= element.clientHeight) return;
 
     const link = Array.from(
       element.querySelectorAll<HTMLAnchorElement>("a[href]"),
-    ).find((anchor) => anchor.getAttribute("href") === `#${current}`);
+    ).find((anchor) => anchor.getAttribute("href") === `#${id}`);
     if (!link) return;
 
     // `getBoundingClientRect` rather than `offsetTop`, since the links are
@@ -238,7 +241,17 @@ export function TableOfContents({
     } else if (rect.bottom > box.bottom - EDGE) {
       element.scrollTop += rect.bottom - box.bottom + EDGE;
     }
-  }, [current]);
+  }, []);
+
+  // A jump of several sections moves `current` through each one on the way, and
+  // each of those turns would scroll the column by an entry — which reads as the
+  // contents running after the page. While a jump is in flight the column is
+  // placed once, at the section being jumped to, and left alone until the page
+  // comes to rest.
+  useEffect(() => {
+    if (jumping.current || !current) return;
+    reveal(current);
+  }, [current, reveal]);
 
   function startDrag(event: ReactPointerEvent<HTMLDivElement>) {
     const element = scroller.current;
@@ -305,6 +318,24 @@ export function TableOfContents({
     heading.dataset.jumpTarget = "";
     heading.tabIndex = -1;
     heading.focus({ preventScroll: true });
+
+    // The column is put in place before the page starts moving, and then left
+    // alone: the entries between here and there are crossed in one movement, and
+    // a column that highlighted each of them would scroll alongside the page.
+    jumping.current = true;
+    reveal(id);
+
+    let settled = 0;
+    const stop = () => {
+      jumping.current = false;
+      window.removeEventListener("scrollend", stop);
+      window.clearTimeout(settled);
+    };
+    // The browser knows when the scroll has come to rest, but not every browser
+    // says so, and a jump the reader interrupts with the wheel never rests where
+    // it was sent. The timer is the one that is guaranteed to run.
+    settled = window.setTimeout(stop, 1200);
+    window.addEventListener("scrollend", stop, { once: true });
 
     heading.scrollIntoView({
       behavior: prefersReducedMotion() ? "auto" : "smooth",
