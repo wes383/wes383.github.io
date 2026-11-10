@@ -51,14 +51,15 @@ export function HomeScroll() {
       saved = stored === null ? null : Number(stored);
     } catch {}
 
-    // Nothing remembered, and the page is a reload: the browser is already
-    // putting the reader back where they were, out of its own history entry, and
-    // there is nothing here to remember because nothing has been clicked. Zero
-    // would undo it.
+    // A reload is not an arrival. The browser is already putting the reader back
+    // at their own position out of its own history entry, and anything
+    // remembered here was written at the last click — a position they have since
+    // scrolled away from. Deferring costs nothing when the two agree and is the
+    // only correct answer when they do not.
     const [navigation] = performance.getEntriesByType(
       "navigation",
     ) as PerformanceNavigationTiming[];
-    if (saved === null && navigation?.type === "reload") return;
+    if (navigation?.type === "reload") return;
 
     // Otherwise zero is the right answer even with nothing remembered: a reader
     // arriving from a note that was opened from a link elsewhere should start at
