@@ -39,12 +39,16 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     // The page leaving the list fades out and this one fades in after it — see
     // `.page` in `globals.css`. It sits here rather than in the layout because
     // layouts persist across navigations: an enter animation placed there would
-    // never fire. A switch of language is the same page rather than another one,
-    // and takes the overlapping `.lang` pair instead. `default="none"` keeps
-    // both out of any other transition the page runs, such as the theme switch.
+    // never fire. `default="none"` keeps the page out of any other transition it
+    // runs, such as the theme switch.
     <ViewTransition
       enter={{ lang: "lang", default: "page" }}
       exit={{ lang: "lang", default: "page" }}
+      // A switch of language swaps the words of the page and leaves it where it
+      // is, so React reports an update rather than a mount — and only `update`
+      // answers that. Without this, the one navigation that is most obviously
+      // the same page again would be the only one that happened instantly.
+      update="lang"
       default="none"
     >
       <div>
