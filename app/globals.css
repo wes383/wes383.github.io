@@ -446,25 +446,21 @@ figure > figcaption a:hover {
    see: the route changes, but the page it renders is the same component in the
    same place, and no transition is started for it at all. Nothing survives the
    switch either — the tree is rebuilt from `<html>` down — so there is no
-   element left on the far side of it to carry a transition into. It is faded by
-   hand instead, on each side of the cut: the page dims on `leaving-language`
-   while the navigation waits (`language-fade.ts` holds it, then lets it go), and
-   the page that arrives fades itself in on its own animation — the one thing a
-   freshly built element can do where a transition cannot.
+   element on the far side of it to carry a transition into. What is left is the
+   arrival, and an arrival is what an animation does and a transition cannot: the
+   page fades itself in as it is built, with no help from the route.
+
+   Only the arrival, though. The page is not dimmed before the switch, because
+   the wait for the other language is a network's, not a designer's: dimming
+   first means staring at a blank page for as long as the payload takes, on a
+   slow connection, and any timer put in to cut that short shows the old page
+   again before the new one is ready.
 
    The same arrival is what a first load gets, which is why the page fades in
    there too: it is the same event seen from the outside, a page appearing where
    there was none. */
 main {
   animation: var(--dur-base) var(--ease-out) site-fade;
-}
-
-/* A running animation outranks a plain declaration, so the arrival has to be
-   taken off the page before it can be dimmed. */
-:root.leaving-language main {
-  animation: none;
-  opacity: 0;
-  transition: opacity var(--dur-fast) ease-in;
 }
 
 /* The root snapshot is suppressed everywhere: page fades are driven by `.page`
@@ -510,8 +506,7 @@ main {
   }
 
   /* The page fades itself in when it is built; without motion it is simply
-     there. The dim before a language switch is skipped by the script that would
-     start it, so there is nothing to cancel here. */
+     there. */
   main {
     animation: none;
   }
