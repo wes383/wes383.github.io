@@ -36,13 +36,16 @@ const markdownToHtml = unified()
 /**
  * Two things in a note's source are not part of its text. The front matter is an
  * MDX `export` the page never renders, and the interactive figures are client
- * components: a feed has no JavaScript to run them, so a slider would arrive as
- * a dead control. Both are taken out before the Markdown is parsed — the prose
+ * components: a feed has no JavaScript to run them, so they would arrive as
+ * dead controls. Both are taken out before the Markdown is parsed — the prose
  * around the figures is written to stand on its own.
  */
 const METADATA_EXPORT = /^export\s+const\s+metadata\s*=[\s\S]*?\n\};?\n?/;
+
+// Every client component a note can embed must be listed here; one left out
+// reaches the feed as a dead tag.
 const INTERACTIVE_FIGURE =
-  /^[ \t]*<(?:TabletRotation|DirectionSwitch)\b[^>]*\/>[ \t]*\n/gm;
+  /^[ \t]*<(?:DirectionSwitch|ReleaseTimeline|TabletRotation)\b[^>]*\/>[ \t]*\n/gm;
 
 function escapeXml(value: string): string {
   return value
