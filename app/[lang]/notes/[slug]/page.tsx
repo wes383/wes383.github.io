@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { lang as rootLang } from "next/root-params";
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
 import { LanguageSwitcher } from "@/app/language-switcher";
 import { ThemeToggle } from "@/app/theme-toggle";
 import { formatDate } from "@/lib/format";
@@ -94,7 +94,13 @@ export default function NotePage({
     // The fallback can't be translated: the shell may not read the route before
     // it renders, and a filesystem read resolves too fast for it to be seen.
     <Suspense fallback={<p className="text-sm text-foreground-muted">…</p>}>
-      <Note params={params} />
+      {/* The note fades in over the list it was opened from, and back out when
+          the reader leaves — see `.page` in `globals.css`. It wraps the note
+          inside the boundary, so the enter belongs to the article rather than
+          to the placeholder above it. */}
+      <ViewTransition enter="page" exit="page" default="none">
+        <Note params={params} />
+      </ViewTransition>
     </Suspense>
   );
 }

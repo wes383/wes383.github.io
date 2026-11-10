@@ -389,3 +389,91 @@ figure > figcaption a:hover {
 #contents a[aria-current="location"] {
   color: var(--foreground);
 }
+
+/* Motion. The whole vocabulary is four values: three durations, for the three
+   distances something can travel, and one curve. Everything below, and every
+   `transition-*` in the components, is one of them — a site this quiet cannot
+   afford a second set of timings that nobody can see agreeing.
+
+   Arrivals ease out, so they come to rest rather than stop; departures ease in,
+   so they are already moving when they go. Nothing here animates a position:
+   the text is the page, and moving it would undo the typography. */
+:root {
+  --dur-fast: 120ms; /* pointer feedback, and anything leaving */
+  --dur-base: 200ms; /* a state change inside the page */
+  --dur-page: 180ms; /* a page arriving, after a 70ms beat */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes site-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Content that replaced other content in place — the sample in a note's figure
+   when its writing direction changes. The new one fades in where the old one
+   stood; the old one is gone at once. Cross-fading two layouts of the same text
+   would show both at half strength and read as a blur, not as a change. */
+.swap {
+  animation: var(--dur-base) var(--ease-out) both site-fade;
+}
+
+/* A page change. The list and the note it leads to are the same site, so going
+   between them is a cut rather than a journey: the old page leaves on a short
+   fade and the new one arrives a beat later. The 70ms delay is what keeps two
+   copies of the text from being on screen together — beyond a few frames, a
+   cross-fade of running text reads as double vision. */
+::view-transition-old(.page) {
+  animation: var(--dur-fast) ease-in both site-fade reverse;
+}
+
+::view-transition-new(.page) {
+  animation: var(--dur-page) var(--ease-out) 70ms both site-fade;
+}
+
+/* The root snapshot is suppressed everywhere: page fades are driven by `.page`
+   above, and letting the browser's default cross-fade run on the root as well
+   would stack a second, slower fade on top of every one of them. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* The exception is the theme switch, which is the one change that touches the
+   whole document at once. A hard flip between black and white is the brightest
+   thing this site can do; held as a snapshot, the two palettes cross-fade
+   instead. The toggle puts `theming` on the root for the length of the
+   transition only. */
+:root.theming::view-transition-old(root) {
+  animation: var(--dur-fast) ease-in both site-fade reverse;
+}
+
+:root.theming::view-transition-new(root) {
+  animation: var(--dur-base) var(--ease-out) both site-fade;
+}
+
+/* A running transition holds an overlay over the page and would swallow clicks
+   made while it plays. Let them through to the live page underneath. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Motion is decoration here, never information: every state above is also
+   carried by colour, position or text, so a reader who has asked for less can
+   have all of it removed without losing anything. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+
+  .swap {
+    animation: none;
+  }
+}

@@ -167,8 +167,12 @@ export function DirectionSwitch({ lang }: { lang: Locale }) {
           the samples use multiple lines, as columns they need the height one line
           of the longest of them would take. */}
       <div className="flex h-48 items-center">
+        {/* Keyed by the mode and `swap`-ped, so the script that arrives fades in
+            where the last one stood. The two layouts are the same words made
+            into different shapes; cross-fading them would show both at once. */}
         <div
-          className="w-full text-sm leading-7"
+          key={mode}
+          className="swap w-full text-sm leading-7"
           style={{
             ...LAYOUT[mode],
             ...(sample.font ? { fontFamily: sample.font } : null),
@@ -212,8 +216,12 @@ export function DirectionSwitch({ lang }: { lang: Locale }) {
 
       {/* A hairline rather than a gap: the note belongs to the layout above it,
           and the fill is too slight for spacing alone to say so. It is a shade
-          darker than the table grid, which sits on white. */}
-      <div className="mt-4 border-t border-foreground-muted/20 pt-4 text-sm leading-6">
+          darker than the table grid, which sits on white. Keyed with the sample
+          so the explanation changes on the same beat as the script it is about. */}
+      <div
+        key={mode}
+        className="swap mt-4 border-t border-foreground-muted/20 pt-4 text-sm leading-6"
+      >
         {copy.notes[mode]}
       </div>
     </figure>

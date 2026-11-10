@@ -51,7 +51,7 @@ export function ThemeToggle({ labels }: { labels: Dictionary["theme"] }) {
     useSyncExternalStore(subscribe, appliedTheme, serverTheme) ?? "auto";
   const next = themes[(themes.indexOf(theme) + 1) % themes.length];
 
-  function choose(choice: Theme) {
+  function apply(choice: Theme) {
     if (choice === "auto") delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = choice;
 
@@ -59,6 +59,30 @@ export function ThemeToggle({ labels }: { labels: Dictionary["theme"] }) {
       if (choice === "auto") localStorage.removeItem("theme");
       else localStorage.setItem("theme", choice);
     } catch {}
+  }
+
+  function choose(choice: Theme) {
+    // A theme switch repaints the entire document, and a hard flip between black
+    // and white is the brightest thing this site does. Held as a snapshot, the
+    // two palettes cross-fade instead — the rules behind `theming` are in
+    // `globals.css`. A browser without view transitions applies the choice as
+    // it always did.
+    if (typeof document.startViewTransition !== "function") {
+      apply(choice);
+      return;
+    }
+
+    // Scoped to this transition only: the page fade between routes uses the same
+    // root snapshot, and it must not go looking for this rule.
+    const root = document.documentElement;
+    const settle = () => root.classList.remove("theming");
+    root.classList.add("theming");
+
+    // Both outcomes settle the class. `finished` rejects when a second click
+    // skips the first transition, which is not an error to report anywhere.
+    document
+      .startViewTransition(() => apply(choice))
+      .finished.then(settle, settle);
   }
 
   return (
