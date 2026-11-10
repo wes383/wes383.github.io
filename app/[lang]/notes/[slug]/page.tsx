@@ -159,7 +159,16 @@ async function Note({
           start. */}
       <header id="content-start" tabIndex={-1} className="mt-8 mb-8">
         <h1 className="text-xl font-semibold tracking-tight text-balance">
-          {note.metadata.title}
+          {/* The other end of the title that left the list — same name, so the
+              browser carries it across instead of cutting. The heading keeps
+              its own box and spacing; only the words travel. */}
+          <ViewTransition
+            name={`note-${slug}`}
+            share="morph"
+            default="none"
+          >
+            <span>{note.metadata.title}</span>
+          </ViewTransition>
         </h1>
         <p className="mt-2 text-xs text-foreground-muted">
           {formatDate(note.metadata.date, lang)}
