@@ -414,7 +414,7 @@ figure > figcaption a:hover {
   --dur-fast: 120ms; /* pointer feedback, and anything leaving */
   --dur-base: 200ms; /* a state change inside the page */
   --dur-page: 180ms; /* a page arriving, after a 70ms beat */
-  --dur-arrive: 400ms; /* a page appearing where there was none, and it alone */
+  --dur-arrive: 300ms; /* a page appearing where there was none */
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --ease-fade: cubic-bezier(0.4, 0, 0.2, 1);
 }
